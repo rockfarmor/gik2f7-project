@@ -170,16 +170,49 @@ nav {
 */
 
 .calendar-main {
-
-  width: 80%;
+  width: 100%;
   background-color: red;
+  border: 1px solid silver;
+}
 
+.calendar-head {
+  background-color: #004851;
+  color: white;
+  font-size: 16px;
+  padding: 10px;
+}
 
+.calendar-top {
+  background-color: #eeeeee;
+  font-size: 16px;
+  padding: 10px;
+}
+
+.calendar-day {
+  background-color: white;
+  font-size: 16px;
+  padding: 10px;
 }
 
 
+.calendar-item {
+  width: 100%;
+  text-align: center;
+}
 
+.day {
+  height: 60px;
 
+}
+
+.working {
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  background-color: #004851;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 
 
