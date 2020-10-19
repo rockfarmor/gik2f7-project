@@ -121,6 +121,11 @@ nav {
 
 }
 
+.dark-green {
+  background-color: #004851;
+}
+
+
 /*
  * Schema cards
  */
@@ -159,6 +164,19 @@ nav {
   width:100%;
   border: 1px solid gray;
 }
+
+/*
+  Calendar
+*/
+
+.calendar-main {
+
+  width: 80%;
+  background-color: red;
+
+
+}
+
 
 
 
