@@ -1,17 +1,181 @@
-<!DOCTYPE html>
 
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
+    <title>Dashboard Template for Bootstrap</title>
 
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins" />
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Custom styles for this template -->
+    <link href="assets/styles/dashboard.css" rel="stylesheet">
+    <link th:href="@{/dashboard.css}" rel="stylesheet" />
 </head>
+
 <body>
-<h2 class="hej">Carefully Styled Heading</h2>
-<p>
-    This is text on which we want to apply <strong>very special</strong> styling.
-</p>
+<nav class="navbar navbar-dark sticky-top flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0 dark-green" href="#"><span data-feather="calendar"></span> Schema app</a>
+    <ul class="navbar-nav">
+        <li class="nav-item text-nowrap logout">
+            <a class="nav-link white-text" href="#">
+                <span data-feather="users"></span>  Sign out
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="home.html">
+                            <span data-feather="home"></span>
+                            Översikt <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="schema.html">
+                            <span data-feather="calendar"></span>
+                            Schema
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="clock"></span>
+                            Tid
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="user"></span>
+                            Admin
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                <h1 class="h2">Översikt</h1>
+            </div>
+            <h1 class="h4">Kommande skift:</h1>
+            <div class ="d-flex flex-row date-card">
+                <div class="p-2 width-20">
+                    <div class="h4 no-margin-bot">
+                        18
+                    </div>
+                    lör
+                </div>
+                <div class="p-2 date-card-inner">
+                    <div class="h5 no-margin-bot">Johan Nilsson</div>
+                    <div class="d-flex">
+                        <div class="p-2 no-padding">10:00-20:00</div>
+                        <div class="p-2 no-padding padding-left gray-text">Middag</div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div class="p-2 no-padding gray-text"><span data-feather="map-pin"></span> Skolvägen</div>
+                        <div class="p-2 no-padding padding-right  gray-text"><span data-feather="coffee"></span> 17:00-17:30</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class ="d-flex flex-row date-card">
+                <div class="p-2 width-20">
+                    <div class="h4 no-margin-bot">
+                        19
+                    </div>
+                    sön
+                </div>
+                <div class="p-2 date-card-inner">
+                    <div class="h5 no-margin-bot">Johan Nilsson</div>
+                    <div class="d-flex">
+                        <div class="p-2 no-padding">10:00-20:00</div>
+                        <div class="p-2 no-padding padding-left gray-text">Middag</div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div class="p-2 no-padding gray-text"><span data-feather="map-pin"></span> Skolvägen</div>
+                        <div class="p-2 no-padding padding-right  gray-text"><span data-feather="coffee"></span> 17:00-17:30</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class ="d-flex flex-row date-card">
+                <div class="p-2 width-20">
+                    <div class="h4 no-margin-bot">
+                        20
+                    </div>
+                    mån
+                </div>
+                <div class="p-2 date-card-inner">
+                    <div class="h5 no-margin-bot">Johan Nilsson</div>
+                    <div class="d-flex">
+                        <div class="p-2 no-padding">10:00-20:00</div>
+                        <div class="p-2 no-padding padding-left gray-text">Middag</div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div class="p-2 no-padding gray-text"><span data-feather="map-pin"></span> Skolvägen</div>
+                        <div class="p-2 no-padding padding-right  gray-text"><span data-feather="coffee"></span> 17:00-17:30</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class ="d-flex flex-row date-card">
+                <div class="p-2 width-20">
+                    <div class="h4 no-margin-bot">
+                        21
+                    </div>
+                    tis
+                </div>
+                <div class="p-2 date-card-inner">
+                    <div class="h5 no-margin-bot">Johan Nilsson</div>
+                    <div class="d-flex">
+                        <div class="p-2 no-padding">10:00-20:00</div>
+                        <div class="p-2 no-padding padding-left gray-text">Middag</div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div class="p-2 no-padding gray-text"><span data-feather="map-pin"></span> Skolvägen</div>
+                        <div class="p-2 no-padding padding-right  gray-text"><span data-feather="coffee"></span> 17:00-17:30</div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </main>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/popper.min.js"></script>
+<script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js"></script>
+
+<!-- Icons -->
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+<script>
+    feather.replace()
+</script>
+
+<!-- Graphs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
 
 </body>
-
 </html>
