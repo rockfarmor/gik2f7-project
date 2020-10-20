@@ -87,6 +87,11 @@ public class MainController {
         h1.getSchedlist().add(s2);
 
         model.addAttribute("calendar_month", "Oktober");
+
+        model.addAttribute("month_int", 10);
+
+
+
         model.addAttribute("a1", a1);
 
 
@@ -101,21 +106,26 @@ public class MainController {
         LocalDateTime startDate = LocalDateTime.of(2020, 10, 1, 0, 0).minusDays(sdate.getDaystolastmonth());
         LocalDateTime endDate = LocalDateTime.of(2020, 10, sdate.getDaysthismonth(), 0, 0).plusDays(sdate.getDaystonextmonth());
 
-        LocalDateTime[][] cal = new LocalDateTime[8][];
+        int rows = (int)sdate.getRowsthismonth();
+        int cols = 7;
+
+
+        LocalDateTime[][] cal = new LocalDateTime[rows][];
 
         int l = 0;
-        for (int i = 0; i < cal.length; i++) {
-            cal[i] = new LocalDateTime[(int)sdate.getRowsthismonth()];
-            for (int j = 0; j < sdate.getRowsthismonth(); j++) {
+        for (int i = 0; i < rows; i++) {
+            cal[i] = new LocalDateTime[cols];
+            for (int j = 0; j < cols; j++) {
                 cal[i][j] = LocalDateTime.of(2020, 10, 1, 0, 0).minusDays(sdate.getDaystolastmonth()).plusDays(l);
                 l++;
             }
         }
 
-        for (int i = 0; i < cal.length; i++) {
+        for (int i = 0; i < rows; i++) {
             String x = "";
-            for (int j = 0; j < sdate.getRowsthismonth(); j++) {
-                x += cal[i][j] + " ";
+            for (int j = 0; j < cols; j++) {
+
+                x += (cal[i][j].getMonthValue() == 10) + " ";
             }
             System.out.println(x);
         }
@@ -123,7 +133,7 @@ public class MainController {
         System.out.println(cal);
         model.addAttribute("cal", cal);
 
-        System.out.println(startDate);
+        System.out.println(startDate.getMonthValue());
         System.out.println(endDate);
 
 

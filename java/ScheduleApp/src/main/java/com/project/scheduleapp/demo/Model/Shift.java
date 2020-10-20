@@ -19,6 +19,10 @@ public class Shift {
         this.isReal = true;
     }
 
+    public boolean dateIsMonth(int month){
+        return startDate.getDayOfMonth() == month;
+    }
+
     public int getShiftID() {
         return shiftID;
     }

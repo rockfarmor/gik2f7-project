@@ -88,7 +88,7 @@
               <div class="p-2 calendar-item">Sön</div>
             </div>
             <div class="d-flex justify-content-between calendar-day" th:each="i: ${cal}">
-              <div rel="comments" class="p-2 calendar-item day" th:each="item: ${i}"><p class="no-padding" th:text="${item.getDayOfMonth()}"></p></div>
+              <div rel="comments" class="p-2 calendar-item day" th:each="item: ${i}"><p class="no-padding" th:classappend="${item.getMonthValue() == month_int} ? no-padding:gray-text" th:text="${item.getDayOfMonth()}"></p></div>
             </div>
             <div class="d-flex justify-content-between calendar-day">
               <div rel="comments" class="p-2 calendar-item day">26</div>
