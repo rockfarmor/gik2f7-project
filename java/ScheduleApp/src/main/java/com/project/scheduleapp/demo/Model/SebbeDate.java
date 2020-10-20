@@ -101,9 +101,9 @@ public class SebbeDate {
                 goforward=c;
                 a=6-goforward;
                 this.daystonextmonth=a;
-                System.out.println("Sista dagen i månaden är "+ sistadag);
-                System.out.println("Antal dagar som går in på nästa månad är " + a);
-                System.out.println("I månad " + month + "ska sista dagen vara "+ dagar[goforward+a]);
+                //System.out.println("Sista dagen i månaden är "+ sistadag);
+                //System.out.println("Antal dagar som går in på nästa månad är " + a);
+                //System.out.println("I månad " + month + "ska sista dagen vara "+ dagar[goforward+a]);
             }
         }
         double antalrader=0;

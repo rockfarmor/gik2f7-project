@@ -67,7 +67,6 @@ public class MainController {
     }
 
     @RequestMapping(value = "/schema", method = RequestMethod.GET)
-    public String showSchedule(HttpSession session) {
         if(session.getAttribute("user") == null) {
 
             return "logIn";
