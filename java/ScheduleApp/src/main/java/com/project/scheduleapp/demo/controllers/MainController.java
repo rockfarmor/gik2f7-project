@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
-<<<<<<< HEAD
+
 import java.util.HashMap;
 import java.util.Map;
-=======
+
 import java.util.Date;
->>>>>>> 3e4279d0c7fd69216bed85add06729df59c03116
+
 
 @Controller
 public class MainController {
