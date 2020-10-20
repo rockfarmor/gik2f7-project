@@ -2,6 +2,7 @@ package com.project.scheduleapp.demo.controllers;
 
 import com.project.scheduleapp.demo.Model.User;
 import com.project.scheduleapp.demo.Service.test;
+import org.apache.tomcat.util.http.parser.HttpParser;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
@@ -22,9 +23,10 @@ public class MainController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String verifyLogin(@RequestParam String email,@RequestParam String password) {
+    public String verifyLogin(@RequestParam String email,@RequestParam String password,HttpSession session) {
         for(int c=0;c<userlist.length;c++){
             if(email.equals(userlist[c].getUserID()) && password.equals(userlist[c].getPassword())){
+                session.setAttribute("user",userlist[c]);
                 if(userlist[c].getAdmin() == 1){
                     return "admin";
                 }else{
@@ -36,16 +38,23 @@ public class MainController {
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logOut() {
+    public String logOut(HttpSession session) {
+        session.invalidate();
         return "login";
     }
 
     @RequestMapping(value = "/schema", method = RequestMethod.GET)
-    public String showSchedule() {
+    public String showSchedule(HttpSession session) {
+        if(session.getAttribute("user") == null) {
+            return "logIn";
+        }
         return "schema";
     }
     @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String showHome() {
+    public String showHome(HttpSession session) {
+        if(session.getAttribute("user") == null) {
+            return "logIn";
+        }
         return "home";
     }
 }
