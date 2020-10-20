@@ -163,6 +163,7 @@ nav {
 .date-card-inner {
   width:100%;
   border: 1px solid gray;
+  background-color: white;
 }
 
 /*
@@ -180,6 +181,10 @@ nav {
   color: white;
   font-size: 16px;
   padding: 10px;
+}
+
+.calendar-arrow a {
+  color: white !important;
 }
 
 .calendar-top {
@@ -203,6 +208,8 @@ nav {
 .day {
   height: 60px;
 
+  cursor: pointer;
+
 }
 
 .working {
@@ -215,7 +222,21 @@ nav {
 }
 
 
+.popover-content {
+  height: 180px;
+  width: 200px;
+}
 
+.popover-schedule {
+  background-color: white;
+  width: 70%;
+  border: 1px solid silver;
+  z-index: 10000;
+}
+
+.popover-schedule .schedule-head{
+
+}
 
 
 
