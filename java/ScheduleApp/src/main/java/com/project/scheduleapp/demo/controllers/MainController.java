@@ -62,6 +62,8 @@ public class MainController {
             return "logIn";
 
         }
+
+
         SebbeDate sdate = new SebbeDate();
         sdate.dagar(2020,10);
         return "schema";

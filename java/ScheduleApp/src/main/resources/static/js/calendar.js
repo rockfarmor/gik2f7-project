@@ -1,4 +1,3 @@
-  
 $("[rel=comments]").popover({
     trigger : 'click',
     placement : 'bottom',

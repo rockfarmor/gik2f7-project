@@ -1,64 +1,82 @@
+
 body {
-    font-size: .875rem;
-    font-family: "Poppins";
+  font-size: .875rem;
+  font-family: "Poppins";
 }
 
 .feather {
-    width: 16px;
-    height: 16px;
-    vertical-align: -0.125em;
+  width: 16px;
+  height: 16px;
+  vertical-align: -0.125em;
 }
 
 /*
  * Sidebar
  */
 
+.add-user {
+    cursor: pointer;
+}
+
+ .btn-custom {
+     background-color: #027c8b;
+
+ }
+
+ .btn-custom:hover {
+     background-color: #004851;
+ }
+
+ .p-2.full {
+   width: 100%;
+ }
+
 .sidebar {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 100; /* Behind the navbar */
-    padding: 0;
-    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
-    background-color: #027c8b;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100; /* Behind the navbar */
+  padding: 0;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+  background-color: #027c8b;
 }
 
 .sidebar-sticky {
-    position: -webkit-sticky;
-    position: sticky;
+  position: -webkit-sticky;
+  position: sticky;
 
-    top: 48px; /* Height of navbar */
-    height: calc(100vh - 48px);
-    padding-top: .5rem;
-    overflow-x: hidden;
-    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-    background-color: #027c8b;
+  top: 48px; /* Height of navbar */
+  height: calc(100vh - 48px);
+  padding-top: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  background-color: #027c8b;
 }
 
 .sidebar .nav-link {
-    font-weight: 500;
-    color: #f0f0f0;
+  font-weight: 500;
+  color: #f0f0f0;
 }
 
 .sidebar .nav-link .feather {
-    margin-right: 4px;
+  margin-right: 4px;
 
 
 }
 
 .sidebar .nav-link.active {
-    color: #004851;
+  color: #004851;
 }
 
 .sidebar .nav-link:hover .feather,
 .sidebar .nav-link.active .feather {
-    color: inherit;
+  color: inherit;
 }
 
 .sidebar-heading {
-    font-size: .75rem;
-    text-transform: uppercase;
+  font-size: .75rem;
+  text-transform: uppercase;
 }
 
 /*
@@ -66,63 +84,63 @@ body {
  */
 
 .navbar-brand {
-    padding-top: .75rem;
-    padding-bottom: .75rem;
-    font-size: 1rem;
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  font-size: 1rem;
 
 }
 
 .navbar .form-control {
-    padding: .75rem 1rem;
-    border-width: 0;
-    border-radius: 0;
+  padding: .75rem 1rem;
+  border-width: 0;
+  border-radius: 0;
 }
 
 .form-control-dark {
-    color: #fff;
-    background-color: rgba(255, 255, 255, .1);
-    border-color: rgba(255, 255, 255, .1);
+  color: #fff;
+  background-color: rgba(255, 255, 255, .1);
+  border-color: rgba(255, 255, 255, .1);
 }
 
 .form-control-dark:focus {
-    border-color: transparent;
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+  border-color: transparent;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
 
 nav {
-    background-color: #027c8b;
+  background-color: #027c8b;
 }
 
 
 
 .nav-item  {
-    background-color: #027c8b;
-    height: 50px;
+  background-color: #027c8b;
+  height: 50px;
 }
 .nav-link {
-    width: 95%;
-    font-size: 18px;
+  width: 95%;
+  font-size: 18px;
 }
 .nav-link.active {
-    background-color: #f0f0f0;
+  background-color: #f0f0f0;
 }
 
 .white-text {
-    color: white !important;
+  color: white !important;
 }
 
 .logout {
-    background-color: black;
-    width: 100%;
-    padding-left: 10px;
-    padding-right: 10px;
-    background-color: #004851;
-    color: white;
+  background-color: black;
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #004851;
+  color: white;
 
 }
 
 .dark-green {
-    background-color: #004851;
+  background-color: #004851;
 }
 
 
@@ -130,39 +148,55 @@ nav {
  * Schema cards
  */
 .gray-text {
-    color: gray;
+  color: gray;
 }
 
 .width-20 {
-    width: 50px;
-    text-align: right;
+  width: 50px;
+  text-align: right;
 }
 
 .no-margin-bot {
-    margin-top: 0px;
-    margin-bottom: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.no-margin {
+  margin: 0px;
 }
 
 .no-padding {
-    padding: 0px !important;
+  padding: 0px !important;
+}
+
+.add-user-padding {
+  padding: 0px!important;
+  padding-top: 3px !important;
 }
 
 .padding-left {
-    padding-left: 20px !important;
+  padding-left: 20px !important;
 }
 
 .padding-right {
-    padding-right: 30% !important;
+  padding-right: 30% !important;
 }
 
 .date-card {
-    width: 80%;
-    margin: 10px;
+  width: 80%;
+  margin: 10px;
 }
 
+
 .date-card-inner {
-    width:100%;
-    border: 1px solid gray;
+  width:100%;
+  border: 1px solid gray;
+  background-color: white;
+}
+
+.date-card-inner.active {
+  background-color: #004851;
+  color: white;
 }
 
 /*
@@ -170,52 +204,95 @@ nav {
 */
 
 .calendar-main {
-    width: 100%;
-    background-color: red;
-    border: 1px solid silver;
+  width: 100%;
+  background-color: red;
+  border: 1px solid silver;
 }
 
 .calendar-head {
-    background-color: #004851;
-    color: white;
-    font-size: 16px;
-    padding: 10px;
+  background-color: #004851;
+  color: white;
+  font-size: 16px;
+  padding: 10px;
+}
+
+.calendar-arrow a {
+  color: white !important;
 }
 
 .calendar-top {
-    background-color: #eeeeee;
-    font-size: 16px;
-    padding: 10px;
+  background-color: #eeeeee;
+  font-size: 16px;
+  padding: 10px;
 }
 
 .calendar-day {
-    background-color: white;
-    font-size: 16px;
-    padding: 10px;
+  background-color: white;
+  font-size: 16px;
+  padding: 10px;
 }
 
 
 .calendar-item {
-    width: 100%;
-    text-align: center;
+  width: 100%;
+  text-align: center;
 }
 
 .day {
-    height: 60px;
+  height: 60px;
+
+  cursor: pointer;
 
 }
 
 .working {
-    width: 10px;
-    height: 10px;
-    border-radius: 10px;
-    background-color: #004851;
-    margin-left: auto;
-    margin-right: auto;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  background-color: #004851;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
+.popover-content {
+  height: 180px;
+  width: 200px;
+}
 
+.popover-schedule {
+  background-color: white;
+  width: 70%;
+  border: 1px solid silver;
+  z-index: 10000;
+}
+
+.popover-admin {
+  background-color: white;
+  width: 30%;
+  border: 1px solid silver;
+  z-index: 10000;
+}
+
+.popover-schedule .schedule-head{
+
+}
+
+
+/*
+  Admin
+*/
+.admin-form {
+  width: 70%;
+}
+.admin-container {
+  width: 40%;
+
+}
+
+.inner-add-user {
+  padding: 20px;
+}
 
 
 
