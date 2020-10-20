@@ -29,7 +29,7 @@
             </g>
         </svg>
     </div>
-
+    <p th:if="${invalidCredentials}" class="error">Incorrect Username Or Password</p>
     <div class="form-label-group">
         <input type="email" id="inputEmail"  name="email" class="form-control" placeholder="emailaddress" required autofocus>
         <label for="inputEmail">Email address 2</label>

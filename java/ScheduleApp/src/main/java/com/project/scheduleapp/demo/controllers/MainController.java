@@ -27,7 +27,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String verifyLogin(@RequestParam String email,@RequestParam String password,HttpSession session) {
+    public String verifyLogin(@RequestParam String email,@RequestParam String password,HttpSession session,Model model) {
         for(int c=0;c<userlist.length;c++){
             if(email.equals(userlist[c].getUserID()) && password.equals(userlist[c].getPassword())){
                 session.setAttribute("user",userlist[c]);
@@ -38,13 +38,14 @@ public class MainController {
                 }
             }
         }
-        return "/";
+        model.addAttribute("invalidCredentials",true);
+        return "logIn";
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logOut(HttpSession session) {
         session.invalidate();
-        return "login";
+        return "logIn";
     }
 
     @RequestMapping(value = "/schema", method = RequestMethod.GET)
