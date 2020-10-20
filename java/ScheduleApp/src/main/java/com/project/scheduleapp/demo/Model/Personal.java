@@ -1,14 +1,24 @@
 package com.project.scheduleapp.demo.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Personal {
-    int uniqueID;
-    String name;
-    String userName;
-    String password;
-    int salaryPerHour;
-    List<Shift> schedlist;
+    protected int uniqueID;
+    protected String name;
+    protected String userName;
+    protected String password;
+    protected int salaryPerHour;
+    protected List<Shift> schedlist;
+
+    public Personal(int uniqueID, String name, String userName, String password, int salaryPerHour) {
+        this.uniqueID = uniqueID;
+        this.name = name;
+        this.userName = userName;
+        this.password = password;
+        this.salaryPerHour = salaryPerHour;
+        this.schedlist = new ArrayList<>();
+    }
 
     public void showSalary(){
 

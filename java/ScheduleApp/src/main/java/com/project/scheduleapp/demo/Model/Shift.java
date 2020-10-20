@@ -1,13 +1,21 @@
 package com.project.scheduleapp.demo.Model;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Shift {
     private int shiftID;
-    private Date date;
-    private String startTime;
-    private String endTime;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
     private String description;
+
+
+    public Shift(int shiftID, LocalDateTime startDate, LocalDateTime endDate, String description) {
+        this.shiftID = shiftID;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.description = description;
+    }
 
     public int getShiftID() {
         return shiftID;
@@ -17,28 +25,12 @@ public class Shift {
         this.shiftID = shiftID;
     }
 
-    public Date getDate() {
-        return date;
+    public LocalDateTime getStartDate() {
+        return startDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
-    public String getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
+    public LocalDateTime getEndDate() {
+        return endDate;
     }
 
     public String getDescription() {
