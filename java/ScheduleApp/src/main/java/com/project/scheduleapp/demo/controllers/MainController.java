@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class MainController {
@@ -22,7 +25,14 @@ public class MainController {
     User [] userlist ={u1,u2};
     Account a1=new Account(1,"sebbe","seb123","1234",150);
     Account a2=new Account(2,"johan","johan123","qwert",200);
-    //Shift s1 = new Shift(1,2017, 2, 13, 15, 56,2017, 2, 13, 15, 56,"Woking");
+    LocalDateTime a = LocalDateTime.of(2020, 10, 20, 15, 00);
+    LocalDateTime b = LocalDateTime.of(2020, 10, 20, 22, 00);
+    LocalDateTime c = LocalDateTime.of(2020, 10, 21, 15, 00);
+    LocalDateTime d = LocalDateTime.of(2020, 10, 21, 23, 30);
+    Shift s1 = new Shift(1,a,b,"Woking");
+    Shift s2 = new Shift(2,c,d,"Running");
+
+
 
 
 
@@ -30,6 +40,7 @@ public class MainController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String showlogIn() {
+
         return "login";
     }
 
@@ -67,10 +78,26 @@ public class MainController {
         return "schema";
     }
     @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String showHome(HttpSession session) {
+    public String showHome(HttpSession session,Model model) {
         if(session.getAttribute("user") == null) {
             return "logIn";
+
         }
+        Map<String,String> dagar = new HashMap<>();
+        dagar.put("MONDAY","Mån");
+        dagar.put("TUESDAY","Tis");
+        dagar.put("WEDNESDAY","Ons");
+        dagar.put("THRUSDAY","Tor");
+        dagar.put("FRIDAY","Fri");
+        dagar.put("SATURDAY","Lör");
+        dagar.put("SUNDAY","Sön");
+
+        a1.getSchedlist().add(s1);
+        a1.getSchedlist().add(s2);
+        model.addAttribute("schedlist", a1.getSchedlist());
+        model.addAttribute("account",a1);
+        model.addAttribute("dagar",dagar);
+
         return "home";
     }
 }
