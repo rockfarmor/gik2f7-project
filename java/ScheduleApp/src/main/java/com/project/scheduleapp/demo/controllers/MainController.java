@@ -1,5 +1,6 @@
 package com.project.scheduleapp.demo.controllers;
 
+import com.project.scheduleapp.demo.Model.Account;
 import com.project.scheduleapp.demo.Model.User;
 import com.project.scheduleapp.demo.Service.test;
 import org.apache.tomcat.util.http.parser.HttpParser;
@@ -17,6 +18,9 @@ public class MainController {
     User u1 = new User("admin@admin.se","admin",1);
     User u2 = new User("sebbe@sebbe.se","123",0);
     User [] userlist ={u1,u2};
+
+
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String showlogIn() {
         return "login";
