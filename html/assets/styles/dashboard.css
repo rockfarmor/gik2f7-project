@@ -13,6 +13,23 @@ body {
  * Sidebar
  */
 
+.add-user {
+    cursor: pointer;
+}
+
+ .btn-custom {
+     background-color: #027c8b;
+
+ }
+
+ .btn-custom:hover {
+     background-color: #004851;
+ }
+
+ .p-2.full {
+   width: 100%;
+ }
+
 .sidebar {
   position: fixed;
   top: 0;
@@ -143,8 +160,17 @@ nav {
   margin-bottom: 0px;
 }
 
+.no-margin {
+  margin: 0px;
+}
+
 .no-padding {
   padding: 0px !important;
+}
+
+.add-user-padding {
+  padding: 0px!important;
+  padding-top: 3px !important;
 }
 
 .padding-left {
@@ -242,6 +268,20 @@ nav {
 
 .popover-schedule .schedule-head{
 
+}
+
+
+/*
+  Admin
+*/
+
+.admin-container {
+  width: 40%;
+
+}
+
+.inner-add-user {
+  padding: 5px;
 }
 
 
