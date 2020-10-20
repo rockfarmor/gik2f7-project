@@ -160,10 +160,16 @@ nav {
   margin: 10px;
 }
 
+
 .date-card-inner {
   width:100%;
   border: 1px solid gray;
   background-color: white;
+}
+
+.date-card-inner.active {
+  background-color: #004851;
+  color: white;
 }
 
 /*
