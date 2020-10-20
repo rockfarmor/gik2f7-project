@@ -22,7 +22,7 @@ public class MainController {
     User [] userlist ={u1,u2};
     Account a1=new Account(1,"sebbe","seb123","1234",150);
     Account a2=new Account(2,"johan","johan123","qwert",200);
-   // Shift s1 = new Shift(1,2017, 2, 13, 15, 56,2017, 2, 13, 15, 56,"Woking");
+    //Shift s1 = new Shift(1,2017, 2, 13, 15, 56,2017, 2, 13, 15, 56,"Woking");
 
 
 
