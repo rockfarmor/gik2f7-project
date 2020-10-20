@@ -12,20 +12,30 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class MainController {
 
-    @RequestMapping(value="/",method= RequestMethod.GET)
-    public String page(Model model) {
-
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String logIn() {
         return "login";
     }
-    @RequestMapping(value="/login", method = RequestMethod.POST)
-    public String verifyLogin(@RequestParam String userID, @RequestParam String password, Model model, HttpSession session){
 
-                return "/home";
-            }
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String verifyLogin() {
+        return "home";
+    }
 
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logOut() {
+        return "login";
+    }
 
-
-        }
+    @RequestMapping(value = "/schema", method = RequestMethod.GET)
+    public String showSchedule() {
+        return "schema";
+    }
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    public String showHome() {
+        return "home";
+    }
+}
 
 
 
