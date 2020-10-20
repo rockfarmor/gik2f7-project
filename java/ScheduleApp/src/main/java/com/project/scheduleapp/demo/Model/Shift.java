@@ -8,6 +8,7 @@ public class Shift {
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private String description;
+    private boolean isReal;
 
 
     public Shift(int shiftID, LocalDateTime startDate, LocalDateTime endDate, String description) {
@@ -15,6 +16,7 @@ public class Shift {
         this.startDate = startDate;
         this.endDate = endDate;
         this.description = description;
+        this.isReal = true;
     }
 
     public int getShiftID() {
@@ -40,4 +42,37 @@ public class Shift {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
+
+
+
+    public int getStartYear() {
+        return this.startDate.getYear();
+    }
+
+    public  int getStartMonth() {
+        return this.startDate.getMonthValue();
+    }
+
+    public  int getStartDay() {
+        return this.startDate.getDayOfMonth();
+    }
+
+    public int getEndYear() {
+        return this.endDate.getYear();
+    }
+
+    public  int getEndMonth() {
+        return this.endDate.getMonthValue();
+    }
+
+    public  int getEndDay() {
+        return this.endDate.getDayOfMonth();
+    }
+
+
+
+
+
 }

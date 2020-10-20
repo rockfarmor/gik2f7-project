@@ -5,6 +5,7 @@ import com.project.scheduleapp.demo.Model.SebbeDate;
 import com.project.scheduleapp.demo.Model.Shift;
 import com.project.scheduleapp.demo.Model.User;
 import com.project.scheduleapp.demo.Service.test;
+import org.apache.tomcat.jni.Local;
 import org.apache.tomcat.util.http.parser.HttpParser;
 import org.springframework.stereotype.Controller;
 
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Controller
 public class MainController {
@@ -56,16 +59,61 @@ public class MainController {
     }
 
     @RequestMapping(value = "/schema", method = RequestMethod.GET)
-    public String showSchedule(HttpSession session) {
+    public String showSchedule(Model model, HttpSession session) {
         if(session.getAttribute("user") == null) {
 
             return "logIn";
 
         }
+        Account h1 = new Account(100,"Johan Nilsson","johni198","asd",200);
+
+        Shift s1 = new Shift(1, LocalDateTime.of(2020, 10, 1, 12, 0), LocalDateTime.of(2020, 10, 1, 17, 0), "FUCK YA");
+        Shift s2 = new Shift(1, LocalDateTime.of(2020, 10, 4, 12, 0), LocalDateTime.of(2020, 10, 4, 17, 0), "FUCK YA");
+
+        h1.getSchedlist().add(s1);
+        h1.getSchedlist().add(s2);
+
+        model.addAttribute("calendar_month", "Oktober");
+        model.addAttribute("a1", a1);
+
+
 
 
         SebbeDate sdate = new SebbeDate();
         sdate.dagar(2020,10);
+        System.out.println("daysthismonth" + sdate.getDaysthismonth());
+        System.out.println("getDaystolastmonth" + sdate.getDaystolastmonth());
+        System.out.println("getDaystonextmonth" + sdate.getDaystonextmonth());
+        System.out.println("getRowsthismonth" + sdate.getRowsthismonth());
+        LocalDateTime startDate = LocalDateTime.of(2020, 10, 1, 0, 0).minusDays(sdate.getDaystolastmonth());
+        LocalDateTime endDate = LocalDateTime.of(2020, 10, sdate.getDaysthismonth(), 0, 0).plusDays(sdate.getDaystonextmonth());
+
+        LocalDateTime[][] cal = new LocalDateTime[8][];
+
+        int l = 0;
+        for (int i = 0; i < cal.length; i++) {
+            cal[i] = new LocalDateTime[(int)sdate.getRowsthismonth()];
+            for (int j = 0; j < sdate.getRowsthismonth(); j++) {
+                cal[i][j] = LocalDateTime.of(2020, 10, 1, 0, 0).minusDays(sdate.getDaystolastmonth()).plusDays(l);
+                l++;
+            }
+        }
+
+        for (int i = 0; i < cal.length; i++) {
+            String x = "";
+            for (int j = 0; j < sdate.getRowsthismonth(); j++) {
+                x += cal[i][j] + " ";
+            }
+            System.out.println(x);
+        }
+
+        System.out.println(cal);
+        model.addAttribute("cal", cal);
+
+        System.out.println(startDate);
+        System.out.println(endDate);
+
+
         return "schema";
     }
     @RequestMapping(value = "/home", method = RequestMethod.GET)

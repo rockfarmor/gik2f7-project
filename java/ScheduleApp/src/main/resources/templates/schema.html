@@ -74,9 +74,10 @@
           <div class="calendar-main">
             <div class="d-flex justify-content-between calendar-head">
               <div class="p-2 no-padding calendar-arrow"><a href="#" alt="Go back"><span data-feather="arrow-left"></span></a></div>
-              <div class="p-2 no-padding">Oktober 2020</div>
+              <div class="p-2 no-padding" th:text="${calendar_month} + ' 2020'"></div>
               <div class="p-2 no-padding calendar-arrow"><a href="#" alt="Go Front"><span data-feather="arrow-right"></span></a></div>
             </div>
+
             <div class="d-flex justify-content-between calendar-top">
               <div class="p-2 calendar-item">Mån</div>
               <div class="p-2 calendar-item">Tis</div>
@@ -86,41 +87,8 @@
               <div class="p-2 calendar-item">Lör</div>
               <div class="p-2 calendar-item">Sön</div>
             </div>
-            <div class="d-flex justify-content-between calendar-day">
-              <div rel="comments" href="#" class="p-2 calendar-item day gray-text">28</div>
-              <div rel="comments" class="p-2 calendar-item day gray-text">29</div>
-              <div rel="comments" class="p-2 calendar-item day gray-text">30</div>
-              <div rel="comments" class="p-2 calendar-item day gray-text">1<div class="working"></div></div>
-              <div rel="comments" class="p-2 calendar-item day">2</div>
-              <div rel="comments" class="p-2 calendar-item day">3</div>
-              <div rel="comments" class="p-2 calendar-item day">4</div>
-            </div>
-            <div class="d-flex justify-content-between calendar-day">
-              <div rel="comments" class="p-2 calendar-item day">5</div>
-              <div rel="comments"class="p-2 calendar-item day">6</div>
-              <div rel="comments" class="p-2 calendar-item day">7<div class="working"></div></div>
-              <div rel="comments" class="p-2 calendar-item day">8<div class="working"></div></div>
-              <div rel="comments" class="p-2 calendar-item day">9<div class="working"></div></div>
-              <div rel="comments" class="p-2 calendar-item day">10<div class="working"></div></div>
-              <div rel="comments" class="p-2 calendar-item day">11</div>
-            </div>
-            <div class="d-flex justify-content-between calendar-day">
-              <div rel="comments" class="p-2 calendar-item day">12</div>
-              <div rel="comments" class="p-2 calendar-item day">13</div>
-              <div rel="comments" class="p-2 calendar-item day">14<div class="working"></div></div>
-              <div rel="comments" class="p-2 calendar-item day">15<div class="working"></div></div>
-              <div rel="comments" class="p-2 calendar-item day">16<div class="working"></div></div>
-              <div rel="comments" class="p-2 calendar-item day">17<div class="working"></div></div>
-              <div class="p-2 calendar-item day">18</div>
-            </div>
-            <div class="d-flex justify-content-between calendar-day">
-              <div rel="comments" class="p-2 calendar-item day">19</div>
-              <div rel="comments" class="p-2 calendar-item day">20</div>
-              <div rel="comments" class="p-2 calendar-item day">21<div class="working"></div></div>
-              <div rel="comments" class="p-2 calendar-item day">22</div>
-              <div rel="comments" class="p-2 calendar-item day">23<div class="working"></div></div>
-              <div rel="comments" class="p-2 calendar-item day">24<div class="working"></div></div>
-              <div rel="comments" class="p-2 calendar-item day">25<div class="working"></div></div>
+            <div class="d-flex justify-content-between calendar-day" th:each="i: ${cal}">
+              <div rel="comments" class="p-2 calendar-item day" th:each="item: ${i}"><p class="no-padding" th:text="${item.getDayOfMonth()}"></p></div>
             </div>
             <div class="d-flex justify-content-between calendar-day">
               <div rel="comments" class="p-2 calendar-item day">26</div>
