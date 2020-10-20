@@ -67,12 +67,12 @@
         </nav>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-          <div class="d-flex flex-row">
-            <div class="p-2 admin-container">
+
+            <div>
               <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                 <h1 class="h3">Lägg till skift</h1>
-              </div>
-
+            </div>
+            <div class="admin-form">
               <form>
                 <div class="d-flex flex-row">
                   <div class="p-2 no-margin no-padding">
@@ -92,8 +92,14 @@
                 </select>
 
                 <br /><br />
-
-                <label for="skifttyp"><h1 class="h5 no-margin-bot">Skifttyp:</h1></label></br>
+                <div class="d-flex flex-row">
+                  <div class="p-2 no-margin no-padding">
+                    <label for="skifttyp"><h1 class="h5 no-margin-bot">Skifttyp:</h1></label>
+                  </div>
+                  <div class="p-2 add-user-padding padding-left">
+                    <div rel="add-skift" class="add-user"> <span data-feather="plus-circle"></span></div>
+                  </div>
+                </div>
                 <select id="skifttyp" name="skifttyp" class="custom-select">
                   <option selected>Välj Skifttyp</option>
                   <option value="1">Frukost</option>
@@ -124,20 +130,11 @@
                 <br >
                 <button type="submit" class="btn btn-lg btn-primary btn-block btn-custom">Submit</button>
               </form>
-
-
-
-
             </div>
-            <div class="p-2 admin-container">
-              <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                <h1 class="h3">Lägg  till skifttyp</h1>
-              </div>
-              asd
 
 
-            </div>
-            </div>
+          </div>
+
           </div>
           </div>
         </main>
