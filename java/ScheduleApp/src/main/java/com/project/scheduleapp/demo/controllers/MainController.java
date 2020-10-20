@@ -2,6 +2,7 @@ package com.project.scheduleapp.demo.controllers;
 
 import com.project.scheduleapp.demo.Model.Account;
 import com.project.scheduleapp.demo.Model.SebbeDate;
+import com.project.scheduleapp.demo.Model.Shift;
 import com.project.scheduleapp.demo.Model.User;
 import com.project.scheduleapp.demo.Service.test;
 import org.apache.tomcat.util.http.parser.HttpParser;
@@ -19,6 +20,10 @@ public class MainController {
     User u1 = new User("admin@admin.se","admin",1);
     User u2 = new User("sebbe@sebbe.se","123",0);
     User [] userlist ={u1,u2};
+    Account a1=new Account(1,"sebbe","seb123","1234",150);
+    Account a2=new Account(2,"johan","johan123","qwert",200);
+   // Shift s1 = new Shift(1,2017, 2, 13, 15, 56,2017, 2, 13, 15, 56,"Woking");
+
 
 
 
