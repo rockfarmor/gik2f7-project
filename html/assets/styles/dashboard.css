@@ -13,6 +13,10 @@ body {
  * Sidebar
  */
 
+.add-user {
+    cursor: pointer;
+}
+
  .btn-custom {
      background-color: #027c8b;
 
@@ -156,8 +160,17 @@ nav {
   margin-bottom: 0px;
 }
 
+.no-margin {
+  margin: 0px;
+}
+
 .no-padding {
   padding: 0px !important;
+}
+
+.add-user-padding {
+  padding: 0px!important;
+  padding-top: 3px !important;
 }
 
 .padding-left {
@@ -267,6 +280,9 @@ nav {
 
 }
 
+.inner-add-user {
+  padding: 5px;
+}
 
 
 
