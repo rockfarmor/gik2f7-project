@@ -1,5 +1,6 @@
 package com.project.scheduleapp.demo;
 
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -9,5 +10,6 @@ public class ScheduleAppApplication {
     public static void main(String[] args) {
         SpringApplication.run(ScheduleAppApplication.class, args);
     }
+
 
 }

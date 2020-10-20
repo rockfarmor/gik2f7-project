@@ -13,6 +13,19 @@ body {
  * Sidebar
  */
 
+ .btn-custom {
+     background-color: #027c8b;
+
+ }
+
+ .btn-custom:hover {
+     background-color: #004851;
+ }
+
+ .p-2.full {
+   width: 100%;
+ }
+
 .sidebar {
   position: fixed;
   top: 0;
@@ -160,9 +173,16 @@ nav {
   margin: 10px;
 }
 
+
 .date-card-inner {
   width:100%;
   border: 1px solid gray;
+  background-color: white;
+}
+
+.date-card-inner.active {
+  background-color: #004851;
+  color: white;
 }
 
 /*
@@ -180,6 +200,10 @@ nav {
   color: white;
   font-size: 16px;
   padding: 10px;
+}
+
+.calendar-arrow a {
+  color: white !important;
 }
 
 .calendar-top {
@@ -203,6 +227,8 @@ nav {
 .day {
   height: 60px;
 
+  cursor: pointer;
+
 }
 
 .working {
@@ -215,6 +241,31 @@ nav {
 }
 
 
+.popover-content {
+  height: 180px;
+  width: 200px;
+}
+
+.popover-schedule {
+  background-color: white;
+  width: 70%;
+  border: 1px solid silver;
+  z-index: 10000;
+}
+
+.popover-schedule .schedule-head{
+
+}
+
+
+/*
+  Admin
+*/
+
+.admin-container {
+  width: 40%;
+
+}
 
 
 
