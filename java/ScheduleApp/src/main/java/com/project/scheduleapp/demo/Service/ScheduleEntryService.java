@@ -22,4 +22,5 @@ public class ScheduleEntryService {
         return crud.updateEntry(scheduleEntry);
     }
 
+
 }
