@@ -75,13 +75,24 @@ public class MainController {
         return "logIn";
     }
 
-    @RequestMapping(value = "/admin", method = RequestMethod.GET)
-    public String adminView(Model model,HttpSession session) {
+    @RequestMapping(value = "/admin")
+    public String adminView(Model model, HttpSession session, @RequestParam Map<String, String> allFormRequest) {
         if(session.getAttribute("user") == null) {
             return "logIn";
         }
+
+        if(allFormRequest.get("formType") != null) {
+            if (allFormRequest.get("formType").equals("skiftAdd")) {
+                System.out.println("SkiftAdd");
+                System.out.println(allFormRequest);
+            }
+        }
+
         return "admin";
     }
+
+
+
 
     @RequestMapping(value = "/schema", method = RequestMethod.GET)
     public String showSchedule(Model model, HttpSession session, @RequestParam(defaultValue = "-1") String gYear, @RequestParam(defaultValue = "-1") String gMonth) {
@@ -162,7 +173,6 @@ public class MainController {
         for (int i = 0; i < rows; i++) {
             calShift[i] = new Shift[cols];
             for (int j = 0; j < cols; j++) {
-                //cal[i][j] = LocalDateTime.of(2020, 10, 1, 0, 0).minusDays(sdate.getDaystolastmonth()).plusDays(l);
                 LocalDateTime t  = LocalDateTime.of(y, m, 1, 0, 0).minusDays(sdate.getDaystolastmonth()).plusDays(l);
                 Shift s = new Shift(-1, t,t,"noshift");
                 s.setReal(false);

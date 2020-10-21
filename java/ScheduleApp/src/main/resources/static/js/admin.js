@@ -12,6 +12,7 @@ $("[rel=add-user]").popover({
     '<div class="inner-add-user">'+
       '<form>'+
         '<div class="form-group">'+
+        '<input type="hidden" id="formType" name="formType" value="userAdd">'+
           '<label for="name">Namn:</label>'+
           '<input type="text" class="form-control" id="name" aria-describedby="name" placeholder="Namn på användaren">'+
         '</div>'+
@@ -68,6 +69,7 @@ $("[rel=add-skift]").popover({
     '</div>'+
     '<div class="inner-add-user">'+
       '<form>'+
+      '<input type="hidden" id="formType" name="formType" value="userAdd">'+
         '<div class="form-group">'+
           '<label for="skiftnamn">Skiftnamn:</label>'+
           '<input type="text" class="form-control" id="skiftnamn" aria-describedby="skiftnamn" placeholder="Skiftnamn">'+

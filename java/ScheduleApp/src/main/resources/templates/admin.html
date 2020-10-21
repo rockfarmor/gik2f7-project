@@ -73,7 +73,8 @@
                 <h1 class="h3">Lägg till skift</h1>
             </div>
             <div class="admin-form">
-              <form>
+              <form action="/admin" method="POST">
+                <input type="hidden" id="formType" name="formType" value="skiftAdd">
                 <div class="d-flex flex-row">
                   <div class="p-2 no-margin no-padding">
                     <label for="employee"><h1 class="h5 no-margin-bot">Personal</h1></label>
@@ -111,24 +112,24 @@
                 </br></br>
 
                 <label for="date"><h1 class="h5 no-margin-bot">Datum</h1></label></br>
-                <input class="form-control" type="date" value="2020-10-20" id="date">
+                <input class="form-control" name="date" type="date" value="2020-10-20" id="date">
 
                 <div class="d-flex flex-row">
                   <div class="p-2 full">
                     <label for="start-time"><h1 class="h5 no-margin-bot">Starttid</h1></label></br>
-                    <input class="form-control" type="time" value="12:00:00" id="start-time">
+                    <input class="form-control" name="startTid" type="time" value="12:00:00" id="start-time">
                   </div>
 
                   <div class="p-2 full">
                     <label for="end-time"><h1 class="h5 no-margin-bot">Sluttid</h1></label></br>
-                    <input class="form-control" type="time" value="20:00:00" id="end-time">
+                    <input class="form-control" name="slutTid" type="time" value="20:00:00" id="end-time">
                   </div>
                 </div>
                 <br/>
                 <label for="beskrivning"><h1 class="h5 no-margin-bot">Arbetsbeskrivning</h1></label></br>
-                <textarea class="form-control" id="beskrivning" rows="3"></textarea>
+                <textarea class="form-control" name="beskrivning" id="beskrivning" rows="3"></textarea>
                 <br >
-                <button type="submit" class="btn btn-lg btn-primary btn-block btn-custom">Lägg till personal</button>
+                <button type="submit" class="btn btn-lg btn-primary btn-block btn-custom">Lägg till skift</button>
               </form>
             </div>
 
