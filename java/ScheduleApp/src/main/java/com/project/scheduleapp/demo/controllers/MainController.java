@@ -57,6 +57,9 @@ public class MainController {
                 if(userlist[c].getAdmin() == 1){
                     return "admin";
                 }else{
+                    model.addAttribute("account",a1);
+                    //System.out.println(a);
+                    model.addAttribute("entries",scheduleEntryService.getAllEntries());
                     return "home";
                 }
             }
