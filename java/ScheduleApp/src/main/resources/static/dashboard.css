@@ -262,7 +262,7 @@ nav {
 
 .popover-schedule {
   background-color: white;
-  width: 70%;
+
   border: 1px solid silver;
   z-index: 10000;
 }
@@ -294,7 +294,10 @@ nav {
   padding: 20px;
 }
 
-
+.appholder {
+  width: 70%;
+  z-index: 10000;
+}
 
 /*
  * Utilities

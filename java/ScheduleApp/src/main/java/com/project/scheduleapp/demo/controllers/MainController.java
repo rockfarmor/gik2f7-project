@@ -81,39 +81,108 @@ public class MainController {
             return "logIn";
 
         }
+
+
+
         Account h1 = new Account(100,"Johan Nilsson","johni198","asd",200);
+        Account h2 = new Account(100,"Sebbe Nilsson","johni198","asd",200);
+        Account h3 = new Account(100,"Axel Axelsson","jasd","asd",200);
 
-        Shift s1 = new Shift(1, LocalDateTime.of(2020, 10, 1, 12, 0), LocalDateTime.of(2020, 10, 1, 17, 0), "FUCK YA");
-        Shift s2 = new Shift(1, LocalDateTime.of(2020, 10, 4, 12, 0), LocalDateTime.of(2020, 10, 4, 17, 0), "FUCK YA");
+        ArrayList<Account> accs = new ArrayList<>();
+        accs.add(h1);
+        accs.add(h2);
+        accs.add(h3);
 
-        h1.getSchedlist().add(s1);
-        h1.getSchedlist().add(s2);
+
+        h1.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 1, 12, 0), LocalDateTime.of(2020, 10, 1, 17, 0), "FUCK YA",h1));
+        h1.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 2, 12, 0), LocalDateTime.of(2020, 10, 2, 17, 0), "FUCK YA",h1));
+        h1.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 5, 12, 0), LocalDateTime.of(2020, 10, 5, 17, 0), "FUCK YA",h1));
+        h1.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 10, 12, 0), LocalDateTime.of(2020, 10, 10, 20, 0), "FUCK YA",h1));
+        h1.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 19, 12, 0), LocalDateTime.of(2020, 10, 19, 17, 0), "FUCK YA",h1));
+        h1.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 25, 12, 0), LocalDateTime.of(2020, 10, 25, 17, 0), "FUCK YA",h1));
+
+        h2.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 1, 12, 0), LocalDateTime.of(2020, 10, 1, 16, 0), "FUCK YA",h2));
+        h2.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 2, 15, 0), LocalDateTime.of(2020, 10, 2, 23, 0), "FUCK YA",h2));
+        h2.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 5, 14, 0), LocalDateTime.of(2020, 10, 5, 22, 0), "FUCK YA",h2));
+        h2.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 10, 14, 0), LocalDateTime.of(2020, 10, 10, 23, 0), "FUCK YA",h2));
+        h2.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 19, 14, 0), LocalDateTime.of(2020, 10, 20, 01, 0), "FUCK YA",h2));
+        h2.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 25, 12, 0), LocalDateTime.of(2020, 10, 25, 17, 0), "FUCK YA",h2));
+
+
+        h3.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 10, 12, 0), LocalDateTime.of(2020, 10, 10, 22, 0), "FUCK YA",h3));
+        h3.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 11, 12, 0), LocalDateTime.of(2020, 10, 11, 23, 0), "FUCK YA",h3));
+        h3.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 12, 15, 0), LocalDateTime.of(2020, 10, 12, 22, 0), "FUCK YA",h3));
+        h3.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 13, 13, 0), LocalDateTime.of(2020, 10, 13, 23, 0), "FUCK YA",h3));
+        h3.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 14, 15, 0), LocalDateTime.of(2020, 10, 14, 21, 0), "FUCK YA",h3));
+
+
+        HashMap<String, ArrayList<Shift>> shiftMap = new HashMap<>();
+        String jscript = "";
+        for (Account a: accs) {
+
+            for (Shift shift: a.getSchedlist()) {
+                String d = shift.getDayString();
+                if(!shiftMap.containsKey(d))
+                    shiftMap.put(d, new ArrayList());
+                shiftMap.get(d).add(shift);
+            }
+        }
+
+        jscript = "{";
+
+        for(String key : shiftMap.keySet()){
+            jscript += "'" + key + "': [";
+            for (Shift s:shiftMap.get(key)){
+                jscript += "new Shift('" + s.getAccount().getName() + "',";
+                jscript += "'" + s.getStartDate().getHour() +":" + s.getStartDate().getMinute() + "',";
+                jscript += "'" + s.getEndDate().getHour() +":" + s.getEndDate().getMinute() + "',";
+                jscript += "'" + s.getStartDate().getDayOfMonth() + "',";
+                jscript += "'" + "Lör" + "',";
+                if(s.getAccount().equals(h1)) {
+                    jscript += "" + "true" + ",";
+
+                } else {
+                    jscript += "" + "false" + ",";
+                }
+                jscript += "'" + "Middag" + "',";
+
+                jscript += "),";
+            }
+            jscript += "],";
+
+        }
+        jscript += "}";
+
+        System.out.println(jscript);
+
+        /*
+            data = {"2020-10-10": [new Shift("Johan Nilsson", "18:00", "20:00", 10, "Lör", true, "Middag"), new Shift("Sebbe", "12:00", "20:00", 10, "Lör", false, "Lunch/Middag")], "2020-10-20":[new Shift("Sebbe", "15:00", "20:00", 20, "Lör", false, "Middag")] }
+
+         */
+        model.addAttribute("jScript", jscript);
+
+
+
+
+
 
         model.addAttribute("calendar_month", "Oktober");
 
         model.addAttribute("month_int", 10);
 
-
-
-        model.addAttribute("a1", a1);
-
-
-
+        model.addAttribute("s1", h1);
 
         SebbeDate sdate = new SebbeDate();
         sdate.dagar(2020,10);
-        System.out.println("daysthismonth" + sdate.getDaysthismonth());
-        System.out.println("getDaystolastmonth" + sdate.getDaystolastmonth());
-        System.out.println("getDaystonextmonth" + sdate.getDaystonextmonth());
-        System.out.println("getRowsthismonth" + sdate.getRowsthismonth());
+
         LocalDateTime startDate = LocalDateTime.of(2020, 10, 1, 0, 0).minusDays(sdate.getDaystolastmonth());
         LocalDateTime endDate = LocalDateTime.of(2020, 10, sdate.getDaysthismonth(), 0, 0).plusDays(sdate.getDaystonextmonth());
 
         int rows = (int)sdate.getRowsthismonth();
         int cols = 7;
 
-
         LocalDateTime[][] cal = new LocalDateTime[rows][];
+        Shift[][] calShift = new Shift[rows][];
 
         int l = 0;
         for (int i = 0; i < rows; i++) {
@@ -124,20 +193,27 @@ public class MainController {
             }
         }
 
+        l = 0;
         for (int i = 0; i < rows; i++) {
-            String x = "";
+            calShift[i] = new Shift[cols];
             for (int j = 0; j < cols; j++) {
-
-                x += (cal[i][j].getMonthValue() == 10) + " ";
+                //cal[i][j] = LocalDateTime.of(2020, 10, 1, 0, 0).minusDays(sdate.getDaystolastmonth()).plusDays(l);
+                LocalDateTime t  = LocalDateTime.of(2020, 10, 1, 0, 0).minusDays(sdate.getDaystolastmonth()).plusDays(l);
+                Shift s = new Shift(-1, t,t,"noshift");
+                s.setReal(false);
+                for (Shift st : h1.getSchedlist()) {
+                    if(st.sameDay(t)) {
+                        s = st;
+                        break;
+                    }
+                }
+                calShift[i][j] = s;
+                l++;
             }
-            System.out.println(x);
         }
 
-        System.out.println(cal);
-        model.addAttribute("cal", cal);
 
-        System.out.println(startDate.getMonthValue());
-        System.out.println(endDate);
+        model.addAttribute("calShift", calShift);
 
 
         return "schema";

@@ -13,12 +13,14 @@ import java.util.logging.Logger;
 
 @Repository
 public class ScheduleEntryCrud implements IScheduleEntryCrud{
+public class ScheduleEntryCrud implements IScheduleEntryCrud {
 
     private Connection con;
     @Override
     public List<ScheduleEntry> getAllEntries(){
         List<ScheduleEntry> scheduleEntries = new ArrayList<>();
         try{
+<<<<<<< HEAD
             con = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/CiW6XfVzNP", "CiW6XfVzNP", "RYRF7gAMIn");
             Statement statement = con.createStatement();
             String sqlSelectAllEntries = "SELECT * FROM Schedule_Entry";

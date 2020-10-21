@@ -14,6 +14,28 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins" />
     <!-- Bootstrap core CSS -->
     <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+
+      var Shift = class {
+        constructor(name, startid, sluttid, datum, dag, you, category) {
+          this.name = name;
+          this.startid = startid;
+          this.sluttid = sluttid;
+          this.datum = datum;
+          this.dag = dag;
+          this.you = you;
+          this.category = category;
+        }
+      }
+
+
+
+    </script>
+
+    <script th:inline="javascript">
+      var data = [(${jScript})];
+
+    </script>
 
 
     <!-- Custom styles for this template -->
@@ -87,21 +109,19 @@
               <div class="p-2 calendar-item">Lör</div>
               <div class="p-2 calendar-item">Sön</div>
             </div>
-            <div class="d-flex justify-content-between calendar-day" th:each="i: ${cal}">
-              <div rel="comments" class="p-2 calendar-item day" th:each="item: ${i}"><p class="no-padding" th:classappend="${item.getMonthValue() == month_int} ? no-padding:gray-text" th:text="${item.getDayOfMonth()}"></p></div>
-            </div>
-            <div class="d-flex justify-content-between calendar-day">
-              <div rel="comments" class="p-2 calendar-item day">26</div>
-              <div rel="comments" class="p-2 calendar-item day">27</div>
-              <div rel="comments" class="p-2 calendar-item day">28<div class="working"></div></div>
-              <div rel="comments" class="p-2 calendar-item day">29<div class="working"></div></div>
-              <div rel="comments" class="p-2 calendar-item day">30<div class="working"></div></div>
-              <div rel="comments" class="p-2 calendar-item day">31</div>
-              <div rel="comments" class="p-2 calendar-item day gray-text">1<div class="working"></div></div>
+
+
+            <div class="d-flex justify-content-between calendar-day" th:each="i: ${calShift}">
+              <div rel="comments" class="p-2 calendar-item day" th:each="item: ${i}" data-date="" th:data-date="${item.getDayString()}">
+                <p class="no-padding" th:classappend="${item.getStartDate().getMonthValue() == month_int} ? no-padding:gray-text" th:text="${item.getStartDate().getDayOfMonth()}"></p>
+                <div th:if="${item.isReal()}" class="working">
+
+                </div>
+              </div>
             </div>
 
           </div>
-          </script>
+
         </main>
       </div>
     </div>
