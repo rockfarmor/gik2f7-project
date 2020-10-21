@@ -13,7 +13,29 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins" />
     <!-- Bootstrap core CSS -->
     <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script>
 
+      var Shift = class {
+        constructor(name, startid, sluttid, datum, dag, you, category) {
+          this.name = name;
+          this.startid = startid;
+          this.sluttid = sluttid;
+          this.datum = datum;
+          this.dag = dag;
+          this.you = you;
+          this.category = category;
+        }
+      }
+
+
+      let data = {};
+      data["2020-10-10"] = []
+      data["2020-10-20"] = []
+      data["2020-10-10"][0] = new Shift("Johan Nilsson", "18:00", "20:00", 10, "Lör", true, "Middag")
+      data["2020-10-10"][1] = new Shift("Sebbe", "12:00", "20:00", 10, "Lör", false, "Lunch/Middag")
+      data["2020-10-20"][0] = new Shift("Sebbe", "15:00", "20:00", 20, "Lör", false, "Middag")
+
+    </script>
 
     <!-- Custom styles for this template -->
     <link href="assets/styles/dashboard.css" rel="stylesheet">
@@ -100,7 +122,7 @@
               <div rel="comments" class="p-2 calendar-item day">7<div class="working"></div></div>
               <div rel="comments" class="p-2 calendar-item day">8<div class="working"></div></div>
               <div rel="comments" class="p-2 calendar-item day">9<div class="working"></div></div>
-              <div rel="comments" class="p-2 calendar-item day">10<div class="working"></div></div>
+              <div rel="comments" class="p-2 calendar-item day" data-date="2020-10-10">10<div class="working"></div></div>
               <div rel="comments" class="p-2 calendar-item day">11</div>
             </div>
             <div class="d-flex justify-content-between calendar-day">
@@ -114,7 +136,7 @@
             </div>
             <div class="d-flex justify-content-between calendar-day">
               <div rel="comments" class="p-2 calendar-item day">19</div>
-              <div rel="comments" class="p-2 calendar-item day">20</div>
+              <div rel="comments" class="p-2 calendar-item day" data-date="2020-10-20">20</div>
               <div rel="comments" rel="comments" class="p-2 calendar-item day">21<div class="working"></div></div>
               <div rel="comments" class="p-2 calendar-item day">22</div>
               <div rel="comments" rel="comments" class="p-2 calendar-item day">23<div class="working"></div></div>

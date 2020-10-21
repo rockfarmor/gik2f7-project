@@ -12,14 +12,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Repository
-public class ScheduleEntryCrud implements IScheduleEntryCrud{
+public class ScheduleEntryCrud implements IScheduleEntryCrud {
 
     private Connection con;
     @Override
     public List<ScheduleEntry> getAllEntries(){
         List<ScheduleEntry> scheduleEntries = new ArrayList<>();
         try{
-            con = DriverManager.getConnection("jbdc:mysql://mysql13.loopia.se", "grupp7@a284338", "grupp7dalarna");
+            con = DriverManager.getConnection("jdbc:mysql://s13.loopia.se", "grupp7@a284338", "grupp7dalarna");
             Statement statement = con.createStatement();
             String sqlSelectAllEntries = "SELECT * FROM Shedule_Entry";
             ResultSet resultSet = statement.executeQuery(sqlSelectAllEntries);

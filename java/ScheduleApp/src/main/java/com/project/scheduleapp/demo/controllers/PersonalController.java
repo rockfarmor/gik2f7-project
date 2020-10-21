@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import com.project.scheduleapp.demo.Service.PersonalService;
 
 @Controller
 @RequestMapping("/schedule")
@@ -16,7 +17,7 @@ public class PersonalController {
 
     @GetMapping(path = "/personal")
     public String getAllPersonal (Model model){
-        model.addAttribute("personal",personalService.getAllPersonal());
+        model.addAttribute("personal",personalService);
         return "/person"; //Måste ändras till rätt pathe
     }
 }
