@@ -11,10 +11,10 @@ public class Shift {
     private String description;
     private boolean isReal;
 
-    private Account account;
+    private Personalsss account;
 
 
-    public Shift(int shiftID, LocalDateTime startDate, LocalDateTime endDate, String description, Account a) {
+    public Shift(int shiftID, LocalDateTime startDate, LocalDateTime endDate, String description, Personalsss a) {
         this.shiftID = shiftID;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -101,7 +101,7 @@ public class Shift {
         return this.endDate.getDayOfMonth();
     }
 
-    public Account getAccount() {
+    public Personalsss getAccount() {
         return account;
     }
 }

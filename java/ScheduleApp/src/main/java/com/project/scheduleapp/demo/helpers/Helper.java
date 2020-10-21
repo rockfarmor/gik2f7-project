@@ -1,6 +1,7 @@
 package com.project.scheduleapp.demo.helpers;
 
 import com.project.scheduleapp.demo.Model.Account;
+import com.project.scheduleapp.demo.Model.Personalsss;
 import com.project.scheduleapp.demo.Model.Shift;
 
 import java.util.ArrayList;
@@ -8,10 +9,10 @@ import java.util.HashMap;
 
 public class Helper {
 
-    public static String getJavaScript(ArrayList<Account> accs, Account you){
+    public static String getJavaScript(ArrayList<Personalsss> accs, Personalsss you){
         HashMap<String, ArrayList<Shift>> shiftMap = new HashMap<>();
         String jscript = "";
-        for (Account a: accs) {
+        for (Personalsss a: accs) {
             for (Shift shift: a.getSchedlist()) {
                 String d = shift.getDayString();
                 if(!shiftMap.containsKey(d))

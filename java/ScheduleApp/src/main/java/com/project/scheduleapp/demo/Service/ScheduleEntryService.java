@@ -12,6 +12,9 @@ public class ScheduleEntryService {
 
     @Autowired
     private IScheduleEntryCrud crud;
+
+    public List<ScheduleEntry> getEntriesByScheduleId(int scheduleId){return crud.getEntriesByScheduleId(scheduleId);}
+
     public List<ScheduleEntry> getAllEntries(){
         return crud.getAllEntries();
     }

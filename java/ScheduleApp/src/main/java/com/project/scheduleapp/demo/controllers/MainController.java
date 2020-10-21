@@ -7,6 +7,7 @@ import com.project.scheduleapp.demo.Service.ScheduleEntryService;
 
 import com.project.scheduleapp.demo.helpers.Helper;
 import com.project.scheduleapp.demo.models.Personal;
+import com.project.scheduleapp.demo.models.ScheduleEntry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Array;
 import java.sql.Timestamp;
 
 import java.time.LocalDateTime;
@@ -84,12 +86,17 @@ public class MainController {
             return "logIn";
         }
 
+
         if(allFormRequest.get("formType") != null) {
             if (allFormRequest.get("formType").equals("skiftAdd")) {
                 System.out.println("SkiftAdd");
                 System.out.println(allFormRequest);
             }
         }
+
+
+
+
 
         return "admin";
     }
@@ -123,6 +130,17 @@ public class MainController {
         model.addAttribute("prevUrl", prevUrl);
         model.addAttribute("nextUrl", nextUrl);
 
+        ArrayList<Personalsss> personals = (ArrayList<Personalsss>) personalService.getAllPersonal(scheduleEntryService);
+
+        for (Personalsss p: personals){
+
+            for (Shift s:p.getSchedlist()) {
+                System.out.println(p.getName() + "-> " + s.getStartDate());
+            }
+
+        }
+
+
 
         Account h1 = new Account(100,"Johan Nilsson","johni198","asd",200);
         Account h2 = new Account(100,"Sebbe Nilsson","johni198","asd",200);
@@ -155,7 +173,7 @@ public class MainController {
         h3.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 14, 15, 0), LocalDateTime.of(2020, 10, 14, 21, 0), "FUCK YA",h3));
 
 
-        String jscript = Helper.getJavaScript(accs, h1);
+        String jscript = Helper.getJavaScript(personals, personals.get(0));
 
         model.addAttribute("jScript", jscript);
         
@@ -197,7 +215,7 @@ public class MainController {
         return "schema";
     }
     @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String showHome(HttpSession session,Model model) {
+    public String showHome(HttpSession session, Model model) {
         if(session.getAttribute("personal") == null) {
             return "logIn";
 
@@ -212,6 +230,24 @@ public class MainController {
         dagar.put("SUNDAY","Sön");
         Timestamp a;
 
+        //List<ScheduleEntry> scheduleEntries = scheduleEntryService.getAllEntries();
+        List<Personalsss> personals = personalService.getAllPersonal(scheduleEntryService);
+
+        for (Personalsss p: personals){
+
+            for (Shift s:p.getSchedlist()) {
+                System.out.println(p.getName() + "-> " + s.getStartDate());
+            }
+
+
+
+        }
+
+
+
+
+        System.out.println(personals);
+        //System.out.println(scheduleEntries);
 
 
         a= scheduleEntryService.getAllEntries().get(0).getStart_Date();
