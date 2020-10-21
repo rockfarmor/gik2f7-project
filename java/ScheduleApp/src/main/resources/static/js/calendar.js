@@ -39,7 +39,6 @@ function getHtml(key){
 
   let datt = key
   list = data[key];
-  console.log(list)
   html = ""
   html +=
   '<div class="popover-schedule">'+

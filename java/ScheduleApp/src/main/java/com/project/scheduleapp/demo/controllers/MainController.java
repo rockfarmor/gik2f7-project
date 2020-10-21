@@ -78,7 +78,6 @@ public class MainController {
         }
 
 
-
         Account h1 = new Account(100,"Johan Nilsson","johni198","asd",200);
         Account h2 = new Account(100,"Sebbe Nilsson","johni198","asd",200);
         Account h3 = new Account(100,"Axel Axelsson","jasd","asd",200);
@@ -103,7 +102,6 @@ public class MainController {
         h2.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 19, 14, 0), LocalDateTime.of(2020, 10, 20, 01, 0), "FUCK YA",h2));
         h2.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 25, 12, 0), LocalDateTime.of(2020, 10, 25, 17, 0), "FUCK YA",h2));
 
-
         h3.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 10, 12, 0), LocalDateTime.of(2020, 10, 10, 22, 0), "FUCK YA",h3));
         h3.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 11, 12, 0), LocalDateTime.of(2020, 10, 11, 23, 0), "FUCK YA",h3));
         h3.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 12, 15, 0), LocalDateTime.of(2020, 10, 12, 22, 0), "FUCK YA",h3));
@@ -114,7 +112,6 @@ public class MainController {
         HashMap<String, ArrayList<Shift>> shiftMap = new HashMap<>();
         String jscript = "";
         for (Account a: accs) {
-
             for (Shift shift: a.getSchedlist()) {
                 String d = shift.getDayString();
                 if(!shiftMap.containsKey(d))
@@ -155,11 +152,7 @@ public class MainController {
 
          */
         model.addAttribute("jScript", jscript);
-
-
-
-
-
+        
 
         model.addAttribute("calendar_month", "Oktober");
 
