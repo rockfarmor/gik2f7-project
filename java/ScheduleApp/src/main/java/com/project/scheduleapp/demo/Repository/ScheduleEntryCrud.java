@@ -19,11 +19,11 @@ public class ScheduleEntryCrud implements IScheduleEntryCrud {
     public List<ScheduleEntry> getAllEntries(){
         List<ScheduleEntry> scheduleEntries = new ArrayList<>();
         try{
-<<<<<<< HEAD
+
             con = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/CiW6XfVzNP", "CiW6XfVzNP", "RYRF7gAMIn");
-=======
-            con = DriverManager.getConnection("jdbc:mysql://s13.loopia.se", "grupp7@a284338", "grupp7dalarna");
->>>>>>> 75530d815dce2a96ce9eddf3d3e0831167256201
+
+
+
             Statement statement = con.createStatement();
             String sqlSelectAllEntries = "SELECT * FROM Schedule_Entry";
             ResultSet resultSet = statement.executeQuery(sqlSelectAllEntries);
