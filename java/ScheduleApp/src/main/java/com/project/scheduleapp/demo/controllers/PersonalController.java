@@ -1,5 +1,6 @@
 package com.project.scheduleapp.demo.controllers;
 
+import com.project.scheduleapp.demo.Service.PersonalService;
 import com.project.scheduleapp.demo.models.Personal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;

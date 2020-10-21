@@ -5,7 +5,6 @@ $("[rel=comments]").popover({
     sanitize: false,
     html: true,
     content : '<textarea class="popover-textarea"></textarea>',
-    template: '<div class="appholder">asd</div>'
 })
 
 /*

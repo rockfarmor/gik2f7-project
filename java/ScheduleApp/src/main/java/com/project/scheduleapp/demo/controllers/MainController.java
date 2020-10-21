@@ -4,11 +4,16 @@ import com.project.scheduleapp.demo.Model.Account;
 import com.project.scheduleapp.demo.Model.SebbeDate;
 import com.project.scheduleapp.demo.Model.Shift;
 import com.project.scheduleapp.demo.Model.User;
+<<<<<<< HEAD
+import com.project.scheduleapp.demo.Service.ScheduleEntryService;
+=======
 import com.project.scheduleapp.demo.Repository.ScheduleEntryCrud;
+>>>>>>> 75530d815dce2a96ce9eddf3d3e0831167256201
 import com.project.scheduleapp.demo.Service.test;
 import com.project.scheduleapp.demo.models.ScheduleEntry;
 import org.apache.tomcat.jni.Local;
 import org.apache.tomcat.util.http.parser.HttpParser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
@@ -17,6 +22,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 import java.util.*;
@@ -36,7 +44,8 @@ public class MainController {
     Shift s1 = new Shift(1,a,b,"Woking");
     Shift s2 = new Shift(2,c,d,"Running");
 
-
+    @Autowired
+    private ScheduleEntryService scheduleEntryService;
 
 
 
@@ -220,12 +229,25 @@ public class MainController {
         dagar.put("FRIDAY","Fri");
         dagar.put("SATURDAY","Lör");
         dagar.put("SUNDAY","Sön");
+        Timestamp a;
 
-        a1.getSchedlist().add(s1);
-        a1.getSchedlist().add(s2);
-        model.addAttribute("schedlist", a1.getSchedlist());
+
+
+        a= scheduleEntryService.getAllEntries().get(0).getStart_Date();
+
+
+        Date date = new Date(a.getTime());
+
+        Calendar calendar = GregorianCalendar.getInstance(); // creates a new calendar instance
+        calendar.setTime(date);
+        System.out.println(calendar.get(calendar.HOUR_OF_DAY));
+        System.out.println(calendar.get(calendar.MINUTE));
+        
+
+       // System.out.println(scheduleEntryService.getAllEntries().get(0).getStart_Date());
         model.addAttribute("account",a1);
-        model.addAttribute("dagar",dagar);
+        //System.out.println(a);
+        model.addAttribute("entries",scheduleEntryService.getAllEntries());
 
         return "home";
     }

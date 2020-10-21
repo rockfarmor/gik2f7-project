@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/schedule/entry")
+
 public class ScheduleEntryController {
 
     @Autowired
     private ScheduleEntryService scheduleEntryService;
 
-    @GetMapping(path = "/entries")
+    @GetMapping(path = "/hej")
     public String getAllEntries(Model model){
         model.addAttribute("entries", scheduleEntryService.getAllEntries());
-        return "entriesview";//måste ändras till rätt view
+        return "testview";//måste ändras till rätt view
     }
 
 }

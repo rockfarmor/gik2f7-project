@@ -74,26 +74,25 @@
             </div>
             <h1 class="h4">Kommande skift:</h1>
 
-            <tr th:each="a: ${schedlist}">
+            <tr th:each="entry: ${entries}">
 
 
 
             <div class ="d-flex flex-row date-card">
                 <div class="p-2 width-20">
                     <div class="h4 no-margin-bot">
-                        <td th:text="${a.startDate.getDayOfMonth()}" />
+                        <td th:text="${entry.Entry_Id}" />
                     </div>
-                    <td th:text="${dagar['__${a.startDate.getDayOfWeek()}__']}">
+
                 </div>
                 <div class="p-2 date-card-inner">
-                    <div class="h5 no-margin-bot"> <td th:text="${a.description}" /></div>
+                    <div class="h5 no-margin-bot"> <td th:text="${account.name}" /></div>
                     <div class="d-flex">
-                        <div class="p-2 no-padding"><td th:text="${a.startDate.getHour()}" />:<td th:text="${a.startDate.getMinute()}" /> -
-                            <td th:text="${a.endDate.getHour()}" />:<td th:text="${a.endDate.getMinute()}" /></div>
-                        <div class="p-2 no-padding padding-left gray-text"><td th:text="${account.name}" /></div>
+                        <div class="p-2 no-padding"><td th:text="${entry.Start_Date}" /> : <td th:text="${entry.End_Date}" /></div>
+                        <div class="p-2 no-padding padding-left gray-text"><td th:text="${entry.Description}" /></div>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <div class="p-2 no-padding gray-text"><span data-feather="map-pin"></span> <td th:text="${a.description}" /></div>
+                        <div class="p-2 no-padding gray-text"><span data-feather="map-pin"></span> <td th:text="${entry.Description}" /></div>
                         <div class="p-2 no-padding padding-right  gray-text"><span data-feather="coffee"></span></div>
                     </div>
                 </div>
