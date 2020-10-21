@@ -95,9 +95,9 @@
           </div>
           <div class="calendar-main">
             <div class="d-flex justify-content-between calendar-head">
-              <div class="p-2 no-padding calendar-arrow"><a href="#" alt="Go back"><span data-feather="arrow-left"></span></a></div>
-              <div class="p-2 no-padding" th:text="${calendar_month} + ' 2020'"></div>
-              <div class="p-2 no-padding calendar-arrow"><a href="#" alt="Go Front"><span data-feather="arrow-right"></span></a></div>
+              <div class="p-2 no-padding calendar-arrow"><a href="#" alt="Go back" th:href="${prevUrl}"><span data-feather="arrow-left"></span></a></div>
+              <div class="p-2 no-padding" th:text="${calendar_month}"></div>
+              <div class="p-2 no-padding calendar-arrow"><a href="#" alt="Go Front" th:href="${nextUrl}"><span data-feather="arrow-right"></span></a></div>
             </div>
 
             <div class="d-flex justify-content-between calendar-top">
