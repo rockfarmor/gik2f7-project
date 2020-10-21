@@ -4,15 +4,9 @@ import com.project.scheduleapp.demo.Model.Account;
 import com.project.scheduleapp.demo.Model.SebbeDate;
 import com.project.scheduleapp.demo.Model.Shift;
 import com.project.scheduleapp.demo.Model.User;
-<<<<<<< HEAD
+
 import com.project.scheduleapp.demo.Service.ScheduleEntryService;
-=======
-import com.project.scheduleapp.demo.Repository.ScheduleEntryCrud;
->>>>>>> 75530d815dce2a96ce9eddf3d3e0831167256201
-import com.project.scheduleapp.demo.Service.test;
-import com.project.scheduleapp.demo.models.ScheduleEntry;
-import org.apache.tomcat.jni.Local;
-import org.apache.tomcat.util.http.parser.HttpParser;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -23,8 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
+
 import java.time.LocalDateTime;
 
 import java.util.*;
