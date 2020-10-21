@@ -13,6 +13,7 @@ public class PersonalService {
     public Personal getPersonalById(Integer Id){
         return crud.getPersonalById(Id);
     }
+    public Personal verifyLoginIn(String Username,String Password){return crud.verifyLogIn(Username,Password);}
     public Personal addEntry(Personal personal){
         return crud.addEntry(personal);
     }

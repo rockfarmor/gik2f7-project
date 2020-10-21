@@ -10,4 +10,5 @@ public interface IScheduleEntryCrud {
     public ScheduleEntry addEntry(ScheduleEntry scheduleEntry);
     public ScheduleEntry updateEntry(ScheduleEntry scheduleEntry);
 
+
 }

@@ -54,12 +54,14 @@ public class MainController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String verifyLogin(@RequestParam String email,@RequestParam String password,HttpSession session,Model model) {
         for(int c=0;c<userlist.length;c++){
-            if(email.equals(userlist[c].getUserID()) && password.equals(userlist[c].getPassword())){
-                session.setAttribute("user",userlist[c]);
-                if(userlist[c].getAdmin() == 1){
+            Personal p;
+            p=personalService.verifyLoginIn(email,password);
+            if(p.getPassword().equals(password) && p.getUsername().equals(email)){
+                session.setAttribute("personal",p);
+                if(p.getIs_admin() == 1){
                     return "admin";
                 }else{
-                    model.addAttribute("account",a1);
+                    model.addAttribute("personal",p);
                     //System.out.println(a);
                     model.addAttribute("entries",scheduleEntryService.getAllEntries());
                     return "home";
@@ -78,7 +80,7 @@ public class MainController {
 
     @RequestMapping(value = "/admin")
     public String adminView(Model model, HttpSession session, @RequestParam Map<String, String> allFormRequest) {
-        if(session.getAttribute("user") == null) {
+        if(session.getAttribute("personal") == null) {
             return "logIn";
         }
 
@@ -97,7 +99,7 @@ public class MainController {
 
     @RequestMapping(value = "/schema", method = RequestMethod.GET)
     public String showSchedule(Model model, HttpSession session, @RequestParam(defaultValue = "-1") String gYear, @RequestParam(defaultValue = "-1") String gMonth) {
-        if(session.getAttribute("user") == null) {
+        if(session.getAttribute("personal") == null) {
 
             return "logIn";
 
@@ -196,7 +198,7 @@ public class MainController {
     }
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String showHome(HttpSession session,Model model) {
-        if(session.getAttribute("user") == null) {
+        if(session.getAttribute("personal") == null) {
             return "logIn";
 
         }
