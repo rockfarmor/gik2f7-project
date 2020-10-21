@@ -1,5 +1,6 @@
 package com.project.scheduleapp.demo.controllers;
 
+import com.project.scheduleapp.demo.Service.PersonalService;
 import com.project.scheduleapp.demo.models.Personal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
@@ -16,7 +17,7 @@ public class PersonalController {
 
     @GetMapping(path = "/personal")
     public String getAllPersonal (Model model){
-        model.addAttribute("personal",personalService.getAllPersonal());
+        model.addAttribute("personal",personalService);
         return "/person"; //Måste ändras till rätt pathe
     }
 }

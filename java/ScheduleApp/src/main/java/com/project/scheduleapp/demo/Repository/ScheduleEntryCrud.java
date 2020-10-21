@@ -19,17 +19,17 @@ public class ScheduleEntryCrud implements IScheduleEntryCrud{
     public List<ScheduleEntry> getAllEntries(){
         List<ScheduleEntry> scheduleEntries = new ArrayList<>();
         try{
-            con = DriverManager.getConnection("jbdc:mysql://mysql13.loopia.se", "grupp7@a284338", "grupp7dalarna");
+            con = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/CiW6XfVzNP", "CiW6XfVzNP", "RYRF7gAMIn");
             Statement statement = con.createStatement();
-            String sqlSelectAllEntries = "SELECT * FROM Shedule_Entry";
+            String sqlSelectAllEntries = "SELECT * FROM Schedule_Entry";
             ResultSet resultSet = statement.executeQuery(sqlSelectAllEntries);
             while (resultSet.next()){
                 ScheduleEntry scheduleEntry = new ScheduleEntry();
                 scheduleEntry.setEntry_Id(resultSet.getInt("Entry_Id"));
                 scheduleEntry.setSchedule_Id(resultSet.getInt("Schedule_Id"));
                 scheduleEntry.setCategory_Id(resultSet.getInt("Category_Id"));
-                scheduleEntry.setStart_Date(resultSet.getDate("Start_Date"));
-                scheduleEntry.setEnd_Date(resultSet.getDate("End_Date"));
+                scheduleEntry.setStart_Date(resultSet.getTimestamp("Start_Date"));
+                scheduleEntry.setEnd_Date(resultSet.getTimestamp("End_Date"));
                 scheduleEntry.setDescription(resultSet.getString("Description"));
                 scheduleEntries.add(scheduleEntry);
 
