@@ -1,13 +1,12 @@
 package com.project.scheduleapp.demo.controllers;
 
-import com.project.scheduleapp.demo.Model.Account;
-import com.project.scheduleapp.demo.Model.SebbeDate;
-import com.project.scheduleapp.demo.Model.Shift;
-import com.project.scheduleapp.demo.Model.User;
+import com.project.scheduleapp.demo.Model.*;
 
+import com.project.scheduleapp.demo.Service.PersonalService;
 import com.project.scheduleapp.demo.Service.ScheduleEntryService;
 
 import com.project.scheduleapp.demo.helpers.Helper;
+import com.project.scheduleapp.demo.models.Personal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -40,6 +39,8 @@ public class MainController {
 
     @Autowired
     private ScheduleEntryService scheduleEntryService;
+    @Autowired
+    private PersonalService personalService;
 
 
 
@@ -225,6 +226,8 @@ public class MainController {
        // System.out.println(scheduleEntryService.getAllEntries().get(0).getStart_Date());
         model.addAttribute("account",a1);
         //System.out.println(a);
+
+        //model.addAttribute("personal",personalService.getPersonalById(1));
         model.addAttribute("entries",scheduleEntryService.getAllEntries());
 
         return "home";

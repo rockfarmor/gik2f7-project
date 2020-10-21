@@ -1,10 +1,20 @@
 package com.project.scheduleapp.demo.models;
 
 public class Personal {
+    private int Id;
     private  int schedule_id;
     private String name;
     private String username;
     private String password;
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
+
     private int salary;
     private int is_admin;
     private int is_logged_in;
