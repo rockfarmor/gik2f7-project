@@ -75,6 +75,14 @@ public class MainController {
         return "logIn";
     }
 
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public String adminView(Model model,HttpSession session) {
+        if(session.getAttribute("user") == null) {
+            return "logIn";
+        }
+        return "admin";
+    }
+
     @RequestMapping(value = "/schema", method = RequestMethod.GET)
     public String showSchedule(Model model, HttpSession session, @RequestParam(defaultValue = "-1") String gYear, @RequestParam(defaultValue = "-1") String gMonth) {
         if(session.getAttribute("user") == null) {
@@ -135,13 +143,10 @@ public class MainController {
 
         String jscript = Helper.getJavaScript(accs, h1);
 
-        System.out.println(jscript);
-
         model.addAttribute("jScript", jscript);
         
 
         model.addAttribute("calendar_month", thisMonth.getMonth().toString() + " " + thisMonth.getYear());
-
         model.addAttribute("month_int", m);
 
 
@@ -154,7 +159,6 @@ public class MainController {
         Shift[][] calShift = new Shift[rows][];
 
         int l = 0;
-
         for (int i = 0; i < rows; i++) {
             calShift[i] = new Shift[cols];
             for (int j = 0; j < cols; j++) {
