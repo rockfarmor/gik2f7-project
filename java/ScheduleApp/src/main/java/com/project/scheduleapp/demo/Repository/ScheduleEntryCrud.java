@@ -1,6 +1,8 @@
 package com.project.scheduleapp.demo.Repository;
 
 
+import com.project.scheduleapp.demo.Model.Personal;
+import com.project.scheduleapp.demo.Model.Shift;
 import com.project.scheduleapp.demo.Service.ScheduleEntryService;
 import com.project.scheduleapp.demo.models.ScheduleEntry;
 import org.springframework.stereotype.Repository;
@@ -61,8 +63,6 @@ public class ScheduleEntryCrud implements IScheduleEntryCrud {
 
             con = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/CiW6XfVzNP", "CiW6XfVzNP", "RYRF7gAMIn");
 
-
-
             Statement statement = con.createStatement();
             String sqlSelectAllEntries = "SELECT * FROM Schedule_Entry";
             ResultSet resultSet = statement.executeQuery(sqlSelectAllEntries);
@@ -77,20 +77,59 @@ public class ScheduleEntryCrud implements IScheduleEntryCrud {
                 scheduleEntries.add(scheduleEntry);
 
 
-            }//end while
+            }
             resultSet.close();
             statement.close();
             con.close();
             return scheduleEntries;
-        }//end try
+        }
         catch (SQLException ex){
             Logger.getLogger(ScheduleEntryCrud.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
 
+
     @Override
     public ScheduleEntry addEntry(ScheduleEntry scheduleEntry) {
+
+        return null;
+    }
+
+    @Override
+    public Shift addShiftEntry(Shift shift, Personal personal) {
+
+        try{
+
+            con = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/CiW6XfVzNP", "CiW6XfVzNP", "RYRF7gAMIn");
+
+            /*Statement statement = con.createStatement();
+            String sqlSelectAllEntries = "SELECT * FROM Schedule_Entry";
+            ResultSet resultSet = statement.executeQuery(sqlSelectAllEntries);
+            */
+            //String sqlSelectAllEntries = "INSERT into Schedule_Entry WHERE Username=? AND Password=?";
+            String sqlSelectAllEntries = "INSERT INTO `Schedule_Entry`(`Entry_Id`, `Schedule_Id`, `Category_Id`, `Start_Date`, `End_Date`, `Description`) VALUES (?,?,?,?,?,?)";
+            Timestamp start = Timestamp.valueOf(shift.getStartDate());
+            Timestamp end = Timestamp.valueOf(shift.getEndDate());
+
+            PreparedStatement statement = con.prepareStatement(sqlSelectAllEntries);
+            statement.setInt(1,-1);
+            statement.setInt(2,personal.getUniqueID());
+            statement.setInt(3,-1); //Category id
+            statement.setLong(4,start.getTime());
+            statement.setLong(5,end.getTime());
+            statement.setString(6,shift.getDescription());
+
+
+            statement.close();
+            con.close();
+            return shift;
+        }
+        catch (SQLException ex){
+            Logger.getLogger(ScheduleEntryCrud.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
         return null;
     }
 

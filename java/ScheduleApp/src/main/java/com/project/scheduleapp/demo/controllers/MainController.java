@@ -84,10 +84,19 @@ public class MainController {
             return "logIn";
         }
 
+        List<Personal> personals = personalService.getAllPersonal(scheduleEntryService);
+
+        model.addAttribute("allPersonal", personals);
+
+
 
         if(allFormRequest.get("formType") != null) {
             if (allFormRequest.get("formType").equals("skiftAdd")) {
                 System.out.println("SkiftAdd");
+
+
+
+
                 System.out.println(allFormRequest);
             }
         }

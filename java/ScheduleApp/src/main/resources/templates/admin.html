@@ -85,11 +85,7 @@
                 </div>
 
                 <select id="employee" name="employee" class="custom-select">
-                  <option selected>Välj medarbetare</option>
-                  <option value="h19jnils">Johan Nilsson</option>
-                  <option value="h19sebni">Sebastian Nilsson</option>
-                  <option value="h19axel">Axel Stålberg</option>
-                  <option value="h19alex">Alex Ström</option>
+                  <option th:each="entry: ${allPersonal}" value="-1" th:value="${entry.getUniqueID()}" th:text="${entry.getName()}"></option>
                 </select>
 
                 <br /><br />

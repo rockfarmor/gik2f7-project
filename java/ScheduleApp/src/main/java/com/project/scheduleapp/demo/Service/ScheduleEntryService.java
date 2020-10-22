@@ -1,5 +1,7 @@
 package com.project.scheduleapp.demo.Service;
 
+import com.project.scheduleapp.demo.Model.Personal;
+import com.project.scheduleapp.demo.Model.Shift;
 import com.project.scheduleapp.demo.Repository.IScheduleEntryCrud;
 import com.project.scheduleapp.demo.models.ScheduleEntry;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,8 @@ public class ScheduleEntryService {
     @Autowired
     private IScheduleEntryCrud crud;
 
-    public List<ScheduleEntry> getEntriesByScheduleId(int scheduleId){return crud.getEntriesByScheduleId(scheduleId);}
+    public List<ScheduleEntry> getEntriesByScheduleId(int scheduleId){ return crud.getEntriesByScheduleId(scheduleId);}
+    public Shift addShiftEntry(Shift shift, Personal personal){ return crud.addShiftEntry(shift, personal);}
 
     public List<ScheduleEntry> getAllEntries(){
         return crud.getAllEntries();
