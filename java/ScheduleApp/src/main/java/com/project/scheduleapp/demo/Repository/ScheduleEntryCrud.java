@@ -115,7 +115,7 @@ public class ScheduleEntryCrud implements IScheduleEntryCrud {
             PreparedStatement statement = con.prepareStatement(sqlSelectAllEntries);
             statement.setInt(1,-1); //Entry id
             statement.setInt(2,personal.getUniqueID());
-            statement.setInt(3,-1); //Category id
+            statement.setInt(3,shift.getCategory().getCategoryId()); //Category id
             statement.setTimestamp(4, start);
             statement.setTimestamp(5, end);
             statement.setString(6,shift.getDescription());

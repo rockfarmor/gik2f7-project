@@ -55,7 +55,7 @@ public class MainController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String verifyLogin(@RequestParam String email,@RequestParam String password,HttpSession session,Model model) {
-        for(int c=0;c<userlist.length;c++){
+        for(int c=0;c < userlist.length;c++){
             Personal p;
             p=personalService.verifyLoginIn(email,password,scheduleEntryService);
 
@@ -94,7 +94,7 @@ public class MainController {
         if(session.getAttribute("personal") == null) {
             return "logIn";
         }
-
+        boolean showMessage = false;
         List<Personal> personals = personalService.getAllPersonal(scheduleEntryService);
 
         model.addAttribute("allPersonal", personals);
@@ -126,9 +126,24 @@ public class MainController {
                     System.out.println(startTime);
                     System.out.println(endTime);
 
+                    showMessage = true;
+
                     Shift s = new Shift(-1,startTime, endTime, allFormRequest.get("beskrivning"), p);
                     //NU lägger vi till skiten
                     scheduleEntryService.addShiftEntry(s, p);
+                    Personal pp = personalService.verifyLoginIn(p.getUserName(),p.getPassword(),scheduleEntryService);
+
+                    model.addAttribute("addedName", pp.getName());
+                    model.addAttribute("addedShift", s.getCategory().getCategoryName());
+                    model.addAttribute("addedStart", s.getStartDate().toString());
+                    model.addAttribute("addedEnd", s.getEndDate().toString());
+                    model.addAttribute("addedDesc", s.getDescription());
+
+
+                    if(pp == null){
+                        return "logIn";
+                    }
+                    session.setAttribute("personal", pp);
 
                 }
 
@@ -137,7 +152,7 @@ public class MainController {
             }
         }
 
-
+        model.addAttribute("show_message", showMessage);
 
 
 

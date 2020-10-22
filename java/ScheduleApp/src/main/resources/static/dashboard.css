@@ -300,6 +300,26 @@ nav {
 }
 
 /*
+    Messages
+*/
+
+#message {
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    margin-left: -400px;
+    width: 800px;
+    padding: 10px;
+    z-index: 10000;
+
+}
+#inner-message {
+    margin: 0 auto;
+}
+
+
+
+/*
  * Utilities
  */
 

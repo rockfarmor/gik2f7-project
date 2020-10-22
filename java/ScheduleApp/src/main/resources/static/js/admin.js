@@ -1,3 +1,18 @@
+$(document).ready(function() {
+   window.setTimeout("fadeMyDiv();", 3000); //call fade in 3 seconds
+   console.log("Ready?")
+ }
+);
+
+function fadeMyDiv() {
+    console.log("Ready?2")
+    $("#message").fadeOut( "slow", function() {
+
+      });
+
+
+}
+
 $("[rel=add-user]").popover({
     trigger : 'click',
     placement : 'bottom',

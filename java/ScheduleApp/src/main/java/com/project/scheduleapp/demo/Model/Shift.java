@@ -13,6 +13,7 @@ public class Shift {
     private String description;
     private boolean isReal;
 
+    private Category category;
     private Personal account;
 
 
@@ -23,6 +24,7 @@ public class Shift {
         this.description = description;
         this.isReal = true;
         this.account = a;
+        this.category = Category.Category1;
     }
 
     public Shift(int shiftID, LocalDateTime startDate, LocalDateTime endDate, String description) {
@@ -107,6 +109,7 @@ public class Shift {
         return account;
     }
 
+<<<<<<< HEAD
     public String getSchedDay(){
         System.out.println(Helper.getSchedDay(this.startDate));
 
@@ -116,6 +119,11 @@ public class Shift {
 
 
 
+=======
+    public Category getCategory() {
+        return category;
+    }
+>>>>>>> 5c8de75ad80f544c50ce14d1f69cd25b9b0a2031
 
     @Override
     public String toString() {

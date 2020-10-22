@@ -67,7 +67,22 @@
         </nav>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+          <div th:hidden="${!show_message}" id="message">
 
+              <div id="inner-message" class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <h1 class="h4">Skift tillagt!</h1>
+                <p>Följande blev tillagd:</p>
+                <ul>
+                  <li th:text="${addedName}">Sebbe@sebbe.se</li>
+                  <li th:text="${addedShift}">Frukost/Lunch</li>
+                  <li th:text="${addedStart}">2020-10-20 12:00</li>
+                  <li th:text="${addedEnd}">2020-10-20 18:00</li>
+                  <li th:text="${addedDesc}">"Du ska smattra"</li>
+                </ul>
+              </div>
+
+          </div>
             <div>
               <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                 <h1 class="h3">Lägg till skift</h1>
@@ -143,7 +158,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
 
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
