@@ -32,7 +32,7 @@ public class Helper {
                 jscript += "'" + s.getEndDate().getHour() +":" + s.getEndDate().getMinute() + "',";
                 jscript += "'" + s.getStartDate().getDayOfMonth() + "',";
                 jscript += "'" + "Lör" + "',";
-                if(s.getAccount().equals(you)) {
+                if(s.getAccount().getUniqueID()==you.getUniqueID()) {
                     jscript += "" + "true" + ",";
 
                 } else {
