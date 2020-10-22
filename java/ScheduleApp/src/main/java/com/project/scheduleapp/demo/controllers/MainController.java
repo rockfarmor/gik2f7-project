@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.sql.SQLOutput;
 import java.sql.Timestamp;
 
 import java.time.DayOfWeek;
@@ -27,57 +28,48 @@ import java.util.*;
 
 @Controller
 public class MainController {
-    User u1 = new User("admin@admin.se","admin",1);
-    User u2 = new User("sebbe@sebbe.se","123",0);
-    User [] userlist ={u1,u2};
-    Account a1=new Account(1,"sebbe","seb123","1234",150);
-    Account a2=new Account(2,"johan","johan123","qwert",200);
-    LocalDateTime a = LocalDateTime.of(2020, 10, 20, 15, 00);
-    LocalDateTime b = LocalDateTime.of(2020, 10, 20, 22, 00);
-    LocalDateTime c = LocalDateTime.of(2020, 10, 21, 15, 00);
-    LocalDateTime d = LocalDateTime.of(2020, 10, 21, 23, 30);
-    Shift s1 = new Shift(1,a,b,"Woking");
-    Shift s2 = new Shift(2,c,d,"Running");
 
     @Autowired
     private ScheduleEntryService scheduleEntryService;
     @Autowired
     private PersonalService personalService;
 
-
-
-
-
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String showlogIn() {
         return "logIn";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String verifyLogin(@RequestParam String email,@RequestParam String password,HttpSession session,Model model) {
-        for(int c=0;c < userlist.length;c++){
-            Personal p;
-            p=personalService.verifyLoginIn(email,password,scheduleEntryService);
+    @RequestMapping(value = "/home")
+    public String verifyLogin(Model model, HttpSession session, @RequestParam Map<String, String> allFormRequest) {
+        if((allFormRequest.get("email") == null || allFormRequest.get("password") == null) && session.getAttribute("personal") == null){
+            model.addAttribute("invalidCredentials",true);
+            return "logIn";
+        }
+        String email = "";
+        String password = "";
 
+        if(!(allFormRequest.get("email") == null || allFormRequest.get("password") == null)) {
+            email = allFormRequest.get("email");
+            password = allFormRequest.get("password");
+
+            Personal p = personalService.verifyLoginIn(email,password,scheduleEntryService);
             if(p == null){
+                model.addAttribute("invalidCredentials",true);
                 return "logIn";
             }
             if(p.getPassword().equals(password) && p.getUserName().equals(email)){
                 session.setAttribute("personal",p);
-                model.addAttribute("personal",p);
-                Personal loggedin = (Personal)session.getAttribute("personal");
-
-
-                model.addAttribute("entries",loggedin);
-                model.addAttribute("shifts",loggedin.getSchedlist());
-                return "home";
-
             }
-
         }
-        model.addAttribute("invalidCredentials",true);
-        return "logIn";
+
+        //Home view attributer härifrån:
+        Personal loggedin = (Personal)session.getAttribute("personal");
+        model.addAttribute("personal", loggedin);
+        model.addAttribute("entries", loggedin);
+        model.addAttribute("shifts",loggedin.getSchedlist());
+        return "home";
     }
+
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logOut(HttpSession session) {
@@ -177,7 +169,17 @@ public class MainController {
 
             }  else if(allFormRequest.get("formType").equals("skiftTypeAdd")){
                 System.out.println("skiftTypeAdd");
-                System.out.println(allFormRequest);
+
+
+                if(allFormRequest.get("skiftType") != null && allFormRequest.get("skiftBeskrivning") != null) {
+                    String skiftTyp = allFormRequest.get("skiftType");
+                    String skiftBeskrivning = allFormRequest.get("skiftBeskrivning");
+                    if (!skiftTyp.isBlank() && !skiftBeskrivning.isBlank()) {
+                        System.out.println("Ny kategori ska skapas:");
+                        System.out.println("Skifttyp: " + skiftTyp);
+                        System.out.println("SkiftBeskrivning: " + skiftBeskrivning);
+                    }
+                }
 
 
 
@@ -252,16 +254,21 @@ public class MainController {
             }
         }
 
+        String jscript2 = Helper.getJavaScriptDateMap(calShift, rows, cols);
 
         model.addAttribute("calShift", calShift);
         model.addAttribute("prevUrl", prevUrl);
         model.addAttribute("nextUrl", nextUrl);
         model.addAttribute("jScript", jscript);
-        model.addAttribute("calendar_month", thisMonth.getMonth().toString() + " " + thisMonth.getYear());
+        model.addAttribute("jScript2", jscript2);
+        model.addAttribute("calendar_month", Helper.getLocalDateYearString(thisMonth));
         model.addAttribute("month_int", m);
 
         return "schema";
     }
+
+
+    /*
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String showHome(HttpSession session, Model model) {
         if(session.getAttribute("personal") == null) {
@@ -286,10 +293,10 @@ public class MainController {
             model.addAttribute("dagar",dagar);
             model.addAttribute("entries", loggedin);
             model.addAttribute("shifts", loggedin.getSchedlist());
-            System.out.println(loggedin.getSchedlist().get(0).getStartDate().getDayOfWeek());
+            //System.out.println(loggedin.getSchedlist().get(0).getStartDate().getDayOfWeek());
 
             //System.out.println(dagar["loggedin.getSchedlist().get(0).getStartDate().getDayOfWeek()"]);
-            System.out.println(dagar.get(loggedin.getSchedlist().get(0).getStartDate().getDayOfWeek().toString()));
+            //System.out.println(dagar.get(loggedin.getSchedlist().get(0).getStartDate().getDayOfWeek().toString()));
             //  System.out.println(dagar.get(c));
 
 
@@ -299,6 +306,8 @@ public class MainController {
         return "logIn";
 
     }
+    */
+
 }
 
 

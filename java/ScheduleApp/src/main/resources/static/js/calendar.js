@@ -37,21 +37,21 @@ $("[rel=comments]").on('click', function() {
 
 function getHtml(key){
 
-  let datt = key
-  list = data[key];
-  html = ""
+  let datt = data2[key];
+  let list = data[key];
+  let html = ""
   html +=
+
   '<div class="popover-schedule">'+
     '<div class="d-flex justify-content-between calendar-head">'+
-      '<div class="p-2 no-padding">'+datt+'</div>'+
+      '<div class="p-2">'+datt+'</div>'+
       '<div class="p-2 no-padding calendar-arrow"><button type="button" class="btn btn-default popover-cancel">x</button></div>'+
     '</div>'
 
 
   if(list){
     for (var i = 0; i < list.length; i++) {
-      obj = list[i];
-      console.log(obj)
+      let obj = list[i];
       html +=
       '<div class ="d-flex flex-row date-card">' +
         '<div class="p-2 width-20">' +

@@ -17,7 +17,7 @@
     <script>
 
       var Shift = class {
-        constructor(name, startid, sluttid, datum, dag, you, category) {
+        constructor(name, startid, sluttid, datum, dag, you, category, dateInner) {
           this.name = name;
           this.startid = startid;
           this.sluttid = sluttid;
@@ -25,6 +25,7 @@
           this.dag = dag;
           this.you = you;
           this.category = category;
+          this.dateInner = dateInner;
         }
       }
 
@@ -34,7 +35,7 @@
 
     <script th:inline="javascript">
       var data = [(${jScript})];
-
+      var data2 = [(${jScript2})];
     </script>
 
 
@@ -47,7 +48,7 @@
       <a class="navbar-brand col-sm-3 col-md-2 mr-0 dark-green" href="#"><span data-feather="calendar"></span> Schema app</a>
       <ul class="navbar-nav">
         <li class="nav-item text-nowrap logout">
-          <a class="nav-link white-text" href="#">
+          <a class="nav-link white-text" href="/logout">
             <span data-feather="users"></span>  Sign out
           </a>
         </li>

@@ -1,9 +1,12 @@
 package com.project.scheduleapp.demo.Model;
 
 import com.project.scheduleapp.demo.helpers.Helper;
+import org.thymeleaf.util.StringUtils;
 
 import java.time.LocalDateTime;
+import java.time.format.TextStyle;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class Shift {
@@ -111,14 +114,39 @@ public class Shift {
 
 
     public String getSchedDay(){
-        System.out.println(Helper.getSchedDay(this.startDate));
-
         return Helper.getSchedDay(this.startDate);
 
     }
 
+    public String getLocalDateString(){
 
+        String month = this.startDate.getMonth().getDisplayName(TextStyle.FULL, new Locale("sv","SE"));
+        month = StringUtils.capitalize(month);
+        month = this.startDate.getDayOfMonth() + " " + month;
 
+        return month;
+    }
+
+    public String getLocalDateYearString(){
+
+        String month = this.startDate.getMonth().getDisplayName(TextStyle.FULL, new Locale("sv","SE"));
+        month = StringUtils.capitalize(month);
+        month = month + " " + this.startDate.getYear();
+
+        return month;
+    }
+
+    public String getStartEndHourMinute(){
+        return getStartHourMinute() + " - " + getEndHourMinute();
+    }
+
+    public String getStartHourMinute(){
+        return Helper.getHourMinuteStr(this.startDate);
+    }
+
+    public String getEndHourMinute(){
+        return Helper.getHourMinuteStr(this.endDate);
+    }
 
     public Category getCategory() {
         return category;

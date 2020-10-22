@@ -24,6 +24,7 @@
 <body>
 <nav class="navbar navbar-dark sticky-top flex-md-nowrap p-0">
     <a class="navbar-brand col-sm-3 col-md-2 mr-0 dark-green" href="/home"><span data-feather="calendar"></span> Schema app</a>
+    <div class="white-text" th:text="'Inloggad som: '">Johan Nilsson</div>
     <ul class="navbar-nav">
         <li class="nav-item text-nowrap logout">
             <a class="nav-link white-text" href="/logout">
@@ -86,11 +87,11 @@
                         <div class="d-flex">
 
                             <div class="p-2 no-padding">
-                                <p class="no-padding" th:text="${shifts.getStartDate().getHour()} + ' : ' + ${shifts.getStartDate().getMinute()} + ' - ' + ${shifts.getEndDate().getHour()} + ' : ' + ${shifts.getEndDate().getMinute()}"></p>
+                                <p class="no-padding no-margin-bot" th:text="${shifts.getStartEndHourMinute()}"></p>
 
                             </div>
                             <div class="p-2 no-padding padding-left gray-text">
-                                <p class="no-padding" th:text="${shifts.getCategory().getCategoryName()}" /></p>
+                                <p class="no-padding no-margin-bot" th:text="${shifts.getCategory().getCategoryName()}"></p>
                             </div>
                         </div>
                         <div class="d-flex justify-content-between">
