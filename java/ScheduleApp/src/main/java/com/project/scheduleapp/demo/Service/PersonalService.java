@@ -14,10 +14,10 @@ public class PersonalService {
     private IPersonalCrud crud;
 
     public List<Personal> getAllPersonal(ScheduleEntryService scheduleEntryService){ return crud.getAllPersonal(scheduleEntryService);};
-    public Personal getPersonalById(Integer Id){
-        return crud.getPersonalById(Id);
+    public Personal getPersonalById(Integer Id,ScheduleEntryService scheduleEntryService){
+        return crud.getPersonalById(Id,scheduleEntryService);
     }
-    public Personal verifyLoginIn(String Username, String Password){return crud.verifyLogIn(Username,Password);}
+    public Personal verifyLoginIn(String Username, String Password,ScheduleEntryService scheduleEntryService){return crud.verifyLogIn(Username,Password,scheduleEntryService);}
     public Personal addEntry(Personal personal){
         return crud.addEntry(personal);
     }

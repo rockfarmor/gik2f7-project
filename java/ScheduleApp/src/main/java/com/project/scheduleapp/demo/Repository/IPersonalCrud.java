@@ -10,8 +10,8 @@ import java.util.List;
 public interface IPersonalCrud {
 
     public List<Personal> getAllPersonal(ScheduleEntryService scheduleEntryService);
-    public Personal getPersonalById(Integer Id);
+    public Personal getPersonalById(Integer Id,ScheduleEntryService scheduleEntryService);
     public Personal addEntry(Personal Personal);
     public Personal updatePersonal(Personal Personal);
-    public Personal verifyLogIn(String username, String Password);
+    public Personal verifyLogIn(String username, String Password,ScheduleEntryService scheduleEntryService);
 }
