@@ -19,7 +19,8 @@ $("[rel=add-user]").popover({
     sanitize: false,
     html: true,
     content : '<textarea class="popover-textarea"></textarea>',
-    template: '<div class="popover-admin">'+
+    template:
+   '<div class="popover-admin">'+
     '<div class="d-flex justify-content-between calendar-head">'+
       '<div class="p-2 no-padding">Lägg till användare</div>'+
       '<div class="p-2 no-padding calendar-arrow"><button type="button" class="btn btn-default popover-cancel">x</button></div>'+

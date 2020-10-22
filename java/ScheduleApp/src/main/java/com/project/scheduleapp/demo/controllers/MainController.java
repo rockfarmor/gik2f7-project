@@ -93,7 +93,6 @@ public class MainController {
         boolean showMessage = false;
         List<Personal> personals = personalService.getAllPersonal(scheduleEntryService);
 
-        model.addAttribute("allPersonal", personals);
 
         if(allFormRequest.get("formType") != null) {
             //skiftAdd,skiftTypeAdd,userAdd
@@ -164,7 +163,14 @@ public class MainController {
                     //int uniqueID, String name, String userName, String password, int salaryPerHour, int isAdmin
                     int sal = 10;
                     Personal newPerson = new Personal(-1, name, username, password, sal,iadmin);
+
+                    personalService.addEntry(newPerson);
+                    System.out.println("NY PERSSON LADES TILL!!!!!!!!!!1111111111");
+
+
+
                     System.out.println(newPerson);
+                    personals = personalService.getAllPersonal(scheduleEntryService);
                 } else {
                     System.out.println("PRINT ERROR!!!!!!!!");
                 }
@@ -178,6 +184,8 @@ public class MainController {
             }
         }
 
+
+        model.addAttribute("allPersonal", personals);
         model.addAttribute("show_message", showMessage);
 
 

@@ -124,16 +124,18 @@ public class PersonalCrud implements IPersonalCrud {
             con = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/CiW6XfVzNP", "CiW6XfVzNP", "RYRF7gAMIn");
 
 
-            String sqlSelectAllEntries =  sqlSelectAllEntries = "INSERT INTO `Personal`(`Name`, `UserName`, `Password`, `Salary`,`is_admin`) VALUES (?,?,?,?,?)";
+            String sqlSelectAllEntries =  sqlSelectAllEntries = "INSERT INTO `Personal`(`Name`, `UserName`, `Password`, `Salary`,`is_admin`, `Schedule_Id`, `is_logged_in`) VALUES (?,?,?,?,?,?,?)";
 
 
             PreparedStatement statement = con.prepareStatement(sqlSelectAllEntries);
 
-            statement.setString(2,personal.getName());
-            statement.setString(3,personal.getUserName());
-            statement.setString(4,personal.getPassword());
-            statement.setInt(5,personal.getSalaryPerHour());
-            statement.setInt(6,personal.getIsAdmin());
+            statement.setString(1,personal.getName());
+            statement.setString(2,personal.getUserName());
+            statement.setString(3,personal.getPassword());
+            statement.setInt(4,personal.getSalaryPerHour());
+            statement.setInt(5,personal.getIsAdmin());
+            statement.setInt(6,-1);
+            statement.setInt(7,0);
 
             statement.executeUpdate();
 
