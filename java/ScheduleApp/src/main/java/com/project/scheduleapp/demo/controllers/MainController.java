@@ -6,8 +6,7 @@ import com.project.scheduleapp.demo.Service.PersonalService;
 import com.project.scheduleapp.demo.Service.ScheduleEntryService;
 
 import com.project.scheduleapp.demo.helpers.Helper;
-import com.project.scheduleapp.demo.models.Personal;
-import com.project.scheduleapp.demo.models.ScheduleEntry;
+import com.project.scheduleapp.demo.models.PersonalOld;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import java.sql.Array;
 import java.sql.Timestamp;
 
 import java.time.LocalDateTime;
@@ -58,9 +56,9 @@ public class MainController {
         for(int c=0;c<userlist.length;c++){
             Personal p;
             p=personalService.verifyLoginIn(email,password);
-            if(p.getPassword().equals(password) && p.getUsername().equals(email)){
+            if(p.getPassword().equals(password) && p.getUserName().equals(email)){
                 session.setAttribute("personal",p);
-                if(p.getIs_admin() == 1){
+                if(p.getIsAdmin() == 1){
                     return "admin";
                 }else{
                     model.addAttribute("personal",p);
@@ -130,9 +128,9 @@ public class MainController {
         model.addAttribute("prevUrl", prevUrl);
         model.addAttribute("nextUrl", nextUrl);
 
-        ArrayList<Personalsss> personals = (ArrayList<Personalsss>) personalService.getAllPersonal(scheduleEntryService);
+        ArrayList<Personal> personals = (ArrayList<Personal>) personalService.getAllPersonal(scheduleEntryService);
 
-        for (Personalsss p: personals){
+        for (Personal p: personals){
 
             for (Shift s:p.getSchedlist()) {
                 System.out.println(p.getName() + "-> " + s.getStartDate());
@@ -231,9 +229,9 @@ public class MainController {
         Timestamp a;
 
         //List<ScheduleEntry> scheduleEntries = scheduleEntryService.getAllEntries();
-        List<Personalsss> personals = personalService.getAllPersonal(scheduleEntryService);
+        List<Personal> personals = personalService.getAllPersonal(scheduleEntryService);
 
-        for (Personalsss p: personals){
+        for (Personal p: personals){
 
             for (Shift s:p.getSchedlist()) {
                 System.out.println(p.getName() + "-> " + s.getStartDate());

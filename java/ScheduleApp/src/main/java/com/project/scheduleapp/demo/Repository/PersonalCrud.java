@@ -1,9 +1,9 @@
 package com.project.scheduleapp.demo.Repository;
 
-import com.project.scheduleapp.demo.Model.Personalsss;
+import com.project.scheduleapp.demo.Model.Personal;
 import com.project.scheduleapp.demo.Model.Shift;
 import com.project.scheduleapp.demo.Service.ScheduleEntryService;
-import com.project.scheduleapp.demo.models.Personal;
+import com.project.scheduleapp.demo.models.PersonalOld;
 import com.project.scheduleapp.demo.models.ScheduleEntry;
 import org.springframework.stereotype.Repository;
 
@@ -19,13 +19,11 @@ public class PersonalCrud implements IPersonalCrud {
 
 
     @Override
-    public List<Personalsss> getAllPersonal(ScheduleEntryService scheduleEntryService) {
-        List<Personalsss> personals = new ArrayList<>();
+    public List<Personal> getAllPersonal(ScheduleEntryService scheduleEntryService) {
+        List<Personal> personals = new ArrayList<>();
         try{
 
             con = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/CiW6XfVzNP", "CiW6XfVzNP", "RYRF7gAMIn");
-
-
 
             Statement statement = con.createStatement();
             String sqlSelectAllEntries = "SELECT * FROM Personal";
@@ -33,7 +31,7 @@ public class PersonalCrud implements IPersonalCrud {
             while (resultSet.next()){
 
 
-                Personalsss person = new Personalsss(resultSet.getInt("Id"), resultSet.getString("Name"), resultSet.getString("UserName"), resultSet.getString("Password"), resultSet.getInt("Salary"));
+                Personal person = new Personal(resultSet.getInt("Id"), resultSet.getString("Name"), resultSet.getString("UserName"), resultSet.getString("Password"), resultSet.getInt("Salary"), resultSet.getInt("is_admin"));
 
 
                 //TODO: Set person admin
@@ -82,16 +80,20 @@ public class PersonalCrud implements IPersonalCrud {
             statement.setInt(1,Id);
 
             ResultSet resultSet = statement.executeQuery();
-            Personal person = new Personal();
+            //PersonalOld person = new PersonalOld();
+            Personal person  = null;
             while(resultSet.next()) {
-                person.setId(resultSet.getInt("Id"));
+
+                person = new Personal(resultSet.getInt("Id"), resultSet.getString("Name"), resultSet.getString("UserName"), resultSet.getString("Password"), resultSet.getInt("Salary"), resultSet.getInt("is_admin"));
+
+                /*person.setId(resultSet.getInt("Id"));
                 person.setSchedule_id(resultSet.getInt("Schedule_Id"));
                 person.setName(resultSet.getString("Name"));
                 person.setUsername(resultSet.getString("UserName"));
                 person.setPassword(resultSet.getString("Password"));
                 person.setSalary(resultSet.getInt("Salary"));
                 person.setIs_admin(resultSet.getInt("is_admin"));
-                person.setIs_logged_in(resultSet.getInt("is_logged_in"));
+                person.setIs_logged_in(resultSet.getInt("is_logged_in"));*/
             }
             resultSet.close();
             statement.close();
@@ -125,16 +127,19 @@ public class PersonalCrud implements IPersonalCrud {
             statement.setString(2,Password);
 
             ResultSet resultSet = statement.executeQuery();
-            Personal person = new Personal();
+            //PersonalOld person = new PersonalOld();
+            Personal person  = null;
+
             while(resultSet.next()) {
-                person.setId(resultSet.getInt("Id"));
+                person = new Personal(resultSet.getInt("Id"), resultSet.getString("Name"), resultSet.getString("UserName"), resultSet.getString("Password"), resultSet.getInt("Salary"), resultSet.getInt("is_admin"));
+                /*person.setId(resultSet.getInt("Id"));
                 person.setSchedule_id(resultSet.getInt("Schedule_Id"));
                 person.setName(resultSet.getString("Name"));
                 person.setUsername(resultSet.getString("UserName"));
                 person.setPassword(resultSet.getString("Password"));
                 person.setSalary(resultSet.getInt("Salary"));
                 person.setIs_admin(resultSet.getInt("is_admin"));
-                person.setIs_logged_in(resultSet.getInt("is_logged_in"));
+                person.setIs_logged_in(resultSet.getInt("is_logged_in"));*/
             }
             resultSet.close();
             statement.close();

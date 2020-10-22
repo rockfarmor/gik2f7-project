@@ -1,6 +1,6 @@
 package com.project.scheduleapp.demo.Model;
 
-public class Account extends Personalsss {
+public class Account extends Personal {
     private int accountID;
 
     public Account(int uniqueID, String name, String userName, String password, int salaryPerHour) {

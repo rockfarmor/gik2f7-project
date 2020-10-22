@@ -1,8 +1,6 @@
 package com.project.scheduleapp.demo.Model;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class Shift {
     private int shiftID;
@@ -11,10 +9,10 @@ public class Shift {
     private String description;
     private boolean isReal;
 
-    private Personalsss account;
+    private Personal account;
 
 
-    public Shift(int shiftID, LocalDateTime startDate, LocalDateTime endDate, String description, Personalsss a) {
+    public Shift(int shiftID, LocalDateTime startDate, LocalDateTime endDate, String description, Personal a) {
         this.shiftID = shiftID;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -101,7 +99,7 @@ public class Shift {
         return this.endDate.getDayOfMonth();
     }
 
-    public Personalsss getAccount() {
+    public Personal getAccount() {
         return account;
     }
 }

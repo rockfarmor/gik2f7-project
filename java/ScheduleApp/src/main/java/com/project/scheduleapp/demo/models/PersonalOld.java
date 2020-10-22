@@ -1,6 +1,6 @@
 package com.project.scheduleapp.demo.models;
 
-public class Personal {
+public class PersonalOld {
     private int Id;
     private  int schedule_id;
     private String name;

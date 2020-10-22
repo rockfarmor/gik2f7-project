@@ -3,21 +3,33 @@ package com.project.scheduleapp.demo.Model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Personalsss {
+public class Personal {
     protected int uniqueID;
     protected String name;
     protected String userName;
     protected String password;
     protected int salaryPerHour;
     protected List<Shift> schedlist;
+    protected int isAdmin;
 
-    public Personalsss(int uniqueID, String name, String userName, String password, int salaryPerHour) {
+    public Personal(int uniqueID, String name, String userName, String password, int salaryPerHour, int isAdmin) {
         this.uniqueID = uniqueID;
         this.name = name;
         this.userName = userName;
         this.password = password;
         this.salaryPerHour = salaryPerHour;
         this.schedlist = new ArrayList<>();
+        this.isAdmin = isAdmin;
+    }
+
+    public Personal(int uniqueID, String name, String userName, String password, int salaryPerHour) {
+        this.uniqueID = uniqueID;
+        this.name = name;
+        this.userName = userName;
+        this.password = password;
+        this.salaryPerHour = salaryPerHour;
+        this.schedlist = new ArrayList<>();
+        this.isAdmin = 0;
     }
 
     public void showSalary(){
@@ -76,5 +88,13 @@ public class Personalsss {
 
     public void setSchedlist(List<Shift> schedlist) {
         this.schedlist = schedlist;
+    }
+
+    public int getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(int isAdmin) {
+        this.isAdmin = isAdmin;
     }
 }
