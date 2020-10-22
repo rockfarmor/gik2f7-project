@@ -109,7 +109,7 @@ public class Shift {
         return account;
     }
 
-<<<<<<< HEAD
+
     public String getSchedDay(){
         System.out.println(Helper.getSchedDay(this.startDate));
 
@@ -119,11 +119,11 @@ public class Shift {
 
 
 
-=======
+
     public Category getCategory() {
         return category;
     }
->>>>>>> 5c8de75ad80f544c50ce14d1f69cd25b9b0a2031
+
 
     @Override
     public String toString() {
