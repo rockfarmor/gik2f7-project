@@ -96,6 +96,7 @@ public class MainController {
         model.addAttribute("allPersonal", personals);
 
         if(allFormRequest.get("formType") != null) {
+            //skiftAdd,skiftTypeAdd,userAdd
             if (allFormRequest.get("formType").equals("skiftAdd")) {
                 System.out.println("SkiftAdd");
 
@@ -144,6 +145,35 @@ public class MainController {
                 }
 
 
+                //skiftAdd,skiftTypeAdd,userAdd
+            } else if(allFormRequest.get("formType").equals("userAdd")){
+                System.out.println("userAdd");
+                System.out.println(allFormRequest);
+                String username = allFormRequest.get("username");
+                String name = allFormRequest.get("name");
+                String password = allFormRequest.get("password");
+                String salaryStr = allFormRequest.get("salary");
+                int salary = 0;
+                if(!salaryStr.isEmpty())
+                    salary = Integer.parseInt(salaryStr);
+                int iadmin = 0;
+                if(allFormRequest.get("isadmin") != null)
+                    iadmin = 1;
+
+                if(!username.isEmpty() && !name.isEmpty() && !password.isEmpty() && salary > 0){
+                    //int uniqueID, String name, String userName, String password, int salaryPerHour, int isAdmin
+                    int sal = 10;
+                    Personal newPerson = new Personal(-1, name, username, password, sal,iadmin);
+                    System.out.println(newPerson);
+                } else {
+                    System.out.println("PRINT ERROR!!!!!!!!");
+                }
+
+            }  else if(allFormRequest.get("formType").equals("skiftTypeAdd")){
+                System.out.println("skiftTypeAdd");
+                System.out.println(allFormRequest);
+
+
 
             }
         }
@@ -165,9 +195,9 @@ public class MainController {
             return "logIn";
 
         }
-
         int y = Integer.parseInt(gYear);
         int m = Integer.parseInt(gMonth);
+
         LocalDateTime now = LocalDateTime.now();
         if(!(y > 1995 && m >= 0 && m <= 12)) {
             y = now.getYear();
@@ -185,60 +215,8 @@ public class MainController {
         model.addAttribute("nextUrl", nextUrl);
 
         ArrayList<Personal> personals = (ArrayList<Personal>) personalService.getAllPersonal(scheduleEntryService);
-
         Personal loggedin = (Personal)session.getAttribute("personal");
-
-
-
-        for (Personal p: personals){
-
-            for (Shift s:p.getSchedlist()) {
-                System.out.println(p.getName() + "-> " + s.getStartDate());
-            }
-
-        }
-
-
-
-        Account h1 = new Account(100,"Johan Nilsson","johni198","asd",200);
-        Account h2 = new Account(100,"Sebbe Nilsson","johni198","asd",200);
-        Account h3 = new Account(100,"Axel Axelsson","jasd","asd",200);
-
-        ArrayList<Account> accs = new ArrayList<>();
-        accs.add(h1);
-        accs.add(h2);
-        accs.add(h3);
-
-
-        h1.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 1, 12, 0), LocalDateTime.of(2020, 10, 1, 17, 0), "FUCK YA",h1));
-        h1.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 2, 12, 0), LocalDateTime.of(2020, 10, 2, 17, 0), "FUCK YA",h1));
-        h1.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 5, 12, 0), LocalDateTime.of(2020, 10, 5, 17, 0), "FUCK YA",h1));
-        h1.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 10, 12, 0), LocalDateTime.of(2020, 10, 10, 20, 0), "FUCK YA",h1));
-        h1.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 19, 12, 0), LocalDateTime.of(2020, 10, 19, 17, 0), "FUCK YA",h1));
-        h1.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 25, 12, 0), LocalDateTime.of(2020, 10, 25, 17, 0), "FUCK YA",h1));
-
-        h2.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 1, 12, 0), LocalDateTime.of(2020, 10, 1, 16, 0), "FUCK YA",h2));
-        h2.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 2, 15, 0), LocalDateTime.of(2020, 10, 2, 23, 0), "FUCK YA",h2));
-        h2.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 5, 14, 0), LocalDateTime.of(2020, 10, 5, 22, 0), "FUCK YA",h2));
-        h2.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 10, 14, 0), LocalDateTime.of(2020, 10, 10, 23, 0), "FUCK YA",h2));
-        h2.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 19, 14, 0), LocalDateTime.of(2020, 10, 20, 01, 0), "FUCK YA",h2));
-        h2.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 25, 12, 0), LocalDateTime.of(2020, 10, 25, 17, 0), "FUCK YA",h2));
-
-        h3.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 10, 12, 0), LocalDateTime.of(2020, 10, 10, 22, 0), "FUCK YA",h3));
-        h3.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 11, 12, 0), LocalDateTime.of(2020, 10, 11, 23, 0), "FUCK YA",h3));
-        h3.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 12, 15, 0), LocalDateTime.of(2020, 10, 12, 22, 0), "FUCK YA",h3));
-        h3.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 13, 13, 0), LocalDateTime.of(2020, 10, 13, 23, 0), "FUCK YA",h3));
-        h3.getSchedlist().add(new Shift(1, LocalDateTime.of(2020, 10, 14, 15, 0), LocalDateTime.of(2020, 10, 14, 21, 0), "FUCK YA",h3));
-
-
-        String jscript = Helper.getJavaScript(personals, personals.get(0));
-
-        model.addAttribute("jScript", jscript);
-
-
-        model.addAttribute("calendar_month", thisMonth.getMonth().toString() + " " + thisMonth.getYear());
-        model.addAttribute("month_int", m);
-
+        String jscript = Helper.getJavaScript(personals, loggedin);
 
         SebbeDate sdate = new SebbeDate();
         sdate.dagar(y,m);
@@ -268,7 +246,11 @@ public class MainController {
 
 
         model.addAttribute("calShift", calShift);
-
+        model.addAttribute("prevUrl", prevUrl);
+        model.addAttribute("nextUrl", nextUrl);
+        model.addAttribute("jScript", jscript);
+        model.addAttribute("calendar_month", thisMonth.getMonth().toString() + " " + thisMonth.getYear());
+        model.addAttribute("month_int", m);
 
         return "schema";
     }

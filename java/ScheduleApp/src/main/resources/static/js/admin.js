@@ -25,29 +25,29 @@ $("[rel=add-user]").popover({
       '<div class="p-2 no-padding calendar-arrow"><button type="button" class="btn btn-default popover-cancel">x</button></div>'+
     '</div>'+
     '<div class="inner-add-user">'+
-      '<form>'+
+      '<form action="/admin" method="POST">'+
         '<div class="form-group">'+
         '<input type="hidden" id="formType" name="formType" value="userAdd">'+
           '<label for="name">Namn:</label>'+
-          '<input type="text" class="form-control" id="name" aria-describedby="name" placeholder="Namn på användaren">'+
+          '<input name="name" type="text" class="form-control" id="name" aria-describedby="name" placeholder="Namn på användaren">'+
         '</div>'+
         '<div class="form-group">'+
           '<label for="username">Användarnamn:</label>'+
-          '<input type="text" class="form-control" id="username" aria-describedby="name" placeholder="Användarnamn:">'+
+          '<input name="username" type="text" class="form-control" id="username" aria-describedby="name" placeholder="Användarnamn:">'+
         '</div>'+
         '<div class="form-group">'+
           '<label for="password">Lösenord</label>'+
-          '<input type="password" class="form-control" id="password" placeholder="Lösenord">'+
+          '<input name="password" type="password" class="form-control" id="password" placeholder="Lösenord">'+
         '</div>'+
         '<div class="form-group">'+
           '<label for="salary">Lön(kr/h):</label>'+
-          '<input type="text" class="form-control" id="salary" aria-describedby="name" placeholder="Lön(kr/h):">'+
+          '<input name="salary" type="text" class="form-control" id="salary" aria-describedby="name" placeholder="Lön(kr/h):">'+
         '</div>'+
         '<div class="form-check">'+
-          '<input type="checkbox" class="form-check-input" id="isadmin">'+
+          '<input name="isadmin" type="checkbox" class="form-check-input" id="isadmin">'+
           '<label class="form-check-label" for="isadmin">Admin</label>'+
         '</div>'+
-        '<button type="submit" class="btn btn-lg btn-primary btn-block btn-custom">Lägg  till användare</button>'+
+        '<button type="submit" class="btn btn-lg btn-primary btn-block btn-custom">Lägg till användare</button>'+
       '</form>'+
     '</div>'+
   '</div>'
@@ -83,15 +83,15 @@ $("[rel=add-skift]").popover({
       '<div class="p-2 no-padding calendar-arrow"><button type="button" class="btn btn-default popover-cancel">x</button></div>'+
     '</div>'+
     '<div class="inner-add-user">'+
-      '<form>'+
-      '<input type="hidden" id="formType" name="formType" value="userAdd">'+
+      '<form action="/admin" method="POST">'+
+      '<input type="hidden" id="formType" name="formType" value="skiftTypeAdd">'+
         '<div class="form-group">'+
           '<label for="skiftnamn">Skiftnamn:</label>'+
-          '<input type="text" class="form-control" id="skiftnamn" aria-describedby="skiftnamn" placeholder="Skiftnamn">'+
+          '<input name="skiftTyp" type="text" class="form-control" id="skiftnamn" aria-describedby="skiftnamn" placeholder="Skiftnamn">'+
         '</div>'+
         '<div class="form-group">'+
           '<label for="beskrivning"><h1 class="h5 no-margin-bot">Skiftbeskrivning</h1></label></br>' +
-          '<textarea class="form-control" id="beskrivning" rows="3"></textarea>' +
+          '<textarea class="form-control" id="beskrivning" name="skiftBeskrivning" rows="3"></textarea>' +
         '</div>'+
 
         '<br>'+
