@@ -117,12 +117,40 @@ public class PersonalCrud implements IPersonalCrud {
     }
 
     @Override
-    public Personal addEntry(Personal Personal) {
+    public Personal addEntry(Personal personal) {
+
+        try{
+
+            con = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/CiW6XfVzNP", "CiW6XfVzNP", "RYRF7gAMIn");
+
+
+            String sqlSelectAllEntries =  sqlSelectAllEntries = "INSERT INTO `Personal`(`Name`, `UserName`, `Password`, `Salary`,`is_admin`) VALUES (?,?,?,?,?)";
+
+
+            PreparedStatement statement = con.prepareStatement(sqlSelectAllEntries);
+
+            statement.setString(2,personal.getName());
+            statement.setString(3,personal.getUserName());
+            statement.setString(4,personal.getPassword());
+            statement.setInt(5,personal.getSalaryPerHour());
+            statement.setInt(6,personal.getIsAdmin());
+
+            statement.executeUpdate();
+
+            statement.close();
+            con.close();
+            return personal;
+        }
+        catch (SQLException ex){
+            Logger.getLogger(ScheduleEntryCrud.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
         return null;
     }
 
     @Override
-    public Personal updatePersonal(Personal Personal) {
+    public Personal updatePersonal(Personal personal) {
         return null;
     }
 

@@ -28,11 +28,13 @@ public class ScheduleEntryCrud implements IScheduleEntryCrud {
 
 
 
-            Statement statement = con.createStatement();
-            String sqlSelectAllEntries = "SELECT * FROM Schedule_Entry WHERE Schedule_Id = " + scheduleId;
 
+            String sqlSelectAllEntries = "SELECT * FROM Schedule_Entry WHERE Schedule_Id =? ORDER BY Start_Date";
+            PreparedStatement statement = con.prepareStatement(sqlSelectAllEntries);
+            statement.setInt(1,scheduleId);
 
-            ResultSet resultSet = statement.executeQuery(sqlSelectAllEntries);
+            ResultSet resultSet = statement.executeQuery();
+
             while (resultSet.next()){
                 ScheduleEntry scheduleEntry = new ScheduleEntry();
                 scheduleEntry.setEntry_Id(resultSet.getInt("Entry_Id"));
@@ -64,7 +66,7 @@ public class ScheduleEntryCrud implements IScheduleEntryCrud {
             con = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/CiW6XfVzNP", "CiW6XfVzNP", "RYRF7gAMIn");
 
             Statement statement = con.createStatement();
-            String sqlSelectAllEntries = "SELECT * FROM Schedule_Entry";
+            String sqlSelectAllEntries = "SELECT * FROM Schedule_Entry ORDER BY Start_Date";
             ResultSet resultSet = statement.executeQuery(sqlSelectAllEntries);
             while (resultSet.next()){
                 ScheduleEntry scheduleEntry = new ScheduleEntry();

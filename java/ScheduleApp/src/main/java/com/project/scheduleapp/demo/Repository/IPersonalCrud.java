@@ -11,7 +11,7 @@ public interface IPersonalCrud {
 
     public List<Personal> getAllPersonal(ScheduleEntryService scheduleEntryService);
     public Personal getPersonalById(Integer Id,ScheduleEntryService scheduleEntryService);
-    public Personal addEntry(Personal Personal);
-    public Personal updatePersonal(Personal Personal);
+    public Personal addEntry(Personal personal);
+    public Personal updatePersonal(Personal personal);
     public Personal verifyLogIn(String username, String Password,ScheduleEntryService scheduleEntryService);
 }
