@@ -64,18 +64,14 @@ public class MainController {
             }
             if(p.getPassword().equals(password) && p.getUserName().equals(email)){
                 session.setAttribute("personal",p);
+                model.addAttribute("personal",p);
+                Personal loggedin = (Personal)session.getAttribute("personal");
 
-                if(p.getIsAdmin() == 1){
-                    return "admin";
-                }else{
-                    model.addAttribute("personal",p);
-                    Personal loggedin = (Personal)session.getAttribute("personal");
-                    System.out.println(loggedin.getSchedlist().get(0).getDescription());
-                    //System.out.println(a);
-                    model.addAttribute("entries",loggedin);
-                    model.addAttribute("shifts",loggedin.getSchedlist());
-                    return "home";
-                }
+
+                model.addAttribute("entries",loggedin);
+                model.addAttribute("shifts",loggedin.getSchedlist());
+                return "home";
+
             }
 
         }
@@ -238,7 +234,7 @@ public class MainController {
         String jscript = Helper.getJavaScript(personals, personals.get(0));
 
         model.addAttribute("jScript", jscript);
-        
+
 
         model.addAttribute("calendar_month", thisMonth.getMonth().toString() + " " + thisMonth.getYear());
         model.addAttribute("month_int", m);
@@ -304,10 +300,10 @@ public class MainController {
 
             //System.out.println(dagar["loggedin.getSchedlist().get(0).getStartDate().getDayOfWeek()"]);
             System.out.println(dagar.get(loggedin.getSchedlist().get(0).getStartDate().getDayOfWeek().toString()));
-          //  System.out.println(dagar.get(c));
+            //  System.out.println(dagar.get(c));
 
 
-      //<td th:text="${dagar.get('__${shifts.getStartDate().getDayOfWeek().toString()}__')}">
+            //<td th:text="${dagar.get('__${shifts.getStartDate().getDayOfWeek().toString()}__')}">
             return "home";
         }
         return "logIn";
