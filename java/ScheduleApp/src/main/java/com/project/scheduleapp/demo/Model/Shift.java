@@ -1,6 +1,10 @@
 package com.project.scheduleapp.demo.Model;
 
+import com.project.scheduleapp.demo.helpers.Helper;
+
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Shift {
     private int shiftID;
@@ -102,6 +106,15 @@ public class Shift {
     public Personal getAccount() {
         return account;
     }
+
+    public String getSchedDay(){
+        System.out.println(Helper.getSchedDay(this.startDate));
+
+        return Helper.getSchedDay(this.startDate);
+
+    }
+
+
 
 
     @Override

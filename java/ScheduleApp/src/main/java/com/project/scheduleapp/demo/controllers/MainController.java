@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 
 import java.time.format.DateTimeFormatter;
@@ -270,7 +271,7 @@ public class MainController {
         dagar.put("MONDAY","Mån");
         dagar.put("TUESDAY","Tis");
         dagar.put("WEDNESDAY","Ons");
-        dagar.put("THRUSDAY","Tor");
+        dagar.put("THURSDAY","Tor");
         dagar.put("FRIDAY","Fri");
         dagar.put("SATURDAY","Lör");
         dagar.put("SUNDAY","Sön");
@@ -281,9 +282,17 @@ public class MainController {
         //System.out.println(loggedin.getSchedlist().get(0).getDescription());
         //System.out.println(a);
         if(loggedin!= null) {
+            model.addAttribute("dagar",dagar);
             model.addAttribute("entries", loggedin);
             model.addAttribute("shifts", loggedin.getSchedlist());
             System.out.println(loggedin.getSchedlist().get(0).getStartDate().getDayOfWeek());
+
+            //System.out.println(dagar["loggedin.getSchedlist().get(0).getStartDate().getDayOfWeek()"]);
+            System.out.println(dagar.get(loggedin.getSchedlist().get(0).getStartDate().getDayOfWeek().toString()));
+          //  System.out.println(dagar.get(c));
+
+
+      //<td th:text="${dagar.get('__${shifts.getStartDate().getDayOfWeek().toString()}__')}">
             return "home";
         }
         return "logIn";

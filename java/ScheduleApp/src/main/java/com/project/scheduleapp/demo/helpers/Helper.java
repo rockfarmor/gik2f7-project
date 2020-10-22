@@ -3,8 +3,10 @@ package com.project.scheduleapp.demo.helpers;
 import com.project.scheduleapp.demo.Model.Personal;
 import com.project.scheduleapp.demo.Model.Shift;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Helper {
 
@@ -46,6 +48,22 @@ public class Helper {
         jscript += "}";
 
         return jscript;
+    }
+
+    public static String getSchedDay(LocalDateTime day){
+        Map<String,String> dagar = new HashMap<>();
+        dagar.put("MONDAY","Mån");
+        dagar.put("TUESDAY","Tis");
+        dagar.put("WEDNESDAY","Ons");
+        dagar.put("THURSDAY","Tor");
+        dagar.put("FRIDAY","Fri");
+        dagar.put("SATURDAY","Lör");
+        dagar.put("SUNDAY","Sön");
+
+        System.out.println(day);
+        System.out.println(day.getDayOfWeek().toString());
+        System.out.println("awdadawda");
+        return dagar.get(day.getDayOfWeek().toString());
     }
 
 
