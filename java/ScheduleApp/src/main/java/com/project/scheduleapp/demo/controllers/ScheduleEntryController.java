@@ -15,7 +15,7 @@ public class ScheduleEntryController {
 
     @GetMapping(path = "/hej")
     public String getAllEntries(Model model){
-        model.addAttribute("personal",personalService.getPersonalById(1));
+        //model.addAttribute("personal",personalService.getPersonalById(1, ));
         return "testview";//måste ändras till rätt view
     }
 

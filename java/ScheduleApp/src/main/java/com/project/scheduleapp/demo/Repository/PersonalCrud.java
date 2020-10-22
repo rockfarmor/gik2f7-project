@@ -71,7 +71,7 @@ public class PersonalCrud implements IPersonalCrud {
     }
 
     @Override
-    public Personal getPersonalById(Integer Id) {
+    public Personal getPersonalById(Integer Id,ScheduleEntryService scheduleEntryService) {
         try{
             con = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/CiW6XfVzNP", "CiW6XfVzNP", "RYRF7gAMIn");
 
@@ -94,6 +94,15 @@ public class PersonalCrud implements IPersonalCrud {
                 person.setSalary(resultSet.getInt("Salary"));
                 person.setIs_admin(resultSet.getInt("is_admin"));
                 person.setIs_logged_in(resultSet.getInt("is_logged_in"));*/
+                List<ScheduleEntry> scheduleEntries = scheduleEntryService.getEntriesByScheduleId(person.getUniqueID());
+                if(scheduleEntries != null) {
+                    for (ScheduleEntry s : scheduleEntries) {
+                        //int shiftID, LocalDateTime startDate, LocalDateTime endDate, String description
+                        Shift shift = new Shift(s.getEntry_Id(), s.getStart_Date().toLocalDateTime().minusHours(2), s.getEnd_Date().toLocalDateTime().minusHours(2), s.getDescription(), person);
+                        person.getSchedlist().add(shift);
+
+                    }
+                }
 
             }
             resultSet.close();
@@ -118,7 +127,7 @@ public class PersonalCrud implements IPersonalCrud {
     }
 
     @Override
-    public Personal verifyLogIn(String Username, String Password) {
+    public Personal verifyLogIn(String Username, String Password,ScheduleEntryService scheduleEntryService) {
         try{
             con = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/CiW6XfVzNP", "CiW6XfVzNP", "RYRF7gAMIn");
 
@@ -141,6 +150,15 @@ public class PersonalCrud implements IPersonalCrud {
                 person.setSalary(resultSet.getInt("Salary"));
                 person.setIs_admin(resultSet.getInt("is_admin"));
                 person.setIs_logged_in(resultSet.getInt("is_logged_in"));*/
+                List<ScheduleEntry> scheduleEntries = scheduleEntryService.getEntriesByScheduleId(person.getUniqueID());
+                if(scheduleEntries != null) {
+                    for (ScheduleEntry s : scheduleEntries) {
+                        //int shiftID, LocalDateTime startDate, LocalDateTime endDate, String description
+                        Shift shift = new Shift(s.getEntry_Id(), s.getStart_Date().toLocalDateTime().minusHours(2), s.getEnd_Date().toLocalDateTime().minusHours(2), s.getDescription(), person);
+                        person.getSchedlist().add(shift);
+
+                    }
+                }
             }
             resultSet.close();
             statement.close();

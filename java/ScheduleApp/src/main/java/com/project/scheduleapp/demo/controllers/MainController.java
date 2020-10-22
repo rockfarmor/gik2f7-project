@@ -56,18 +56,23 @@ public class MainController {
     public String verifyLogin(@RequestParam String email,@RequestParam String password,HttpSession session,Model model) {
         for(int c=0;c<userlist.length;c++){
             Personal p;
-            p=personalService.verifyLoginIn(email,password);
+            p=personalService.verifyLoginIn(email,password,scheduleEntryService);
+
             if(p == null){
                 return "logIn";
             }
             if(p.getPassword().equals(password) && p.getUserName().equals(email)){
                 session.setAttribute("personal",p);
+
                 if(p.getIsAdmin() == 1){
                     return "admin";
                 }else{
                     model.addAttribute("personal",p);
+                    Personal loggedin = (Personal)session.getAttribute("personal");
+                    System.out.println(loggedin.getSchedlist().get(0).getDescription());
                     //System.out.println(a);
-                    model.addAttribute("entries",scheduleEntryService.getEntriesByScheduleId(p.getUniqueID()));
+                    model.addAttribute("entries",loggedin);
+                    model.addAttribute("shifts",loggedin.getSchedlist());
                     return "home";
                 }
             }
@@ -267,45 +272,18 @@ public class MainController {
         dagar.put("SUNDAY","Sön");
         Timestamp a;
 
-        //List<ScheduleEntry> scheduleEntries = scheduleEntryService.getAllEntries();
-        List<Personal> personals = personalService.getAllPersonal(scheduleEntryService);
 
-        for (Personal p: personals){
-
-            for (Shift s:p.getSchedlist()) {
-                System.out.println(p.getName() + "-> " + s.getStartDate());
-            }
-
-
-
-        }
-
-
-
-
-        System.out.println(personals);
-        //System.out.println(scheduleEntries);
-
-
-        a= scheduleEntryService.getAllEntries().get(0).getStart_Date();
-
-
-        Date date = new Date(a.getTime());
-
-        Calendar calendar = GregorianCalendar.getInstance(); // creates a new calendar instance
-        calendar.setTime(date);
-        System.out.println(calendar.get(calendar.HOUR_OF_DAY));
-        System.out.println(calendar.get(calendar.MINUTE));
-        
-
-       // System.out.println(scheduleEntryService.getAllEntries().get(0).getStart_Date());
-        model.addAttribute("account",a1);
+        Personal loggedin = (Personal)session.getAttribute("personal");
+        //System.out.println(loggedin.getSchedlist().get(0).getDescription());
         //System.out.println(a);
+        if(loggedin!= null) {
+            model.addAttribute("entries", loggedin);
+            model.addAttribute("shifts", loggedin.getSchedlist());
+            System.out.println(loggedin.getSchedlist().get(0).getStartDate().getDayOfWeek());
+            return "home";
+        }
+        return "logIn";
 
-        //model.addAttribute("personal",personalService.getPersonalById(1));
-        model.addAttribute("entries",scheduleEntryService.getAllEntries());
-
-        return "home";
     }
 }
 
