@@ -20,6 +20,7 @@ import java.sql.Timestamp;
 
 import java.time.LocalDateTime;
 
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 
@@ -92,16 +93,41 @@ public class MainController {
 
         model.addAttribute("allPersonal", personals);
 
-
-
         if(allFormRequest.get("formType") != null) {
             if (allFormRequest.get("formType").equals("skiftAdd")) {
                 System.out.println("SkiftAdd");
 
-
-
-
                 System.out.println(allFormRequest);
+
+                //{formType=skiftAdd, employee=1, skifttyp=3, date=2020-10-20, startTid=12:00:00, slutTid=20:00:00, beskrivning=}
+
+                String stime = allFormRequest.get("date") + " " + allFormRequest.get("startTid");
+                String etime = allFormRequest.get("date") + " " + allFormRequest.get("slutTid");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                LocalDateTime startTime = LocalDateTime.parse(stime, formatter);
+                LocalDateTime endTime = LocalDateTime.parse(etime, formatter);
+
+                int personalId = Integer.parseInt(allFormRequest.get("employee"));
+                Personal p = null;
+
+                for (Personal p_: personals) {
+                    if(p_.getUniqueID() == personalId){
+                        p = p_;
+                        break;
+                    }
+                }
+                if(p != null){
+                    System.out.println(startTime);
+                    System.out.println(endTime);
+
+                    Shift s = new Shift(-1,startTime, endTime, allFormRequest.get("beskrivning"), p);
+                    //NU lägger vi till skiten
+                    scheduleEntryService.addShiftEntry(s, p);
+
+                }
+
+
+
             }
         }
 

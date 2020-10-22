@@ -102,4 +102,17 @@ public class Shift {
     public Personal getAccount() {
         return account;
     }
+
+
+    @Override
+    public String toString() {
+        return "Shift{" +
+                "shiftID=" + shiftID +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", description='" + description + '\'' +
+                ", isReal=" + isReal +
+                ", account=" + account +
+                '}';
+    }
 }
