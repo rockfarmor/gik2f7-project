@@ -48,7 +48,7 @@ public class MainController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String showlogIn() {
-        return "login";
+        return "logIn";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -56,6 +56,9 @@ public class MainController {
         for(int c=0;c<userlist.length;c++){
             Personal p;
             p=personalService.verifyLoginIn(email,password);
+            if(p == null){
+                return "logIn";
+            }
             if(p.getPassword().equals(password) && p.getUserName().equals(email)){
                 session.setAttribute("personal",p);
                 if(p.getIsAdmin() == 1){
@@ -63,10 +66,11 @@ public class MainController {
                 }else{
                     model.addAttribute("personal",p);
                     //System.out.println(a);
-                    model.addAttribute("entries",scheduleEntryService.getAllEntries());
+                    model.addAttribute("entries",scheduleEntryService.getEntriesByScheduleId(p.getUniqueID()));
                     return "home";
                 }
             }
+
         }
         model.addAttribute("invalidCredentials",true);
         return "logIn";
