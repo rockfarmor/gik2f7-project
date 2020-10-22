@@ -49,14 +49,14 @@ public class PersonalCrud implements IPersonalCrud {
                 personals.add(person);
 
                 List<ScheduleEntry> scheduleEntries = scheduleEntryService.getEntriesByScheduleId(person.getUniqueID());
+                if(scheduleEntries != null) {
+                    for (ScheduleEntry s : scheduleEntries) {
+                        //int shiftID, LocalDateTime startDate, LocalDateTime endDate, String description
+                        Shift shift = new Shift(s.getEntry_Id(), s.getStart_Date().toLocalDateTime().minusHours(2), s.getEnd_Date().toLocalDateTime().minusHours(2), s.getDescription(), person);
+                        person.getSchedlist().add(shift);
 
-                for (ScheduleEntry s: scheduleEntries) {
-                    //int shiftID, LocalDateTime startDate, LocalDateTime endDate, String description
-                    Shift shift = new Shift(s.getEntry_Id(), s.getStart_Date().toLocalDateTime().minusHours(2), s.getEnd_Date().toLocalDateTime().minusHours(2), s.getDescription(), person);
-                    person.getSchedlist().add(shift);
-
+                    }
                 }
-
 
             }//end while
             resultSet.close();

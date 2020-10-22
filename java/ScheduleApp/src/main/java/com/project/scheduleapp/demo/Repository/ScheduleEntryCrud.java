@@ -28,6 +28,8 @@ public class ScheduleEntryCrud implements IScheduleEntryCrud {
 
             Statement statement = con.createStatement();
             String sqlSelectAllEntries = "SELECT * FROM Schedule_Entry WHERE Schedule_Id = " + scheduleId;
+
+
             ResultSet resultSet = statement.executeQuery(sqlSelectAllEntries);
             while (resultSet.next()){
                 ScheduleEntry scheduleEntry = new ScheduleEntry();
