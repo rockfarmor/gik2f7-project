@@ -9,6 +9,7 @@ public class Shift {
     private String description;
     private boolean isReal;
 
+    private Category category;
     private Personal account;
 
 
@@ -19,6 +20,7 @@ public class Shift {
         this.description = description;
         this.isReal = true;
         this.account = a;
+        this.category = Category.Category1;
     }
 
     public Shift(int shiftID, LocalDateTime startDate, LocalDateTime endDate, String description) {
@@ -103,6 +105,9 @@ public class Shift {
         return account;
     }
 
+    public Category getCategory() {
+        return category;
+    }
 
     @Override
     public String toString() {
