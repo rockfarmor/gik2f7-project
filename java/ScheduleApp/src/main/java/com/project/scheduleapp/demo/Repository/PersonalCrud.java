@@ -94,6 +94,11 @@ public class PersonalCrud implements IPersonalCrud {
                 person.setSalary(resultSet.getInt("Salary"));
                 person.setIs_admin(resultSet.getInt("is_admin"));
                 person.setIs_logged_in(resultSet.getInt("is_logged_in"));*/
+
+
+
+
+
             }
             resultSet.close();
             statement.close();
