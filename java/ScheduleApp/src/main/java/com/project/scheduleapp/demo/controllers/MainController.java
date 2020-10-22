@@ -62,6 +62,7 @@ public class MainController {
             }
             if(p.getPassword().equals(password) && p.getUserName().equals(email)){
                 session.setAttribute("personal",p);
+
                 if(p.getIsAdmin() == 1){
                     return "admin";
                 }else{
@@ -169,6 +170,10 @@ public class MainController {
 
         ArrayList<Personal> personals = (ArrayList<Personal>) personalService.getAllPersonal(scheduleEntryService);
 
+        Personal loggedin = (Personal)session.getAttribute("personal");
+
+
+
         for (Personal p: personals){
 
             for (Shift s:p.getSchedlist()) {
@@ -234,7 +239,7 @@ public class MainController {
                 LocalDateTime t  = LocalDateTime.of(y, m, 1, 0, 0).minusDays(sdate.getDaystolastmonth()).plusDays(l);
                 Shift s = new Shift(-1, t,t,"noshift");
                 s.setReal(false);
-                for (Shift st : h1.getSchedlist()) {
+                for (Shift st : loggedin.getSchedlist()) {
                     if(st.sameDay(t)) {
                         s = st;
                         break;
