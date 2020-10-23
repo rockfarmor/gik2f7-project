@@ -8,6 +8,7 @@ import com.project.scheduleapp.demo.Service.ScheduleEntryService;
 
 import com.project.scheduleapp.demo.helpers.Helper;
 import com.project.scheduleapp.demo.models.PersonalOld;
+import com.project.scheduleapp.demo.models.ScheduleEntry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -157,7 +158,10 @@ public class MainController {
                     session.setAttribute("personal", loggedin);
 
                     List<Personal> ps = personalService.getAllPersonal(scheduleEntryService, categoryService);
+
+
                     session.setAttribute("allPersonal", ps);
+
 
                 }
 
@@ -215,13 +219,32 @@ public class MainController {
 
             }
         }
+        Map<String,Integer> personhift= new HashMap<>();
+        List<ScheduleEntry> sched = scheduleEntryService.getAllEntries();
+        for(int a=0;a<personals.size();a++){
+            for(int c=0;c<personals.get(a).getSchedlist().size();c++) {
+                for (int i = 0; i < sched.size(); i++) {
+                    if (personals.get(a).getSchedlist().get(c).getShiftID() == sched.get(i).getEntry_Id()) {
+                    personhift.put(personals.get(a).getName(), sched.get(i).getEntry_Id());
+                }
+            }
+        }
 
+        }
+        //System.out.println(personhift.get("Sebbe Nilsson").getEntry_Id());
+        //System.out.println(personhift.get(personals.get(0).getName()).getEntry_Id());
+        System.out.println(personals.get(0).getName());
+        //System.out.println(personhift.get("Sebbe Nilsson").getEntry_Id());
         personals = (List<Personal>)session.getAttribute("allPersonal");
 
+
+
+        model.addAttribute("hej",personhift);
         model.addAttribute("allPersonal", personals);
         model.addAttribute("show_message", showMessage);
         model.addAttribute("categorys",categoryService.getAllCategory());
-
+        List<Shift> shifts = personalService.getAllShiftsEntries(categoryService,scheduleEntryService);
+        model.addAttribute("shifts",shifts);
 
         return "admin";
     }

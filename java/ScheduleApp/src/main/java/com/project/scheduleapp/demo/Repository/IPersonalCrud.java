@@ -1,6 +1,7 @@
 package com.project.scheduleapp.demo.Repository;
 
 import com.project.scheduleapp.demo.Model.Personal;
+import com.project.scheduleapp.demo.Model.Shift;
 import com.project.scheduleapp.demo.Service.CategoryService;
 import com.project.scheduleapp.demo.Service.ScheduleEntryService;
 import com.project.scheduleapp.demo.models.PersonalOld;
@@ -15,4 +16,6 @@ public interface IPersonalCrud {
     public Personal addEntry(Personal personal);
     public Personal updatePersonal(Personal personal);
     public Personal verifyLogIn(String username, String Password,ScheduleEntryService scheduleEntryService, CategoryService categoryService);
+    public List<Shift> getAllShiftsEntries(CategoryService categoryService, ScheduleEntryService scheduleEntryService);
+
 }

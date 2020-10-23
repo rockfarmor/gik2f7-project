@@ -13,6 +13,7 @@ public interface IScheduleEntryCrud {
     public ScheduleEntry addEntry(ScheduleEntry scheduleEntry);
     public Shift addShiftEntry(Shift shift, Personal personal);
     public ScheduleEntry updateEntry(ScheduleEntry scheduleEntry);
+    public Shift deleteShift(Integer Id);
 
 
 }

@@ -1,8 +1,10 @@
 package com.project.scheduleapp.demo.Repository;
 
 
+import com.project.scheduleapp.demo.Model.Category;
 import com.project.scheduleapp.demo.Model.Personal;
 import com.project.scheduleapp.demo.Model.Shift;
+import com.project.scheduleapp.demo.Service.CategoryService;
 import com.project.scheduleapp.demo.Service.ScheduleEntryService;
 import com.project.scheduleapp.demo.models.ScheduleEntry;
 import org.springframework.stereotype.Repository;
@@ -137,6 +139,31 @@ public class ScheduleEntryCrud implements IScheduleEntryCrud {
 
     @Override
     public ScheduleEntry updateEntry(ScheduleEntry scheduleEntry) {
+        return null;
+    }
+
+    @Override
+    public Shift deleteShift(Integer Id) {
+        try{
+
+            con = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/CiW6XfVzNP", "CiW6XfVzNP", "RYRF7gAMIn");
+
+
+            String sqlSelectAllEntries = "DELETE FROM `Schedule_Entry` WHERE Entry_Id=?";
+
+            PreparedStatement statement = con.prepareStatement(sqlSelectAllEntries);
+            statement.setInt(1, Id);
+
+            statement.executeUpdate();
+            statement.close();
+            con.close();
+            return null;
+        }
+        catch (SQLException ex){
+            Logger.getLogger(ScheduleEntryCrud.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
         return null;
     }
 

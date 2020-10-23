@@ -28,4 +28,6 @@ public class ScheduleEntryService {
         return crud.updateEntry(scheduleEntry);
     }
 
+    public Shift deleteShift(Integer Id){return crud.deleteShift(Id);}
+
 }

@@ -1,171 +1,208 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title>Dashboard Template for Bootstrap</title>
+  <title>Dashboard Template for Bootstrap</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins" />
-    <!-- Bootstrap core CSS -->
-    <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins" />
+  <!-- Bootstrap core CSS -->
+  <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 
-    <!-- Custom styles for this template -->
-    <link th:href="@{/dashboard.css}" rel="stylesheet" />
-  </head>
+  <!-- Custom styles for this template -->
+  <link th:href="@{/dashboard.css}" rel="stylesheet" />
+</head>
 
-  <body>
-    <nav class="navbar navbar-dark sticky-top flex-md-nowrap p-0">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0 dark-green" href="#"><span data-feather="calendar"></span> Schema app</a>
-      <ul class="navbar-nav">
-        <li class="nav-item text-nowrap logout">
-          <a class="nav-link white-text" href="/logout">
-            <span data-feather="users"></span>  Sign out
-          </a>
-        </li>
-      </ul>
+<body>
+<nav class="navbar navbar-dark sticky-top flex-md-nowrap p-0">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0 dark-green" href="#"><span data-feather="calendar"></span> Schema app</a>
+  <ul class="navbar-nav">
+    <li class="nav-item text-nowrap logout">
+      <a class="nav-link white-text" href="/logout">
+        <span data-feather="users"></span>  Sign out
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="/home">
+              <span data-feather="home"></span>
+              Översikt
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/schema">
+              <span data-feather="calendar"></span>
+              Schema
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/tid">
+              <span data-feather="clock"></span>
+              Tid
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/admin">
+              <span data-feather="user"></span>
+              Admin  <span class="sr-only">(current)</span>
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
     </nav>
 
-    <div class="container-fluid">
-      <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-          <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link" href="/home">
-                  <span data-feather="home"></span>
-                  Översikt
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/schema">
-                  <span data-feather="calendar"></span>
-                  Schema
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/tid">
-                  <span data-feather="clock"></span>
-                  Tid
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="/admin">
-                  <span data-feather="user"></span>
-                  Admin  <span class="sr-only">(current)</span>
-                </a>
-              </li>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+      <div th:hidden="${!show_message}" id="message">
 
-            </ul>
+        <div id="inner-message" class="alert alert-success">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <h1 class="h4">Skift tillagt!</h1>
+          <p>Följande blev tillagd:</p>
+          <ul>
+            <li th:text="${addedName}">Sebbe@sebbe.se</li>
+            <li th:text="${addedShift}">Frukost/Lunch</li>
+            <li th:text="${addedStart}">2020-10-20 12:00</li>
+            <li th:text="${addedEnd}">2020-10-20 18:00</li>
+            <li th:text="${addedDesc}">"Du ska smattra"</li>
+          </ul>
+        </div>
 
-          </div>
-        </nav>
+      </div>
+      <div>
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+          <h1 class="h3">Lägg till skift</h1>
+        </div>
+        <div class="admin-form">
+          <form action="/admin" method="POST">
+            <input type="hidden" id="formType" name="formType" value="skiftAdd">
+            <div class="d-flex flex-row">
+              <div class="p-2 no-margin no-padding">
+                <label for="employee"><h1 class="h5 no-margin-bot">Personal</h1></label>
+              </div>
+              <div class="p-2 add-user-padding padding-left">
+                <div rel="add-user" class="add-user"> <span data-feather="user-plus"></span></div>
+              </div>
+            </div>
 
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-          <div th:hidden="${!show_message}" id="message">
+            <select id="employee" name="employee" class="custom-select">
+              <option th:each="entry: ${allPersonal}" value="-1" th:value="${entry.getUniqueID()}" th:text="${entry.getName()}"></option>
+            </select>
 
-              <div id="inner-message" class="alert alert-success">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <h1 class="h4">Skift tillagt!</h1>
-                <p>Följande blev tillagd:</p>
-                <ul>
-                  <li th:text="${addedName}">Sebbe@sebbe.se</li>
-                  <li th:text="${addedShift}">Frukost/Lunch</li>
-                  <li th:text="${addedStart}">2020-10-20 12:00</li>
-                  <li th:text="${addedEnd}">2020-10-20 18:00</li>
-                  <li th:text="${addedDesc}">"Du ska smattra"</li>
-                </ul>
+            <br /><br />
+            <div class="d-flex flex-row">
+              <div class="p-2 no-margin no-padding">
+                <label for="skifttyp"><h1 class="h5 no-margin-bot">Skifttyp:</h1></label>
+              </div>
+              <div class="p-2 add-user-padding padding-left">
+                <div rel="add-skift" class="add-user"> <span data-feather="plus-circle"></span></div>
+              </div>
+            </div>
+            <select id="skifttyp" name="skifttyp" class="custom-select">
+              <option th:each="cate: ${categorys}" value="1" th:value="${cate.getCategoryId()}" th:text="${cate.getCategoryName()}"></option>
+            </select>
+            </br></br>
+
+            <label for="date"><h1 class="h5 no-margin-bot">Datum</h1></label></br>
+            <input class="form-control" name="date" type="date" value="2020-10-20" id="date">
+
+            <div class="d-flex flex-row">
+              <div class="p-2 full">
+                <label for="start-time"><h1 class="h5 no-margin-bot">Starttid</h1></label></br>
+                <input class="form-control" name="startTid" type="time" value="12:00" id="start-time">
               </div>
 
-          </div>
-            <div>
-              <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                <h1 class="h3">Lägg till skift</h1>
+              <div class="p-2 full">
+                <label for="end-time"><h1 class="h5 no-margin-bot">Sluttid</h1></label></br>
+                <input class="form-control" name="slutTid" type="time" value="20:00" id="end-time">
+              </div>
             </div>
-            <div class="admin-form">
-              <form action="/admin" method="POST">
-                <input type="hidden" id="formType" name="formType" value="skiftAdd">
-                <div class="d-flex flex-row">
-                  <div class="p-2 no-margin no-padding">
-                    <label for="employee"><h1 class="h5 no-margin-bot">Personal</h1></label>
+            <br/>
+            <label for="beskrivning"><h1 class="h5 no-margin-bot">Arbetsbeskrivning</h1></label></br>
+            <textarea class="form-control" name="beskrivning" id="beskrivning" rows="3"></textarea>
+            <br >
+            <button type="submit" class="btn btn-lg btn-primary btn-block btn-custom">Lägg till skift</button>
+          </form >
+        </div>
+        <br><br><br>
+
+        <div class="d-flex flex-row" th:each="shifts: ${shifts}">
+          <form>
+            <div class="p-2">
+
+
+              <div  class ="d-flex flex-row date-card">
+
+                <div class="p-2 width-20">
+                  <div class="h4 no-margin-bot"  th:text="${shifts.getStartDate().getDayOfMonth()}" >
                   </div>
-                  <div class="p-2 add-user-padding padding-left">
-                    <div rel="add-user" class="add-user"> <span data-feather="user-plus"></span></div>
+                  <p class="no-padding" th:text="${shifts.getSchedDay()}"></p>
+                </div>
+                <div class="p-2 date-card-inner" >
+                  <div class="h5 no-margin-bot" th:text="${shifts.getAccount().getName()}"></div>
+                  <div class="d-flex">
+                    <div class="p-2 no-padding">
+                      <p class="no-padding no-margin-bot" th:text="${shifts.getStartEndHourMinute()}"></p>
+                    </div>
+                    <div class="p-2 no-padding padding-left gray-text">
+                      <p class="no-padding no-margin-bot" th:text="${shifts.getCategory().getCategoryName()}"></p>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <div class="p-2 no-padding gray-text"><span data-feather="map-pin"></span> Skolvägen 5
+                    </div>
+                    <div class="p-2 no-padding padding-right  gray-text"><span data-feather="coffee"></span>
+
+                    </div>
+
                   </div>
                 </div>
-
-                <select id="employee" name="employee" class="custom-select">
-                  <option th:each="entry: ${allPersonal}" value="-1" th:value="${entry.getUniqueID()}" th:text="${entry.getName()}"></option>
-                </select>
-
-                <br /><br />
-                <div class="d-flex flex-row">
-                  <div class="p-2 no-margin no-padding">
-                    <label for="skifttyp"><h1 class="h5 no-margin-bot">Skifttyp:</h1></label>
-                  </div>
-                  <div class="p-2 add-user-padding padding-left">
-                    <div rel="add-skift" class="add-user"> <span data-feather="plus-circle"></span></div>
-                  </div>
-                </div>
-                <select id="skifttyp" name="skifttyp" class="custom-select">
-                  <option th:each="cate: ${categorys}" value="1" th:value="${cate.getCategoryId()}" th:text="${cate.getCategoryName()}"></option>
-                </select>
-                </br></br>
-
-                <label for="date"><h1 class="h5 no-margin-bot">Datum</h1></label></br>
-                <input class="form-control" name="date" type="date" value="2020-10-20" id="date">
-
-                <div class="d-flex flex-row">
-                  <div class="p-2 full">
-                    <label for="start-time"><h1 class="h5 no-margin-bot">Starttid</h1></label></br>
-                    <input class="form-control" name="startTid" type="time" value="12:00" id="start-time">
-                  </div>
-
-                  <div class="p-2 full">
-                    <label for="end-time"><h1 class="h5 no-margin-bot">Sluttid</h1></label></br>
-                    <input class="form-control" name="slutTid" type="time" value="20:00" id="end-time">
-                  </div>
-                </div>
-                <br/>
-                <label for="beskrivning"><h1 class="h5 no-margin-bot">Arbetsbeskrivning</h1></label></br>
-                <textarea class="form-control" name="beskrivning" id="beskrivning" rows="3"></textarea>
-                <br >
-                <button type="submit" class="btn btn-lg btn-primary btn-block btn-custom">Lägg till skift</button>
-              </form>
+              </div>
             </div>
+            <div class="p-2">
+              <button type="submit" class="btn btn-lg btn-primary btn-block btn-custom">Ta bort skift</button>
+            </div>
+          </form>
+        </div>
 
-
-          </div>
-
-          </div>
-          </div>
-        </main>
       </div>
-    </div>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+    </main>
+  </div>
+</div>
 
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-    <script th:src="@{/js/admin.js}"></script>
-
-    <!-- Icons -->
-    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-    <script>
-      feather.replace()
-    </script>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
 
 
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-  </body>
+<script th:src="@{/js/admin.js}"></script>
+
+<!-- Icons -->
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+<script>
+  feather.replace()
+</script>
+
+
+
+</body>
 </html>

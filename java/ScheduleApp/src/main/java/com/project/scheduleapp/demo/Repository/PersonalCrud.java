@@ -215,4 +215,20 @@ public class PersonalCrud implements IPersonalCrud {
         }
         return null;
     }
+    @Override
+    public List<Shift> getAllShiftsEntries(CategoryService categoryService,ScheduleEntryService scheduleEntryService){
+        List<Shift> shifts = new ArrayList<>();
+
+        List<Personal> persons= getAllPersonal(scheduleEntryService,categoryService);
+        for(Personal p: persons){
+            for(Shift s:p.getSchedlist()){
+                shifts.add(s);
+            }
+
+        }
+
+
+        return shifts;
+    }
+
 }
