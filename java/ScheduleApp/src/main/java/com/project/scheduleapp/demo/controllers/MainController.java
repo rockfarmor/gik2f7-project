@@ -66,8 +66,25 @@ public class MainController {
         Personal loggedin = (Personal)session.getAttribute("personal");
         model.addAttribute("personal", loggedin);
         model.addAttribute("entries", loggedin);
-        model.addAttribute("shifts",loggedin.getSchedlist());
+        model.addAttribute("shifts",loggedin.getListAfterDate());
         return "home";
+    }
+
+    @RequestMapping(value = "/tid")
+    public String time(Model model, HttpSession session) {
+        if(session.getAttribute("personal") == null) {
+            return "logIn";
+        }
+
+        Personal loggedin = (Personal)session.getAttribute("personal");
+        model.addAttribute("personal", loggedin);
+        model.addAttribute("entries", loggedin);
+        TidShift ts = new TidShift(loggedin.getListBeforeDate());
+        model.addAttribute("ts", ts);
+
+
+
+        return "tid";
     }
 
 
@@ -168,8 +185,6 @@ public class MainController {
                 }
 
             }  else if(allFormRequest.get("formType").equals("skiftTypeAdd")){
-                System.out.println("skiftTypeAdd");
-
 
                 if(allFormRequest.get("skiftType") != null && allFormRequest.get("skiftBeskrivning") != null) {
                     String skiftTyp = allFormRequest.get("skiftType");

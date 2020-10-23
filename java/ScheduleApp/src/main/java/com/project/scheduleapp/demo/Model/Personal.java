@@ -1,5 +1,6 @@
 package com.project.scheduleapp.demo.Model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +31,33 @@ public class Personal {
         this.salaryPerHour = salaryPerHour;
         this.schedlist = new ArrayList<>();
         this.isAdmin = 0;
+    }
+
+    public List<Shift> getListAfterDate(){
+        List<Shift> shifts = new ArrayList<>();
+        LocalDateTime n = LocalDateTime.now();
+        LocalDateTime thisDay = LocalDateTime.of(n.getYear(), n.getMonth(), n.getDayOfMonth(), 0, 0);
+        for (Shift s : this.schedlist) {
+            if(s.getStartDate().isAfter(thisDay)) {
+                shifts.add(s);
+            }
+        }
+
+        return shifts;
+    }
+
+
+    public List<Shift> getListBeforeDate(){
+        List<Shift> shifts = new ArrayList<>();
+        LocalDateTime n = LocalDateTime.now();
+        LocalDateTime thisDay = LocalDateTime.of(n.getYear(), n.getMonth(), n.getDayOfMonth(), 0, 0);
+        for (Shift s : this.schedlist) {
+            if(s.getStartDate().isBefore(thisDay)) {
+                shifts.add(s);
+            }
+        }
+
+        return shifts;
     }
 
     public void showSalary(){

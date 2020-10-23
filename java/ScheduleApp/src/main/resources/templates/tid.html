@@ -71,39 +71,33 @@
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                <h1 class="h2">Översikt</h1>
+                <h1 class="h2">Tidigare skift:</h1>
             </div>
-            <h1 class="h4">Kommande skift:</h1>
 
-
-                <div class ="d-flex flex-row date-card" th:each="shifts: ${shifts}">
-                    <div class="p-2 width-20">
-                        <div class="h4 no-margin-bot"  th:text="${shifts.getStartDate().getDayOfMonth()}" >
+                <div th:each="tse: ${ts.getTseList()}">
+                    <h1 class="h2" th:text="${tse.getMonthString()}"></h1>
+                    <div class ="d-flex flex-row date-card" th:each="shifts: ${tse.getShifts()}">
+                        <div class="p-2 width-20">
+                            <div class="h4 no-margin-bot"  th:text="${shifts.getStartDate().getDayOfMonth()}" >
+                            </div>
+                            <p class="no-padding no-margin-bot" th:text="${shifts.getSchedDay()}"></p>
                         </div>
-                        <p class="no-padding" th:text="${shifts.getSchedDay()}"></p>
-                    </div>
-                    <div class="p-2 date-card-inner" >
-                        <div class="h5 no-margin-bot" th:text="${shifts.getAccount().getName()}"></div>
-                        <div class="d-flex">
+                        <div class="p-2 date-card-inner" >
+                            <div class="h5 no-margin-bot" th:text="${shifts.getLocalDateString()}"></div>
+                            <div class="d-flex">
 
-                            <div class="p-2 no-padding">
-                                <p class="no-padding no-margin-bot" th:text="${shifts.getStartEndHourMinute()}"></p>
+                                <div class="p-2 no-padding">
+                                    <p class="no-padding no-margin-bot" th:text="${shifts.getStartEndHourMinute()}"></p>
 
+                                </div>
+                                <div class="p-2 no-padding padding-left">
+                                    <p class="no-padding no-margin-bot" th:text="${shifts.getTotalTime()}"></p>
+                                </div>
                             </div>
-                            <div class="p-2 no-padding padding-left gray-text">
-                                <p class="no-padding no-margin-bot" th:text="${shifts.getCategory().getCategoryName()}"></p>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <div class="p-2 no-padding gray-text"><span data-feather="map-pin"></span> Skolvägen 5
-                            </div>
-                            <div class="p-2 no-padding padding-right  gray-text"><span data-feather="coffee"></span>
-                                17:00 - 17:30
-                            </div>
+
                         </div>
                     </div>
                 </div>
-
 
 
 
