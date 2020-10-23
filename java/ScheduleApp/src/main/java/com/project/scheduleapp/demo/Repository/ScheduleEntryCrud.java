@@ -110,17 +110,16 @@ public class ScheduleEntryCrud implements IScheduleEntryCrud {
             ResultSet resultSet = statement.executeQuery(sqlSelectAllEntries);
             */
             //String sqlSelectAllEntries = "INSERT into Schedule_Entry WHERE Username=? AND Password=?";
-            String sqlSelectAllEntries = "INSERT INTO `Schedule_Entry`(`Entry_Id`, `Schedule_Id`, `Category_Id`, `Start_Date`, `End_Date`, `Description`) VALUES (?,?,?,?,?,?)";
+            String sqlSelectAllEntries = "INSERT INTO `Schedule_Entry`(`Schedule_Id`, `Category_Id`, `Start_Date`, `End_Date`, `Description`) VALUES (?,?,?,?,?)";
             Timestamp start = Timestamp.valueOf(shift.getStartDate());
             Timestamp end = Timestamp.valueOf(shift.getEndDate());
 
             PreparedStatement statement = con.prepareStatement(sqlSelectAllEntries);
-            statement.setInt(1,-1); //Entry id
-            statement.setInt(2, personal.getUniqueID());
-            statement.setInt(3, shift.getCategory().getCategoryId()); //Category id
-            statement.setTimestamp(4, start);
-            statement.setTimestamp(5, end);
-            statement.setString(6,shift.getDescription());
+            statement.setInt(1, personal.getUniqueID());
+            statement.setInt(2, shift.getCategory().getCategoryId()); //Category id
+            statement.setTimestamp(3, start);
+            statement.setTimestamp(4, end);
+            statement.setString(5,shift.getDescription());
 
             statement.executeUpdate();
 
