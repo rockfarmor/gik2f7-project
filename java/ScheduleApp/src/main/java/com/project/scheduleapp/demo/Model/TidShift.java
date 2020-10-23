@@ -37,14 +37,6 @@ public class TidShift {
 
         }
 
-        for (TidShiftEntry ts: tseList) {
-
-            System.out.println("____ " + ts.getMonth());
-            for (Shift s : ts.getShifts()) {
-                System.out.println(s.getStartDate());
-            }
-
-        }
 
     }
 

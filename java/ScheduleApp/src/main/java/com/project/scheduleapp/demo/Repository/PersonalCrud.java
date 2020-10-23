@@ -31,27 +31,10 @@ public class PersonalCrud implements IPersonalCrud {
             String sqlSelectAllEntries = "SELECT * FROM Personal";
             ResultSet resultSet = statement.executeQuery(sqlSelectAllEntries);
             while (resultSet.next()){
-
-
                 Personal person = new Personal(resultSet.getInt("Id"), resultSet.getString("Name"), resultSet.getString("UserName"), resultSet.getString("Password"), resultSet.getInt("Salary"), resultSet.getInt("is_admin"));
-
-
-                //TODO: Set person admin
-
-                //public Personalsss(int uniqueID, String name, String userName, String password, int salaryPerHour) {
-
-                /*person.setId(resultSet.getInt("Id"));
-                person.setSchedule_id(resultSet.getInt("Schedule_Id"));
-                person.setName(resultSet.getString("Name"));
-                person.setUsername(resultSet.getString("UserName"));
-                person.setPassword(resultSet.getString("Password"));
-                person.setSalary(resultSet.getInt("Salary"));
-                person.setIs_admin(resultSet.getInt("is_admin"));
-                person.setIs_logged_in(resultSet.getInt("is_logged_in"));*/
                 personals.add(person);
 
                 List<ScheduleEntry> scheduleEntries = scheduleEntryService.getEntriesByScheduleId(person.getUniqueID());
-                //CategoryService categoryService = new CategoryService();
                 List<Category> categoryList = categoryService.getAllCategory();
 
 

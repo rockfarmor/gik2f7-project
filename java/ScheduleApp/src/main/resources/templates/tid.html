@@ -40,9 +40,9 @@
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" href="/home">
+                        <a class="nav-link" href="/home">
                             <span data-feather="home"></span>
-                            Översikt <span class="sr-only">(current)</span>
+                            Översikt
                         </a>
                     </li>
                     <li class="nav-item">
@@ -51,10 +51,10 @@
                             Schema
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="/tid">
                             <span data-feather="clock"></span>
-                            Tid
+                            Tid <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -71,11 +71,12 @@
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                <h1 class="h2">Tidigare skift:</h1>
+                    <h1 class="h2">Tidigare skift:</h1>
             </div>
 
                 <div th:each="tse: ${ts.getTseList()}">
-                    <h1 class="h2" th:text="${tse.getMonthString()}"></h1>
+                    <div class ="tid-header" th:text="${tse.getMonthString()}">
+                    </div>
                     <div class ="d-flex flex-row date-card" th:each="shifts: ${tse.getShifts()}">
                         <div class="p-2 width-20">
                             <div class="h4 no-margin-bot"  th:text="${shifts.getStartDate().getDayOfMonth()}" >
