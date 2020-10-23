@@ -62,6 +62,10 @@ public class MainController {
             }
             if(p.getPassword().equals(password) && p.getUserName().equals(email)){
                 session.setAttribute("personal",p);
+                List<Personal> personals = personalService.getAllPersonal(scheduleEntryService, categoryService);
+                session.setAttribute("allPersonal", personals);
+
+
             }
         }
 
@@ -85,8 +89,6 @@ public class MainController {
         TidShift ts = new TidShift(loggedin.getListBeforeDate());
         model.addAttribute("ts", ts);
 
-
-
         return "tid";
     }
 
@@ -103,9 +105,7 @@ public class MainController {
             return "logIn";
         }
         boolean showMessage = false;
-        List<Personal> personals = personalService.getAllPersonal(scheduleEntryService, categoryService);
-
-
+        List<Personal> personals = (List<Personal>)session.getAttribute("allPersonal");
         if(allFormRequest.get("formType") != null) {
             //skiftAdd,skiftTypeAdd,userAdd
             if (allFormRequest.get("formType").equals("skiftAdd")) {
@@ -141,20 +141,23 @@ public class MainController {
 
                     Shift s = new Shift(-1,startTime, endTime, allFormRequest.get("beskrivning"), p, c);
                     //NU lägger vi till skiten
-                    scheduleEntryService.addShiftEntry(s, p);
-                    Personal pp = personalService.verifyLoginIn(p.getUserName(),p.getPassword(),scheduleEntryService, categoryService);
+                    Shift ss = scheduleEntryService.addShiftEntry(s, p);
 
-                    model.addAttribute("addedName", pp.getName());
+                    //Personal pp = personalService.verifyLoginIn(p.getUserName(),p.getPassword(),scheduleEntryService, categoryService);
+
+                    model.addAttribute("addedName", p.getName());
                     model.addAttribute("addedShift", s.getCategory().getCategoryName());
                     model.addAttribute("addedStart", s.getStartDate().toString());
                     model.addAttribute("addedEnd", s.getEndDate().toString());
                     model.addAttribute("addedDesc", s.getDescription());
 
+                    //update sessions, both personal and all personal
+                    Personal loggedin = (Personal)session.getAttribute("personal");
+                    loggedin =  personalService.verifyLoginIn(loggedin.getUserName(), loggedin.getPassword(),scheduleEntryService, categoryService);
+                    session.setAttribute("personal", loggedin);
 
-                    if(pp == null){
-                        return "logIn";
-                    }
-                    session.setAttribute("personal", pp);
+                    List<Personal> ps = personalService.getAllPersonal(scheduleEntryService, categoryService);
+                    session.setAttribute("allPersonal", ps);
 
                 }
 
@@ -180,12 +183,15 @@ public class MainController {
                     Personal newPerson = new Personal(-1, name, username, password, salary,iadmin);
 
                     personalService.addEntry(newPerson);
-                    System.out.println("NY PERSSON LADES TILL!!!!!!!!!!1111111111");
 
 
 
-                    System.out.println(newPerson);
-                    personals = personalService.getAllPersonal(scheduleEntryService,categoryService);
+                    //Update session with all new personals
+                    List<Personal> ps = personalService.getAllPersonal(scheduleEntryService, categoryService);
+                    session.setAttribute("allPersonal", ps);
+
+
+
                 } else {
                     System.out.println("PRINT ERROR!!!!!!!!");
                 }
@@ -210,7 +216,7 @@ public class MainController {
             }
         }
 
-
+        personals = (List<Personal>)session.getAttribute("allPersonal");
 
         model.addAttribute("allPersonal", personals);
         model.addAttribute("show_message", showMessage);
