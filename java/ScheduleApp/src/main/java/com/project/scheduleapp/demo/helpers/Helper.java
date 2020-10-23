@@ -70,8 +70,6 @@ public class Helper {
             }
         }
 
-
-
         String jscript = "";
 
         jscript += "\n";

@@ -241,7 +241,7 @@ public class MainController {
             calShift[i] = new Shift[cols];
             for (int j = 0; j < cols; j++) {
                 LocalDateTime t  = LocalDateTime.of(y, m, 1, 0, 0).minusDays(sdate.getDaystolastmonth()).plusDays(l);
-                Shift s = new Shift(-1, t,t,"noshift");
+                Shift s = new Shift(-1, t, t,"noshift");
                 s.setReal(false);
                 for (Shift st : loggedin.getSchedlist()) {
                     if(st.sameDay(t)) {
