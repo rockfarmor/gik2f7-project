@@ -6,14 +6,11 @@ import org.thymeleaf.util.StringUtils;
 
 import java.time.LocalDateTime;
 import java.time.format.TextStyle;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 public class Helper {
 
-    public static String getJavaScript(ArrayList<Personal> accs, Personal you){
+    public static String getJavaScript(List<Personal> accs, Personal you){
         HashMap<String, ArrayList<Shift>> shiftMap = new HashMap<>();
         HashMap<String, String> dateMap = new HashMap<>();
         String jscript = "";

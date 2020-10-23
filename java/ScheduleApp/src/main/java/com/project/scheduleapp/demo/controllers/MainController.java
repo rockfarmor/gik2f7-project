@@ -232,10 +232,9 @@ public class MainController {
     @RequestMapping(value = "/schema", method = RequestMethod.GET)
     public String showSchedule(Model model, HttpSession session, @RequestParam(defaultValue = "-1") String gYear, @RequestParam(defaultValue = "-1") String gMonth) {
         if(session.getAttribute("personal") == null) {
-
             return "logIn";
-
         }
+
         int y = Integer.parseInt(gYear);
         int m = Integer.parseInt(gMonth);
 
@@ -255,7 +254,7 @@ public class MainController {
         model.addAttribute("prevUrl", prevUrl);
         model.addAttribute("nextUrl", nextUrl);
 
-        ArrayList<Personal> personals = (ArrayList<Personal>) personalService.getAllPersonal(scheduleEntryService,categoryService);
+        List<Personal> personals = (List<Personal>)session.getAttribute("allPersonal");
         Personal loggedin = (Personal)session.getAttribute("personal");
         String jscript = Helper.getJavaScript(personals, loggedin);
 
@@ -299,45 +298,6 @@ public class MainController {
     }
 
 
-    /*
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String showHome(HttpSession session, Model model) {
-        if(session.getAttribute("personal") == null) {
-            return "logIn";
-
-        }
-        Map<String,String> dagar = new HashMap<>();
-        dagar.put("MONDAY","Mån");
-        dagar.put("TUESDAY","Tis");
-        dagar.put("WEDNESDAY","Ons");
-        dagar.put("THURSDAY","Tor");
-        dagar.put("FRIDAY","Fri");
-        dagar.put("SATURDAY","Lör");
-        dagar.put("SUNDAY","Sön");
-        Timestamp a;
-
-
-        Personal loggedin = (Personal)session.getAttribute("personal");
-        //System.out.println(loggedin.getSchedlist().get(0).getDescription());
-        //System.out.println(a);
-        if(loggedin!= null) {
-            model.addAttribute("dagar",dagar);
-            model.addAttribute("entries", loggedin);
-            model.addAttribute("shifts", loggedin.getSchedlist());
-            //System.out.println(loggedin.getSchedlist().get(0).getStartDate().getDayOfWeek());
-
-            //System.out.println(dagar["loggedin.getSchedlist().get(0).getStartDate().getDayOfWeek()"]);
-            //System.out.println(dagar.get(loggedin.getSchedlist().get(0).getStartDate().getDayOfWeek().toString()));
-            //  System.out.println(dagar.get(c));
-
-
-            //<td th:text="${dagar.get('__${shifts.getStartDate().getDayOfWeek().toString()}__')}">
-            return "home";
-        }
-        return "logIn";
-
-    }
-    */
 
 }
 
