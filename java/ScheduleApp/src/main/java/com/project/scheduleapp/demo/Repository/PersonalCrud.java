@@ -52,7 +52,7 @@ public class PersonalCrud implements IPersonalCrud {
                 if(scheduleEntries != null) {
                     for (ScheduleEntry s : scheduleEntries) {
                         //int shiftID, LocalDateTime startDate, LocalDateTime endDate, String description
-                        Shift shift = new Shift(s.getEntry_Id(), s.getStart_Date().toLocalDateTime().minusHours(2), s.getEnd_Date().toLocalDateTime().minusHours(2), s.getDescription(), person);
+                        Shift shift = new Shift(s.getEntry_Id(), s.getStart_Date().toLocalDateTime(), s.getEnd_Date().toLocalDateTime(), s.getDescription(), person);
                         person.getSchedlist().add(shift);
 
                     }
@@ -98,7 +98,7 @@ public class PersonalCrud implements IPersonalCrud {
                 if(scheduleEntries != null) {
                     for (ScheduleEntry s : scheduleEntries) {
                         //int shiftID, LocalDateTime startDate, LocalDateTime endDate, String description
-                        Shift shift = new Shift(s.getEntry_Id(), s.getStart_Date().toLocalDateTime().minusHours(2), s.getEnd_Date().toLocalDateTime().minusHours(2), s.getDescription(), person);
+                        Shift shift = new Shift(s.getEntry_Id(), s.getStart_Date().toLocalDateTime(), s.getEnd_Date().toLocalDateTime(), s.getDescription(), person);
                         person.getSchedlist().add(shift);
 
                     }
@@ -184,7 +184,7 @@ public class PersonalCrud implements IPersonalCrud {
                 if(scheduleEntries != null) {
                     for (ScheduleEntry s : scheduleEntries) {
                         //int shiftID, LocalDateTime startDate, LocalDateTime endDate, String description
-                        Shift shift = new Shift(s.getEntry_Id(), s.getStart_Date().toLocalDateTime().minusHours(2), s.getEnd_Date().toLocalDateTime().minusHours(2), s.getDescription(), person);
+                        Shift shift = new Shift(s.getEntry_Id(), s.getStart_Date().toLocalDateTime(), s.getEnd_Date().toLocalDateTime(), s.getDescription(), person);
                         person.getSchedlist().add(shift);
 
                     }
