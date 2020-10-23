@@ -21,7 +21,7 @@ public class PersonalCrud implements IPersonalCrud {
 
 
     @Override
-    public List<Personal> getAllPersonal(ScheduleEntryService scheduleEntryService) {
+    public List<Personal> getAllPersonal(ScheduleEntryService scheduleEntryService, CategoryService categoryService) {
         List<Personal> personals = new ArrayList<>();
         try{
 
@@ -51,7 +51,7 @@ public class PersonalCrud implements IPersonalCrud {
                 personals.add(person);
 
                 List<ScheduleEntry> scheduleEntries = scheduleEntryService.getEntriesByScheduleId(person.getUniqueID());
-                CategoryService categoryService = new CategoryService();
+                //CategoryService categoryService = new CategoryService();
                 List<Category> categoryList = categoryService.getAllCategory();
 
 
@@ -86,7 +86,7 @@ public class PersonalCrud implements IPersonalCrud {
     }
 
     @Override
-    public Personal getPersonalById(Integer Id,ScheduleEntryService scheduleEntryService) {
+    public Personal getPersonalById(Integer Id,ScheduleEntryService scheduleEntryService, CategoryService categoryService) {
         try{
             con = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/CiW6XfVzNP", "CiW6XfVzNP", "RYRF7gAMIn");
 
@@ -110,7 +110,6 @@ public class PersonalCrud implements IPersonalCrud {
                 person.setIs_admin(resultSet.getInt("is_admin"));
                 person.setIs_logged_in(resultSet.getInt("is_logged_in"));*/
                 List<ScheduleEntry> scheduleEntries = scheduleEntryService.getEntriesByScheduleId(person.getUniqueID());
-                CategoryService categoryService = new CategoryService();
                 List<Category> categoryList = categoryService.getAllCategory();
 
 
@@ -186,7 +185,7 @@ public class PersonalCrud implements IPersonalCrud {
     }
 
     @Override
-    public Personal verifyLogIn(String Username, String Password,ScheduleEntryService scheduleEntryService) {
+    public Personal verifyLogIn(String Username, String Password,ScheduleEntryService scheduleEntryService, CategoryService categoryService) {
         try{
             con = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/CiW6XfVzNP", "CiW6XfVzNP", "RYRF7gAMIn");
 
@@ -201,18 +200,9 @@ public class PersonalCrud implements IPersonalCrud {
 
             while(resultSet.next()) {
                 person = new Personal(resultSet.getInt("Id"), resultSet.getString("Name"), resultSet.getString("UserName"), resultSet.getString("Password"), resultSet.getInt("Salary"), resultSet.getInt("is_admin"));
-                /*person.setId(resultSet.getInt("Id"));
-                person.setSchedule_id(resultSet.getInt("Schedule_Id"));
-                person.setName(resultSet.getString("Name"));
-                person.setUsername(resultSet.getString("UserName"));
-                person.setPassword(resultSet.getString("Password"));
-                person.setSalary(resultSet.getInt("Salary"));
-                person.setIs_admin(resultSet.getInt("is_admin"));
-                person.setIs_logged_in(resultSet.getInt("is_logged_in"));*/
-                List<ScheduleEntry> scheduleEntries = scheduleEntryService.getEntriesByScheduleId(person.getUniqueID());
-                CategoryService categoryService = new CategoryService();
-                List<Category> categoryList = categoryService.getAllCategory();
 
+                List<ScheduleEntry> scheduleEntries = scheduleEntryService.getEntriesByScheduleId(person.getUniqueID());
+                List<Category> categoryList = categoryService.getAllCategory();
 
                 if(scheduleEntries != null) {
                     for (ScheduleEntry s : scheduleEntries) {

@@ -14,7 +14,9 @@ public class CategoryService {
 
     public Category addCategory(Category category){return crud.addCategory(category);}
 
-    public List<Category> getAllCategory(){return crud.getAllCategory();}
+    public List<Category> getAllCategory(){
+        return crud.getAllCategory();
+    }
     public Category getCategoryById(Integer categoryId){return crud.getCategoryById(categoryId);}
 
 

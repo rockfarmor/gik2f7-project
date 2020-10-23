@@ -55,7 +55,7 @@ public class MainController {
             email = allFormRequest.get("email");
             password = allFormRequest.get("password");
 
-            Personal p = personalService.verifyLoginIn(email,password,scheduleEntryService);
+            Personal p = personalService.verifyLoginIn(email,password,scheduleEntryService, categoryService);
             if(p == null){
                 model.addAttribute("invalidCredentials",true);
                 return "logIn";
@@ -103,7 +103,7 @@ public class MainController {
             return "logIn";
         }
         boolean showMessage = false;
-        List<Personal> personals = personalService.getAllPersonal(scheduleEntryService);
+        List<Personal> personals = personalService.getAllPersonal(scheduleEntryService, categoryService);
 
 
         if(allFormRequest.get("formType") != null) {
@@ -136,10 +136,13 @@ public class MainController {
 
                     showMessage = true;
 
-                    Shift s = new Shift(-1,startTime, endTime, allFormRequest.get("beskrivning"), p);
+                    Category c = categoryService.getCategoryById(Integer.parseInt(allFormRequest.get("skifttyp")));
+
+
+                    Shift s = new Shift(-1,startTime, endTime, allFormRequest.get("beskrivning"), p, c);
                     //NU lägger vi till skiten
                     scheduleEntryService.addShiftEntry(s, p);
-                    Personal pp = personalService.verifyLoginIn(p.getUserName(),p.getPassword(),scheduleEntryService);
+                    Personal pp = personalService.verifyLoginIn(p.getUserName(),p.getPassword(),scheduleEntryService, categoryService);
 
                     model.addAttribute("addedName", pp.getName());
                     model.addAttribute("addedShift", s.getCategory().getCategoryName());
@@ -182,7 +185,7 @@ public class MainController {
 
 
                     System.out.println(newPerson);
-                    personals = personalService.getAllPersonal(scheduleEntryService);
+                    personals = personalService.getAllPersonal(scheduleEntryService,categoryService);
                 } else {
                     System.out.println("PRINT ERROR!!!!!!!!");
                 }
@@ -246,7 +249,7 @@ public class MainController {
         model.addAttribute("prevUrl", prevUrl);
         model.addAttribute("nextUrl", nextUrl);
 
-        ArrayList<Personal> personals = (ArrayList<Personal>) personalService.getAllPersonal(scheduleEntryService);
+        ArrayList<Personal> personals = (ArrayList<Personal>) personalService.getAllPersonal(scheduleEntryService,categoryService);
         Personal loggedin = (Personal)session.getAttribute("personal");
         String jscript = Helper.getJavaScript(personals, loggedin);
 

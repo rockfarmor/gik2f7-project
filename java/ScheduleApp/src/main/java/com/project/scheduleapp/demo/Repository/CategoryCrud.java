@@ -90,10 +90,7 @@ public class CategoryCrud implements ICategoryCrud {
 
             Category category = null;
             while(resultSet.next()) {
-                category=new Category(-1,resultSet.getString("Category_Name"),resultSet.getString("Description"));
-
-
-
+                category = new Category(resultSet.getInt("Category_Id"),resultSet.getString("Category_Name"),resultSet.getString("Description"));
 
             }
             resultSet.close();

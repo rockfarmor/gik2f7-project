@@ -113,10 +113,7 @@
                   </div>
                 </div>
                 <select id="skifttyp" name="skifttyp" class="custom-select">
-                  <option selected>Välj Skifttyp</option>
-
                   <option th:each="cate: ${categorys}" value="1" th:value="${cate.getCategoryId()}" th:text="${cate.getCategoryName()}"></option>
-
                 </select>
                 </br></br>
 

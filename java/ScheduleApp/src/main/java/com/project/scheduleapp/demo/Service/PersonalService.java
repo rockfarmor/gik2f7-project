@@ -13,15 +13,20 @@ public class PersonalService {
     @Autowired
     private IPersonalCrud crud;
 
-    public List<Personal> getAllPersonal(ScheduleEntryService scheduleEntryService){ return crud.getAllPersonal(scheduleEntryService);};
-    public Personal getPersonalById(Integer Id,ScheduleEntryService scheduleEntryService){
-        return crud.getPersonalById(Id,scheduleEntryService);
+    public List<Personal> getAllPersonal(ScheduleEntryService scheduleEntryService, CategoryService categoryService){
+        return crud.getAllPersonal(scheduleEntryService,categoryService);
+    };
+    public Personal getPersonalById(Integer Id,ScheduleEntryService scheduleEntryService, CategoryService categoryService){
+        return crud.getPersonalById(Id,scheduleEntryService, categoryService);
     }
-    public Personal verifyLoginIn(String Username, String Password,ScheduleEntryService scheduleEntryService){return crud.verifyLogIn(Username,Password,scheduleEntryService);}
+    public Personal verifyLoginIn(String Username, String Password,ScheduleEntryService scheduleEntryService, CategoryService categoryService){
+        return crud.verifyLogIn(Username,Password,scheduleEntryService, categoryService);
+    }
     public Personal addEntry(Personal personal){
         return crud.addEntry(personal);
     }
     public Personal updatePersonal(Personal personal){
+
         return crud.updatePersonal(personal);
     }
 
