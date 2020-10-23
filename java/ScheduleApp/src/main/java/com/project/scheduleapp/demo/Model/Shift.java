@@ -57,6 +57,34 @@ public class Shift {
         return day.getYear() == startDate.getYear() && day.getMonthValue() == startDate.getMonthValue() && day.getDayOfMonth() == startDate.getDayOfMonth();
     }
 
+
+
+
+    public int getTotalHour(){
+
+        LocalDateTime tempDateTime = LocalDateTime.from( this.startDate );
+
+        long years = tempDateTime.until( this.endDate, ChronoUnit.YEARS );
+        tempDateTime = tempDateTime.plusYears( years );
+
+        long months = tempDateTime.until( this.endDate, ChronoUnit.MONTHS );
+        tempDateTime = tempDateTime.plusMonths( months );
+
+        long days = tempDateTime.until( this.endDate, ChronoUnit.DAYS );
+        tempDateTime = tempDateTime.plusDays( days );
+
+
+        long hours = tempDateTime.until( this.endDate, ChronoUnit.HOURS );
+        tempDateTime = tempDateTime.plusHours( hours );
+
+        long minutes = tempDateTime.until( this.endDate, ChronoUnit.MINUTES );
+        tempDateTime = tempDateTime.plusMinutes( minutes );
+
+        long seconds = tempDateTime.until( this.endDate, ChronoUnit.SECONDS );
+
+        return (int)hours;
+    }
+
     public String getTotalTime(){
 
         LocalDateTime tempDateTime = LocalDateTime.from( this.startDate );

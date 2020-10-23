@@ -13,6 +13,7 @@ public class TidShiftEntry {
     private LocalDateTime month;
     private List<Shift> shifts;
 
+
     public TidShiftEntry(LocalDateTime month) {
         this.month = month;
         this.shifts = new ArrayList<>();
@@ -26,6 +27,19 @@ public class TidShiftEntry {
 
         return mm;
     }
+
+    public String getPayString(){
+        String res;
+        int pay = 0;
+        int totalHour = 0;
+        for (Shift s : this.shifts) {
+            int perHour = s.getAccount().getSalaryPerHour();
+            pay += perHour * s.getTotalHour();
+            totalHour += s.getTotalHour();
+        }
+        return "Timmar: " + totalHour + "h, Lön: " + pay + "kr";
+    }
+
 
     public LocalDateTime getMonth() {
         return month;

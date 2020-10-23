@@ -51,8 +51,8 @@
                             Schema
                         </a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/tid">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/tid">
                             <span data-feather="clock"></span>
                             Tid <span class="sr-only">(current)</span>
                         </a>
@@ -73,14 +73,16 @@
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                     <h1 class="h2">Tidigare skift:</h1>
             </div>
+                <p th:text="'Din lön: ' + ${personal.getSalaryPerHour()} + 'kr/h'">
 
+                </p>
                 <div th:each="tse: ${ts.getTseList()}">
                     <div class="d-flex justify-content-between tid-header">
                         <div class="p-2 no-padding">
                             <p class="no-padding no-margin-bot" th:text="${tse.getMonthString()}"></p>
                         </div>
                         <div class="p-2 no-padding padding-left">
-                            <p class="no-padding no-margin-bot" th:text="'150h  - 25000kr'"></p>
+                            <p class="no-padding no-margin-bot" th:text="${tse.getPayString()}"></p>
                         </div>
                     </div>
 
