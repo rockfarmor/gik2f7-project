@@ -139,10 +139,11 @@
           </form >
         </div>
         <br><br><br>
-
-        <div class="d-flex flex-row" th:each="shifts: ${shifts}">
-          <form>
-            <div class="p-2">
+        <form th:each="shifts: ${shifts}" action="/admin" method="post">
+          <input type="hidden" name="formType" value="deleteSkift">
+          <input type="hidden" name="formId" th:value=" ${shifts.getShiftID()}">
+        <div class="d-flex flex-row" >
+            <div class="p-2 full">
 
 
               <div  class ="d-flex flex-row date-card">
@@ -173,12 +174,12 @@
                 </div>
               </div>
             </div>
-            <div class="p-2">
+            <div class="p-2 full">
               <button type="submit" class="btn btn-lg btn-primary btn-block btn-custom">Ta bort skift</button>
             </div>
-          </form>
-        </div>
 
+        </div>
+        </form>
       </div>
 
     </main>

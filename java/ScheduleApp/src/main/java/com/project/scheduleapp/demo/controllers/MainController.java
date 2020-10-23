@@ -217,20 +217,23 @@ public class MainController {
 
 
 
-            }
-        }
-        Map<String,Integer> personhift= new HashMap<>();
-        List<ScheduleEntry> sched = scheduleEntryService.getAllEntries();
-        for(int a=0;a<personals.size();a++){
-            for(int c=0;c<personals.get(a).getSchedlist().size();c++) {
-                for (int i = 0; i < sched.size(); i++) {
-                    if (personals.get(a).getSchedlist().get(c).getShiftID() == sched.get(i).getEntry_Id()) {
-                    personhift.put(personals.get(a).getName(), sched.get(i).getEntry_Id());
+            }else if(allFormRequest.get("formType").equals("deleteSkift")){
+                System.out.println(allFormRequest);
+                if(!allFormRequest.get("formId").isBlank()){
+                    int formid = Integer.parseInt(allFormRequest.get("formId"));
+                    scheduleEntryService.deleteShift(formid);
+                    Personal loggedin = (Personal)session.getAttribute("personal");
+                    loggedin =  personalService.verifyLoginIn(loggedin.getUserName(), loggedin.getPassword(),scheduleEntryService, categoryService);
+                    session.setAttribute("personal", loggedin);
+
+                    List<Personal> ps = personalService.getAllPersonal(scheduleEntryService, categoryService);
+                    session.setAttribute("allPersonal", ps);
+
+
                 }
             }
         }
 
-        }
         //System.out.println(personhift.get("Sebbe Nilsson").getEntry_Id());
         //System.out.println(personhift.get(personals.get(0).getName()).getEntry_Id());
         System.out.println(personals.get(0).getName());
@@ -239,7 +242,7 @@ public class MainController {
 
 
 
-        model.addAttribute("hej",personhift);
+
         model.addAttribute("allPersonal", personals);
         model.addAttribute("show_message", showMessage);
         model.addAttribute("categorys",categoryService.getAllCategory());
