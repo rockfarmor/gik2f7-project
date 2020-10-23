@@ -114,11 +114,9 @@
                 </div>
                 <select id="skifttyp" name="skifttyp" class="custom-select">
                   <option selected>Välj Skifttyp</option>
-                  <option value="1">Frukost</option>
-                  <option value="2">Frukost/Lunch</option>
-                  <option value="3">Lunch/Middag</option>
-                  <option value="4">Middag</option>
-                  <option value="5">Stängning</option>
+
+                  <option th:each="cate: ${categorys}" value="1" th:value="${cate.getCategoryId()}" th:text="${cate.getCategoryName()}"></option>
+
                 </select>
                 </br></br>
 

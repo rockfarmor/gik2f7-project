@@ -2,6 +2,7 @@ package com.project.scheduleapp.demo.controllers;
 
 import com.project.scheduleapp.demo.Model.*;
 
+import com.project.scheduleapp.demo.Service.CategoryService;
 import com.project.scheduleapp.demo.Service.PersonalService;
 import com.project.scheduleapp.demo.Service.ScheduleEntryService;
 
@@ -33,6 +34,8 @@ public class MainController {
     private ScheduleEntryService scheduleEntryService;
     @Autowired
     private PersonalService personalService;
+    @Autowired
+    private CategoryService categoryService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String showlogIn() {
@@ -154,7 +157,7 @@ public class MainController {
                 if(!username.isEmpty() && !name.isEmpty() && !password.isEmpty() && salary > 0){
                     //int uniqueID, String name, String userName, String password, int salaryPerHour, int isAdmin
                     int sal = 10;
-                    Personal newPerson = new Personal(-1, name, username, password, sal,iadmin);
+                    Personal newPerson = new Personal(-1, name, username, password, salary,iadmin);
 
                     personalService.addEntry(newPerson);
                     System.out.println("NY PERSSON LADES TILL!!!!!!!!!!1111111111");
@@ -171,13 +174,16 @@ public class MainController {
                 System.out.println("skiftTypeAdd");
 
 
-                if(allFormRequest.get("skiftType") != null && allFormRequest.get("skiftBeskrivning") != null) {
-                    String skiftTyp = allFormRequest.get("skiftType");
+                if(allFormRequest.get("skiftTyp") != null && allFormRequest.get("skiftBeskrivning") != null) {
+                    String skiftTyp = allFormRequest.get("skiftTyp");
                     String skiftBeskrivning = allFormRequest.get("skiftBeskrivning");
+                    System.out.println("jaaa");
+
                     if (!skiftTyp.isBlank() && !skiftBeskrivning.isBlank()) {
-                        System.out.println("Ny kategori ska skapas:");
-                        System.out.println("Skifttyp: " + skiftTyp);
-                        System.out.println("SkiftBeskrivning: " + skiftBeskrivning);
+                        Category category = new Category(-1,skiftTyp,skiftBeskrivning);
+
+                        categoryService.addCategory(category);
+                        System.out.println("heeej");
                     }
                 }
 
@@ -187,9 +193,10 @@ public class MainController {
         }
 
 
+
         model.addAttribute("allPersonal", personals);
         model.addAttribute("show_message", showMessage);
-
+        model.addAttribute("categorys",categoryService.getAllCategory());
 
 
         return "admin";
