@@ -1,7 +1,9 @@
 package com.project.scheduleapp.demo.Repository;
 
+import com.project.scheduleapp.demo.Model.Category;
 import com.project.scheduleapp.demo.Model.Personal;
 import com.project.scheduleapp.demo.Model.Shift;
+import com.project.scheduleapp.demo.Service.CategoryService;
 import com.project.scheduleapp.demo.Service.ScheduleEntryService;
 import com.project.scheduleapp.demo.models.PersonalOld;
 import com.project.scheduleapp.demo.models.ScheduleEntry;
@@ -49,11 +51,24 @@ public class PersonalCrud implements IPersonalCrud {
                 personals.add(person);
 
                 List<ScheduleEntry> scheduleEntries = scheduleEntryService.getEntriesByScheduleId(person.getUniqueID());
+                CategoryService categoryService = new CategoryService();
+                List<Category> categoryList = categoryService.getAllCategory();
+
+
                 if(scheduleEntries != null) {
                     for (ScheduleEntry s : scheduleEntries) {
                         //int shiftID, LocalDateTime startDate, LocalDateTime endDate, String description
-                        Shift shift = new Shift(s.getEntry_Id(), s.getStart_Date().toLocalDateTime(), s.getEnd_Date().toLocalDateTime(), s.getDescription(), person);
-                        person.getSchedlist().add(shift);
+                        if (categoryList != null) {
+                            for(Category a : categoryList){
+                                if(a.getCategoryId() ==  s.getCategory_Id()){
+                                    Shift shift = new Shift(s.getEntry_Id(), s.getStart_Date().toLocalDateTime(), s.getEnd_Date().toLocalDateTime(), s.getDescription(), person,a);
+                                    person.getSchedlist().add(shift);
+                                }
+                            }
+
+                        }
+
+
 
                     }
                 }
@@ -95,14 +110,28 @@ public class PersonalCrud implements IPersonalCrud {
                 person.setIs_admin(resultSet.getInt("is_admin"));
                 person.setIs_logged_in(resultSet.getInt("is_logged_in"));*/
                 List<ScheduleEntry> scheduleEntries = scheduleEntryService.getEntriesByScheduleId(person.getUniqueID());
+                CategoryService categoryService = new CategoryService();
+                List<Category> categoryList = categoryService.getAllCategory();
+
+
                 if(scheduleEntries != null) {
                     for (ScheduleEntry s : scheduleEntries) {
                         //int shiftID, LocalDateTime startDate, LocalDateTime endDate, String description
-                        Shift shift = new Shift(s.getEntry_Id(), s.getStart_Date().toLocalDateTime(), s.getEnd_Date().toLocalDateTime(), s.getDescription(), person);
-                        person.getSchedlist().add(shift);
+                        if (categoryList != null) {
+                            for(Category a : categoryList){
+                                if(a.getCategoryId() ==  s.getCategory_Id()){
+                                    Shift shift = new Shift(s.getEntry_Id(), s.getStart_Date().toLocalDateTime(), s.getEnd_Date().toLocalDateTime(), s.getDescription(), person,a);
+                                    person.getSchedlist().add(shift);
+                                }
+                            }
+
+                        }
+
+
 
                     }
                 }
+
 
             }
             resultSet.close();
@@ -181,11 +210,24 @@ public class PersonalCrud implements IPersonalCrud {
                 person.setIs_admin(resultSet.getInt("is_admin"));
                 person.setIs_logged_in(resultSet.getInt("is_logged_in"));*/
                 List<ScheduleEntry> scheduleEntries = scheduleEntryService.getEntriesByScheduleId(person.getUniqueID());
+                CategoryService categoryService = new CategoryService();
+                List<Category> categoryList = categoryService.getAllCategory();
+
+
                 if(scheduleEntries != null) {
                     for (ScheduleEntry s : scheduleEntries) {
                         //int shiftID, LocalDateTime startDate, LocalDateTime endDate, String description
-                        Shift shift = new Shift(s.getEntry_Id(), s.getStart_Date().toLocalDateTime(), s.getEnd_Date().toLocalDateTime(), s.getDescription(), person);
-                        person.getSchedlist().add(shift);
+                        if (categoryList != null) {
+                            for(Category a : categoryList){
+                                if(a.getCategoryId() ==  s.getCategory_Id()){
+                                    Shift shift = new Shift(s.getEntry_Id(), s.getStart_Date().toLocalDateTime(), s.getEnd_Date().toLocalDateTime(), s.getDescription(), person,a);
+                                    person.getSchedlist().add(shift);
+                                }
+                            }
+
+                        }
+
+
 
                     }
                 }

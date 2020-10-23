@@ -21,6 +21,15 @@ public class Shift {
     private Personal account;
 
 
+    public Shift(int shiftID, LocalDateTime startDate, LocalDateTime endDate, String description, Personal a, Category category) {
+        this.shiftID = shiftID;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.description = description;
+        this.isReal = true;
+        this.account = a;
+        this.category = category;
+    }
     public Shift(int shiftID, LocalDateTime startDate, LocalDateTime endDate, String description, Personal a) {
         this.shiftID = shiftID;
         this.startDate = startDate;
@@ -28,7 +37,7 @@ public class Shift {
         this.description = description;
         this.isReal = true;
         this.account = a;
-        this.category = Category.Category1;
+        this.category = null;
     }
 
     public Shift(int shiftID, LocalDateTime startDate, LocalDateTime endDate, String description) {
@@ -183,6 +192,9 @@ public class Shift {
     }
 
     public Category getCategory() {
+        if(category == null){
+            return Category.Category1;
+        }
         return category;
     }
 
