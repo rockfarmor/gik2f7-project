@@ -7,8 +7,6 @@ import com.project.scheduleapp.demo.Service.PersonalService;
 import com.project.scheduleapp.demo.Service.ScheduleEntryService;
 
 import com.project.scheduleapp.demo.helpers.Helper;
-import com.project.scheduleapp.demo.models.PersonalOld;
-import com.project.scheduleapp.demo.models.ScheduleEntry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -18,10 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import java.sql.SQLOutput;
-import java.sql.Timestamp;
 
-import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 
 import java.time.format.DateTimeFormatter;

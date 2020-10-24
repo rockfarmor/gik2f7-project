@@ -4,7 +4,6 @@ import com.project.scheduleapp.demo.Model.Personal;
 import com.project.scheduleapp.demo.Model.Shift;
 import com.project.scheduleapp.demo.Service.CategoryService;
 import com.project.scheduleapp.demo.Service.ScheduleEntryService;
-import com.project.scheduleapp.demo.models.PersonalOld;
 
 import java.util.List;
 
