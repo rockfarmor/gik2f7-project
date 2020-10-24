@@ -1,4 +1,4 @@
-package com.project.scheduleapp.demo.Model;
+package com.project.scheduleapp.demo.helpers;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
