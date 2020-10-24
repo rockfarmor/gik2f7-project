@@ -1,4 +1,6 @@
-package com.project.scheduleapp.demo.Model;
+package com.project.scheduleapp.demo.helpers;
+
+import com.project.scheduleapp.demo.Model.Shift;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

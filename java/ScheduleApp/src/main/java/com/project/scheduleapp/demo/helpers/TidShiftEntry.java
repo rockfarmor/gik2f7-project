@@ -1,5 +1,6 @@
-package com.project.scheduleapp.demo.Model;
+package com.project.scheduleapp.demo.helpers;
 
+import com.project.scheduleapp.demo.Model.Shift;
 import org.thymeleaf.util.StringUtils;
 
 import java.time.LocalDateTime;
