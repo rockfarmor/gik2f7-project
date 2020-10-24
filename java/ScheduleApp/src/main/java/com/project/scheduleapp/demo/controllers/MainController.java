@@ -241,6 +241,10 @@ public class MainController {
 
         personals = (List<Personal>)session.getAttribute("allPersonal");
 
+        Personal loggedin = (Personal)session.getAttribute("personal");
+        model.addAttribute("personal", loggedin);
+
+
         model.addAttribute("allPersonal", personals);
         model.addAttribute("show_message", showMessage);
         model.addAttribute("categorys", (List<Category>)session.getAttribute("allCategories"));
@@ -318,7 +322,7 @@ public class MainController {
         model.addAttribute("jScript2", jscript2);
         model.addAttribute("calendar_month", Helper.getLocalDateYearString(thisMonth));
         model.addAttribute("month_int", m);
-
+        model.addAttribute("personal", loggedin);
         return "schema";
     }
 
