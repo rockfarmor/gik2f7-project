@@ -65,7 +65,11 @@ public class MainController {
                 session.setAttribute("personal",p);
                 List<Personal> personals = personalService.getAllPersonal(scheduleEntryService, categoryService);
                 session.setAttribute("allPersonal", personals);
-
+                List<Shift> shifts = null;
+                session.setAttribute("allShifts", shifts);
+                session.setAttribute("allCategories", categoryService.getAllCategory());
+                session.setAttribute("allShifts", personalService.getAllShiftsEntries(categoryService,scheduleEntryService));
+                //List<Shift> shifts
 
             }
         }
@@ -105,8 +109,16 @@ public class MainController {
         if(session.getAttribute("personal") == null) {
             return "logIn";
         }
+
+        if(session.getAttribute("allShifts") == null){
+            session.setAttribute("allShifts", personalService.getAllShiftsEntries(categoryService,scheduleEntryService));
+        }
+
+
+
         boolean showMessage = false;
         List<Personal> personals = (List<Personal>)session.getAttribute("allPersonal");
+
         if(allFormRequest.get("formType") != null) {
             //skiftAdd,skiftTypeAdd,userAdd
             if (allFormRequest.get("formType").equals("skiftAdd")) {
@@ -159,7 +171,7 @@ public class MainController {
 
                     List<Personal> ps = personalService.getAllPersonal(scheduleEntryService, categoryService);
 
-
+                    session.setAttribute("allShifts", personalService.getAllShiftsEntries(categoryService,scheduleEntryService));
                     session.setAttribute("allPersonal", ps);
 
 
@@ -187,9 +199,6 @@ public class MainController {
                     Personal newPerson = new Personal(-1, name, username, password, salary,iadmin);
 
                     personalService.addEntry(newPerson);
-
-
-
                     //Update session with all new personals
                     List<Personal> ps = personalService.getAllPersonal(scheduleEntryService, categoryService);
                     session.setAttribute("allPersonal", ps);
@@ -197,7 +206,7 @@ public class MainController {
 
 
                 } else {
-                    System.out.println("PRINT ERROR!!!!!!!!");
+                    //Some error
                 }
 
             }  else if(allFormRequest.get("formType").equals("skiftTypeAdd")){
@@ -211,13 +220,11 @@ public class MainController {
                         Category category = new Category(-1,skiftTyp,skiftBeskrivning);
 
                         categoryService.addCategory(category);
-                        System.out.println("heeej");
+                        session.setAttribute("allCategories", categoryService.getAllCategory());
                     }
                 }
 
-
-
-            }else if(allFormRequest.get("formType").equals("deleteSkift")){
+            } else if(allFormRequest.get("formType").equals("deleteSkift")){
                 System.out.println(allFormRequest);
                 if(!allFormRequest.get("formId").isBlank()){
                     int formid = Integer.parseInt(allFormRequest.get("formId"));
@@ -228,16 +235,14 @@ public class MainController {
 
                     List<Personal> ps = personalService.getAllPersonal(scheduleEntryService, categoryService);
                     session.setAttribute("allPersonal", ps);
+                    session.setAttribute("allShifts", personalService.getAllShiftsEntries(categoryService,scheduleEntryService));
 
 
                 }
             }
         }
 
-        //System.out.println(personhift.get("Sebbe Nilsson").getEntry_Id());
-        //System.out.println(personhift.get(personals.get(0).getName()).getEntry_Id());
-        System.out.println(personals.get(0).getName());
-        //System.out.println(personhift.get("Sebbe Nilsson").getEntry_Id());
+
         personals = (List<Personal>)session.getAttribute("allPersonal");
 
 
@@ -245,9 +250,9 @@ public class MainController {
 
         model.addAttribute("allPersonal", personals);
         model.addAttribute("show_message", showMessage);
-        model.addAttribute("categorys",categoryService.getAllCategory());
-        List<Shift> shifts = personalService.getAllShiftsEntries(categoryService,scheduleEntryService);
-        model.addAttribute("shifts",shifts);
+        model.addAttribute("categorys", (List<Category>)session.getAttribute("allCategories"));
+        List<Shift> shifts = (List<Shift>)session.getAttribute("allShifts");
+        model.addAttribute("shifts", shifts);
 
         return "admin";
     }
