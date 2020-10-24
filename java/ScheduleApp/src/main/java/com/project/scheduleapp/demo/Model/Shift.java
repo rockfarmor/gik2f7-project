@@ -190,10 +190,17 @@ public class Shift {
     }
 
     public String getLocalDateString(){
-
         String month = this.startDate.getMonth().getDisplayName(TextStyle.FULL, new Locale("sv","SE"));
         month = StringUtils.capitalize(month);
         month = this.startDate.getDayOfMonth() + " " + month;
+
+        return month;
+    }
+
+    public String getLocalDateMonthString(){
+        String month = this.startDate.getMonth().getDisplayName(TextStyle.FULL, new Locale("sv","SE"));
+        month = StringUtils.capitalize(month);
+        month = month.substring(0,3);
 
         return month;
     }

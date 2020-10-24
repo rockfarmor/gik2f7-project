@@ -161,8 +161,13 @@ nav {
   margin-bottom: 0px;
 }
 
+
+.full-height {
+  height: 100% !important;
+}
+
 .no-margin {
-  margin: 0px;
+  margin: 0px !important;
 }
 
 .no-padding {

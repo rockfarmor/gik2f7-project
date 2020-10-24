@@ -245,13 +245,11 @@ public class MainController {
 
         personals = (List<Personal>)session.getAttribute("allPersonal");
 
-
-
-
         model.addAttribute("allPersonal", personals);
         model.addAttribute("show_message", showMessage);
         model.addAttribute("categorys", (List<Category>)session.getAttribute("allCategories"));
         List<Shift> shifts = (List<Shift>)session.getAttribute("allShifts");
+        Collections.sort(shifts, (x, y) -> x.getStartDate().compareTo(y.getStartDate()));
         model.addAttribute("shifts", shifts);
 
         return "admin";
