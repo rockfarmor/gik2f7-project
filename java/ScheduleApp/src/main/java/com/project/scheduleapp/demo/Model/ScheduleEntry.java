@@ -1,4 +1,4 @@
-package com.project.scheduleapp.demo.models;
+package com.project.scheduleapp.demo.Model;
 
 import java.sql.Timestamp;
 import java.util.Date;

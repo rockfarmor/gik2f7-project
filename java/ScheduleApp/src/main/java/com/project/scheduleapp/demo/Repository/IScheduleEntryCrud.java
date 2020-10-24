@@ -2,7 +2,7 @@ package com.project.scheduleapp.demo.Repository;
 
 import com.project.scheduleapp.demo.Model.Personal;
 import com.project.scheduleapp.demo.Model.Shift;
-import com.project.scheduleapp.demo.models.ScheduleEntry;
+import com.project.scheduleapp.demo.Model.ScheduleEntry;
 
 import java.util.List;
 

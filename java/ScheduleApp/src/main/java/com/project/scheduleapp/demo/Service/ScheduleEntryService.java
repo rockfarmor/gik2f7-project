@@ -3,7 +3,7 @@ package com.project.scheduleapp.demo.Service;
 import com.project.scheduleapp.demo.Model.Personal;
 import com.project.scheduleapp.demo.Model.Shift;
 import com.project.scheduleapp.demo.Repository.IScheduleEntryCrud;
-import com.project.scheduleapp.demo.models.ScheduleEntry;
+import com.project.scheduleapp.demo.Model.ScheduleEntry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

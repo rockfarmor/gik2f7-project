@@ -1,9 +1,6 @@
 package com.project.scheduleapp.demo.Repository;
 
 import com.project.scheduleapp.demo.Model.Category;
-import com.project.scheduleapp.demo.Model.Personal;
-import com.project.scheduleapp.demo.Model.Shift;
-import com.project.scheduleapp.demo.models.ScheduleEntry;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
